@@ -202,26 +202,52 @@ footer { background:var(--bg-secondary); border-top:1px solid var(--border); pad
     </div>
     <div class="map-container reveal">
       <svg class="map-svg" viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg" id="map-svg">
-        <rect width="560" height="380" fill="rgba(201,168,76,0.015)"/>
-        <g stroke="rgba(201,168,76,0.05)" stroke-width="0.5">
-          <line x1="0" y1="95" x2="560" y2="95"/><line x1="0" y1="190" x2="560" y2="190"/><line x1="0" y1="285" x2="560" y2="285"/>
-          <line x1="140" y1="0" x2="140" y2="380"/><line x1="280" y1="0" x2="280" y2="380"/><line x1="420" y1="0" x2="420" y2="380"/>
+        <defs>
+          <linearGradient id="ocean-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F8F9FA"/>
+            <stop offset="100%" style="stop-color:#E8EAEB"/>
+          </linearGradient>
+        </defs>
+        <rect width="560" height="380" fill="url(#ocean-gradient)"/>
+
+        <!-- Simplified world map continents -->
+        <g fill="#D1D5DB" stroke="#9CA3AF" stroke-width="0.3" opacity="0.5">
+          <!-- North America -->
+          <path d="M50 50 L120 45 L140 60 L130 100 L100 120 L60 110 L40 80 Z"/>
+          <!-- South America -->
+          <path d="M110 130 L135 135 L145 160 L130 200 L100 180 L105 150 Z"/>
+          <!-- Europe -->
+          <path d="M250 40 L290 38 L300 55 L280 70 L260 65 L255 50 Z"/>
+          <!-- Africa -->
+          <path d="M240 90 L290 88 L305 120 L280 160 L250 150 L245 110 Z"/>
+          <!-- Asia -->
+          <path d="M300 40 L380 35 L450 50 L480 80 L440 110 L380 100 L320 85 L300 60 Z"/>
+          <!-- Australia -->
+          <path d="M420 140 L470 138 L480 165 L450 175 L425 160 Z"/>
         </g>
-        <path d="M210 60 L230 55 L245 65 L260 60 L275 70 L270 90 L255 95 L240 85 L225 90 L215 80 Z" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.18)" stroke-width="0.5"/>
-        <path d="M195 55 L205 50 L208 62 L198 65 Z" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.18)" stroke-width="0.5"/>
-        <path d="M40 70 L90 60 L105 80 L100 110 L80 120 L55 115 L35 100 Z" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.18)" stroke-width="0.5"/>
-        <path d="M268 72 L285 68 L298 75 L295 85 L278 90 L265 82 Z" fill="rgba(201,168,76,0.18)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
-        <path d="M215 30 L225 25 L235 40 L228 55 L218 50 Z" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.12)" stroke-width="0.5"/>
-        <path d="M190 130 L280 125 L295 155 L240 160 L185 155 Z" fill="rgba(201,168,76,0.03)" stroke="rgba(201,168,76,0.08)" stroke-width="0.5"/>
-        <path d="M40 40 L95 35 L100 60 L90 62 L40 68 Z" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.1)" stroke-width="0.5"/>
+
+        <!-- Grid lines -->
+        <g stroke="#E5E7EB" stroke-width="0.5" opacity="0.4">
+          <line x1="0" y1="95" x2="560" y2="95"/>
+          <line x1="0" y1="190" x2="560" y2="190"/>
+          <line x1="0" y1="285" x2="560" y2="285"/>
+          <line x1="140" y1="0" x2="140" y2="380"/>
+          <line x1="280" y1="0" x2="280" y2="380"/>
+          <line x1="420" y1="0" x2="420" y2="380"/>
+        </g>
+
+        <!-- Connection lines (will be populated by JS) -->
+        <g id="map-lines" stroke="#0095F6" stroke-width="0.8" stroke-dasharray="3,4" opacity="0.3"></g>
+
         <!-- Ukraine home dot -->
-        <circle cx="281" cy="78" r="7" fill="var(--gold)" opacity="1" class="map-dot" id="ukraine-dot" data-country="Україна" data-org="HQ — Штаб-квартира" data-desc="Центральний вузол мережі" data-link="#"/>
-        <circle cx="281" cy="78" r="12" fill="none" stroke="var(--gold)" opacity="0.3" stroke-width="1.5" pointer-events="none">
-          <animate attributeName="r" values="7;18;7" dur="2.5s" repeatCount="indefinite"/>
+        <circle cx="281" cy="78" r="8" fill="#0095F6" class="map-dot" id="ukraine-dot" data-country="Україна" data-org="HQ — Штаб-квартира" data-desc="Центральний вузол мережі" data-link="#" style="cursor:pointer"/>
+        <circle cx="281" cy="78" r="14" fill="none" stroke="#0095F6" opacity="0.3" stroke-width="1.5" pointer-events="none">
+          <animate attributeName="r" values="8;20;8" dur="2.5s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.4;0;0.4" dur="2.5s" repeatCount="indefinite"/>
         </circle>
-        <text x="281" y="96" text-anchor="middle" fill="rgba(201,168,76,0.45)" font-size="7" font-family="DM Sans,sans-serif" pointer-events="none">UKRAINE</text>
-        <g id="map-lines" stroke="rgba(201,168,76,0.15)" stroke-width="0.8" stroke-dasharray="3,4"></g>
+        <text x="281" y="98" text-anchor="middle" fill="#0095F6" font-size="8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" pointer-events="none" font-weight="500">УКРАЇНА</text>
+
+        <!-- Dynamic dots container -->
         <g id="map-dots"></g>
       </svg>
       <div class="map-tooltip" id="map-tooltip">
