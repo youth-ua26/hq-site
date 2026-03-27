@@ -83,8 +83,9 @@ section{padding:5rem 4rem;}
 .map-wrap{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh-md);margin-top:2.5rem;}
 #world-map{height:520px;width:100%;}
 .countries-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;}
-.c-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:20px;font-size:.78rem;color:var(--muted);background:var(--card);cursor:default;transition:border-color .2s,color .2s;}
-.c-chip:hover{border-color:var(--accent);color:var(--dark);}
+.c-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:20px;font-size:.78rem;color:var(--muted);background:var(--card);cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
+.c-chip:hover{border-color:var(--accent);color:var(--dark);background:var(--accent-bg);}
+.c-chip.active{border-color:var(--accent);background:var(--accent-bg);color:var(--dark);}
 .leaflet-popup-content-wrapper{border-radius:10px!important;border:1px solid var(--border)!important;box-shadow:var(--sh-md)!important;padding:0!important;}
 .leaflet-popup-content{margin:0!important;}
 .map-popup{padding:.85rem 1.1rem;}
@@ -380,11 +381,13 @@ const orgs=[
   {country:'Італія',flag:'🇮🇹',name:'Українсько-італійська молодіжна організація UaMi',web:null,lat:41.9,lng:12.5},
 ];
 
+const markers = {};
 orgs.forEach(org=>{
   const ll=[org.lat,org.lng];
   L.polyline([UALatLng,ll],{color:'#1D4ED8',weight:1.5,opacity:.18,dashArray:'5 8'}).addTo(map);
-  L.circleMarker(ll,{radius:7,fillColor:'#D97706',color:'#fff',weight:2,opacity:1,fillOpacity:.9}).addTo(map)
+  const marker = L.circleMarker(ll,{radius:7,fillColor:'#D97706',color:'#fff',weight:2,opacity:1,fillOpacity:.9}).addTo(map)
     .bindPopup(`<div class="map-popup"><h4>${org.flag} ${org.country}</h4><p>${org.name}</p>${org.web?`<a href="${org.web}" target="_blank" rel="noopener">Відвідати →</a>`:''}</div>`);
+  markers[org.country] = {marker, ll};
 });
 
 const allLats=[UALatLng[0],...orgs.map(o=>o.lat)],allLngs=[UALatLng[1],...orgs.map(o=>o.lng)];
@@ -392,7 +395,17 @@ map.fitBounds([[Math.min(...allLats)-4,Math.min(...allLngs)-12],[Math.max(...all
 
 const chipsEl=document.getElementById('chips-container');
 [...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o=>{
-  const d=document.createElement('div');d.className='c-chip';d.innerHTML=`<span>${o.flag}</span><span>${o.country}</span>`;chipsEl.appendChild(d);
+  const d=document.createElement('div');d.className='c-chip';d.innerHTML=`<span>${o.flag}</span><span>${o.country}</span>`;
+  d.addEventListener('click',()=>{
+    const data = markers[o.country];
+    if(data){
+      document.querySelectorAll('.c-chip').forEach(c=>c.classList.remove('active'));
+      d.classList.add('active');
+      map.flyTo(data.ll, 5, {duration: 0.8});
+      setTimeout(()=>data.marker.openPopup(), 400);
+    }
+  });
+  chipsEl.appendChild(d);
 });
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
