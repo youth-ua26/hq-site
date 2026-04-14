@@ -503,7 +503,9 @@ orgs.forEach(org => pointSeries.data.push({
   country: org.country, iso: org.iso, name: org.name, web: org.web
 }));
 
-chart.goHome();
+polygonSeries.events.on("datavalidated", function() {
+  chart.goHome(0);
+});
 
 // Country chips
 const chipsEl = document.getElementById('chips-container');
