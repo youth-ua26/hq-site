@@ -430,6 +430,57 @@ polygonSeries.mapPolygons.template.states.create("hover", {
   fill: am5.color(0x1D4ED8), fillOpacity: 0.95
 });
 
+// Russia — Quarantine Zone styling
+polygonSeries.events.on("datavalidated", function() {
+  polygonSeries.mapPolygons.each(function(polygon) {
+    if (polygon.dataItem && polygon.dataItem.get("id") === "RU") {
+      var stripes = am5.LinePattern.new(root, {
+        color: am5.color(0xEF4444),
+        rotation: -45,
+        gap: 7,
+        lineOpacity: 0.55,
+        width: 200,
+        height: 200
+      });
+      polygon.setAll({
+        fill: am5.color(0xEF4444),
+        fillOpacity: 0.18,
+        fillPattern: stripes,
+        stroke: am5.color(0xEF4444),
+        strokeWidth: 2,
+        strokeDasharray: [6, 4],
+        strokeOpacity: 1
+      });
+      polygon.states.create("hover", {
+        fill: am5.color(0xEF4444), fillOpacity: 0.32
+      });
+    }
+  });
+});
+
+// Quarantine Zone label
+var qSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
+qSeries.bullets.push(function() {
+  var c = am5.Container.new(root, {});
+  c.children.push(am5.RoundedRectangle.new(root, {
+    width: 140, height: 22,
+    fill: am5.color(0xEF4444), fillOpacity: 0.92,
+    cornerRadiusTL: 3, cornerRadiusTR: 3,
+    cornerRadiusBL: 3, cornerRadiusBR: 3,
+    centerX: am5.p50, centerY: am5.p50,
+    rotation: -22
+  }));
+  c.children.push(am5.Label.new(root, {
+    text: "QUARANTINE ZONE",
+    fontSize: 8, fontWeight: "800",
+    fill: am5.color(0xFFFFFF),
+    centerX: am5.p50, centerY: am5.p50,
+    rotation: -22, letterSpacing: 1.2
+  }));
+  return am5.Bullet.new(root, {sprite: c});
+});
+qSeries.data.push({geometry: {type: "Point", coordinates: [90, 62]}});
+
 // Zoom control
 var zoomControl = chart.set("zoomControl", am5map.ZoomControl.new(root, {}));
 zoomControl.homeButton.set("visible", true);
