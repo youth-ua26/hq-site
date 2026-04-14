@@ -167,7 +167,10 @@ textarea{resize:vertical;min-height:130px;}
 
       <div class="contact-form reveal">
         <div class="form-title">Надіслати повідомлення</div>
-        <form action="mailto:youth@ua-hq.com" method="POST" enctype="text/plain">
+        <form action="https://formsubmit.co/youth@ua-hq.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://youth-ua26.github.io/hq-site/contact.html">
+          <input type="hidden" name="_subject" value="Нове звернення з сайту HQ">
           <div class="form-row">
             <div class="field"><label for="name">Ім'я</label><input type="text" id="name" placeholder="Ваше ім'я" required></div>
             <div class="field"><label for="email">Email</label><input type="email" id="email" placeholder="email@example.com" required></div>
