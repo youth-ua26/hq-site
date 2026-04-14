@@ -58,14 +58,12 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 /* PROJECTS GRID */
 .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
-.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;transition:border-color .2s,transform .2s,box-shadow .2s;display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;transition:border-color .2s,transform .2s,box-shadow .2s;display:flex;flex-direction:column;}
 .project-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--sh-md);}
-.project-meta{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;}
-.project-read{font-size:.78rem;font-weight:700;color:var(--accent);}
 .project-tag{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);background:var(--accent-bg);padding:.25rem .65rem;border-radius:4px;margin-bottom:1.25rem;width:fit-content;}
 .project-name{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.6rem;line-height:1.3;}
 .project-desc{font-size:.875rem;line-height:1.65;color:var(--muted);flex:1;}
-.project-year{font-size:.75rem;color:var(--muted);font-weight:500;}
+.project-year{margin-top:1.25rem;font-size:.75rem;color:var(--muted);font-weight:500;}
 @media(max-width:900px){.projects-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){.projects-grid{grid-template-columns:1fr;}}
 </style>
@@ -95,42 +93,42 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
     <div class="s-tag reveal">2024 — 2025</div>
     <h2 class="s-title reveal">Що ми реалізували</h2>
     <div class="projects-grid">
-      <a href="project-forum-2024.html" class="project-card reveal">
+      <div class="project-card reveal">
         <span class="project-tag">Мережа</span>
         <div class="project-name">Глобальний Форум Українських Організацій 2024</div>
         <p class="project-desc">Перша масштабна координаційна зустріч представників 26+ організацій у 16 країнах. Встановлено стандарти взаємодії та спільні пріоритети на 2025 рік.</p>
-        <div class="project-meta"><span class="project-year">2024</span><span class="project-read">Читати →</span></div>
-      </a>
-      <a href="project-internship-2024.html" class="project-card reveal">
+        <div class="project-year">2024</div>
+      </div>
+      <div class="project-card reveal">
         <span class="project-tag">Інтернатура</span>
         <div class="project-name">HQ Internship — Перший набір</div>
         <p class="project-desc">150+ заявок, 10 відібраних учасників. Тримісячна програма з реальними завданнями у сфері комунікацій, аналітики та управління проєктами.</p>
-        <div class="project-meta"><span class="project-year">2024</span><span class="project-read">Читати →</span></div>
-      </a>
-      <a href="project-embassies-2024.html" class="project-card reveal">
+        <div class="project-year">2024</div>
+      </div>
+      <div class="project-card reveal">
         <span class="project-tag">Дипломатія</span>
         <div class="project-name">Програма Посольств — Пілот</div>
         <p class="project-desc">Перший пілотний запуск у партнерстві з МЗС України. Три учасники пройшли стажування у посольствах, розроблено модель для масштабування.</p>
-        <div class="project-meta"><span class="project-year">2024</span><span class="project-read">Читати →</span></div>
-      </a>
-      <a href="project-hromady-2024.html" class="project-card reveal">
+        <div class="project-year">2024</div>
+      </div>
+      <div class="project-card reveal">
         <span class="project-tag">Громади</span>
         <div class="project-name">Дистанційна підтримка громад</div>
         <p class="project-desc">Пілотне впровадження моделі remote engagement у 5 громадах. Українці за кордоном долучились до реальних проєктів розвитку на місцевому рівні.</p>
-        <div class="project-meta"><span class="project-year">2024</span><span class="project-read">Читати →</span></div>
-      </a>
-      <a href="project-education-2024.html" class="project-card reveal">
+        <div class="project-year">2024</div>
+      </div>
+      <div class="project-card reveal">
         <span class="project-tag">Освіта</span>
         <div class="project-name">Освіта для лідерства діаспори</div>
         <p class="project-desc">Серія освітніх сесій та воркшопів для лідерів українських організацій за кордоном. Теми: стратегічне планування, комунікації, фандрейзинг.</p>
-        <div class="project-meta"><span class="project-year">2023–2024</span><span class="project-read">Читати →</span></div>
-      </a>
-      <a href="project-universities-2023.html" class="project-card reveal">
+        <div class="project-year">2023–2024</div>
+      </div>
+      <div class="project-card reveal">
         <span class="project-tag">Партнерства</span>
         <div class="project-name">Університетські партнерства</div>
         <p class="project-desc">Налагодження формальних партнерств з університетськими українськими клубами в США, Великій Британії та Канаді. База для HQ Internship та Менторства.</p>
-        <div class="project-meta"><span class="project-year">2023</span><span class="project-read">Читати →</span></div>
-      </a>
+        <div class="project-year">2023</div>
+      </div>
     </div>
   </div>
 </section>
@@ -153,9 +151,9 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
         <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
-        <p class="footer-desc" style="margin-top:.75rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48d8a828ba48c95c9918f96858d8a81ca8b9683">[email&#160;protected]</a></p>
+        <p class="footer-desc" style="margin-top:.75rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41282f272e0129306c342a3320282f246f2e3326">[email&#160;protected]</a></p>
       </div>
-            <div class="footer-links">
+      <div class="footer-links">
         <div class="footer-col">
           <div class="footer-col-title">Сторінки</div>
           <a href="index.html">Головна</a>
@@ -183,10 +181,17 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
           <a href="#">Умови</a>
         </div>
       </div>
-      </div>
-      <div class="footer-bottom"><span>© 2024 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    </div>
+    <div class="footer-bottom"><span>© 2024 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
   </div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const obs=new IntersectionObser
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});
+},{threshold:0,rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach(el=>{
+  const rect=el.getBoundingClientRect();
+  if(rect.top<window.innerHeight){el.classList.add("visible");}
+  else{obs.observe(el);}
+});

@@ -239,40 +239,25 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
         <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
-        <p class="footer-desc" style="margin-top:.75rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6801060e07280019451d031a0901060d46071a0f">[email&#160;protected]</a></p>
+        <p class="footer-desc" style="margin-top:.75rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="573e393138173f267a223c25363e393279382530">[email&#160;protected]</a></p>
       </div>
-            <div class="footer-links">
-        <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
-          <a href="products.html#connect">Сузір'я</a>
-          <a href="products.html#learn">HQ Internship</a>
-          <a href="products.html#influence">Посольства</a>
-          <a href="products.html#anchor">Громади</a>
-          <a href="products.html#mentorship">Менторство</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
-          <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Правове</div>
-          <a href="#">Політика</a>
-          <a href="#">Умови</a>
-        </div>
+      <div class="footer-links">
+        <div><div class="footer-col-title">Сторінки</div><a href="index.html">Головна</a><a href="products.html">Програми</a><a href="projects.html">Проєкти</a><a href="team.html">Команда</a><a href="contact.html">Контакт</a></div>
+        <div><div class="footer-col-title">Програми</div><a href="#connect">Сузір'я</a><a href="#learn">HQ Internship</a><a href="#influence">Посольства</a><a href="#anchor">Громади</a><a href="#mentorship">Менторство</a></div>
+        <div><div class="footer-col-title">Соцмережі</div><a href="https://www.instagram.com/uniting_uayouth_worldwide">Instagram</a><a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all">LinkedIn</a><a 
+        <div><div class="footer-col-title">Правове</div><a href="#">Політика</a><a href="#">Умови</a></div>
       </div>
-      </div>
-      <div class="footer-bottom"><span>© 2024 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    </div>
+    <div class="footer-bottom"><span>© 2024 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
   </div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const obs=new IntersectionObser
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});
+},{threshold:0,rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach(el=>{
+  const rect=el.getBoundingClientRect();
+  if(rect.top<window.innerHeight){el.classList.add("visible");}
+  else{obs.observe(el);}
+});
