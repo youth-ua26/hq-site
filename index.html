@@ -403,10 +403,11 @@ root.setThemes([am5themes_Animated.new(root)]);
 
 var chart = root.container.children.push(
   am5map.MapChart.new(root, {
-    panX: "rotateX",
-    panY: "none",
+    panX: "translateX",
+    panY: "translateY",
     projection: am5map.geoMercator(),
     maxZoomLevel: 8,
+    minZoomLevel: 1,
     homeZoomLevel: 2.2,
     homeGeoPoint: {longitude: 31.2, latitude: 49}
   })
