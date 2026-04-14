@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Країна — HQ Штаб-квартира</title>
+<link rel="icon" href="logo_orig.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"/>
+<style>
+:root{--bg:#F8FAFC;--card:#FFFFFF;--alt:#F1F5F9;--dark:#0F172A;--muted:#64748B;--accent:#1D4ED8;--accent-h:#1E40AF;--accent-bg:#EFF6FF;--gold:#D97706;--border:#E2E8F0;--r:12px;--r-sm:8px;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);--sh-md:0 4px 20px rgba(0,0,0,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--dark);font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden;line-height:1.6;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;backdrop-filter:blur(20px) saturate(180%);background:rgba(248,250,252,.92);border-bottom:1px solid var(--border);}
+.nav-brand{font-size:1.1rem;font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem;}
+.nav-brand span{color:var(--dark);font-weight:400;font-size:.9rem;}
+.nav-links{display:flex;gap:.2rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;padding:.4rem .8rem;border-radius:var(--r-sm);transition:color .15s,background .15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--dark);background:var(--alt);}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
+.nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
+.nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle.active span:nth-child(2){opacity:0;}
+.nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:900px){.nav-toggle{display:flex;}}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:var(--card);border-bottom:1px solid var(--border);padding:1rem 1.5rem 1.5rem;z-index:199;flex-direction:column;gap:.25rem;box-shadow:0 8px 24px rgba(0,0,0,.08);}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{color:var(--dark);text-decoration:none;font-size:.95rem;font-weight:500;padding:.65rem .75rem;border-radius:var(--r-sm);transition:background .15s;}
+.nav-mobile a:hover,.nav-mobile a.active{background:var(--alt);}
+.nav-mobile .mob-cta{background:var(--accent);color:#fff;text-align:center;border-radius:var(--r-sm);margin-top:.5rem;}
+.nav-mobile .mob-cta:hover{background:var(--accent-h);color:#fff;}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.4rem;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .2s;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-h);transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3);}
+.btn-outline{background:transparent;color:var(--dark);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--dark);}
+section{padding:5rem 4rem;}.container{max-width:1100px;margin:0 auto;}
+.s-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:1rem;}
+.s-tag::before{content:'';width:18px;height:2px;background:var(--accent);border-radius:2px;}
+@media(max-width:900px){section{padding:3.5rem 1.5rem;}}
+footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:260px 1fr;gap:4rem;margin-bottom:3rem;}
+.footer-brand-name{color:#fff;font-size:1.05rem;font-weight:800;margin-bottom:.75rem;}
+.footer-desc{font-size:.85rem;line-height:1.65;}
+.footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.footer-col-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.25);margin-bottom:.75rem;}
+.footer-col a{display:block;color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;margin-bottom:.45rem;transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;display:flex;justify-content:space-between;font-size:.78rem;}
+@media(max-width:900px){footer{padding:3rem 1.5rem 2rem;}.footer-top{grid-template-columns:1fr;gap:2.5rem;}.footer-links{grid-template-columns:repeat(2,1fr);}.footer-bottom{flex-direction:column;gap:.5rem;}}
+
+/* PAGE HERO */
+.page-hero{padding:9rem 4rem 5rem;background:var(--card);border-bottom:1px solid var(--border);}
+.page-hero-inner{max-width:1100px;margin:0 auto;}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.825rem;color:var(--muted);text-decoration:none;margin-bottom:2rem;transition:color .15s;}
+.back-link:hover{color:var(--accent);}
+.back-link::before{content:'←';}
+.country-hero{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;}
+.country-flag{width:72px;height:54px;border-radius:6px;overflow:hidden;box-shadow:var(--sh);flex-shrink:0;}
+.country-flag .fi{width:100%;height:100%;display:block;}
+.country-name{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;line-height:1.1;color:var(--dark);}
+.country-name em{font-style:italic;color:var(--accent);}
+@media(max-width:900px){.page-hero{padding:7rem 1.5rem 4rem;}.country-hero{flex-direction:column;align-items:flex-start;gap:1rem;}}
+
+/* CONTENT */
+.country-content{background:var(--bg);}
+.org-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2.5rem;box-shadow:var(--sh);}
+.org-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem;}
+.org-name{font-size:1.35rem;font-weight:700;color:var(--dark);line-height:1.3;margin-bottom:1.75rem;}
+.org-divider{border:none;border-top:1px solid var(--border);margin-bottom:1.75rem;}
+.org-meta{display:flex;flex-direction:column;gap:1rem;}
+.org-meta-row{display:flex;align-items:flex-start;gap:.75rem;}
+.org-meta-icon{font-size:1rem;flex-shrink:0;margin-top:2px;}
+.org-meta-text{font-size:.9rem;color:var(--muted);line-height:1.5;}
+.org-meta-text strong{color:var(--dark);}
+.org-link-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;padding:.7rem 1.5rem;background:var(--accent);color:#fff;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;text-decoration:none;transition:background .2s,transform .2s;}
+.org-link-btn:hover{background:var(--accent-h);transform:translateY(-1px);}
+.no-link-note{margin-top:2rem;font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;}
+
+/* NOT FOUND */
+.not-found{text-align:center;padding:8rem 2rem;}
+.not-found h2{font-size:2rem;font-weight:700;margin-bottom:1rem;}
+.not-found p{color:var(--muted);margin-bottom:2rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Програми</a></li>
+    <li><a href="projects.html">Проєкти</a></li>
+    <li><a href="team.html">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta">Долучитись</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="products.html">Програми</a>
+  <a href="projects.html">Проєкти</a>
+  <a href="team.html">Команда</a>
+  <a href="contact.html" class="mob-cta">Долучитись</a>
+</div>
+
+<div id="page-root"></div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">HQ Штаб-квартира</div>
+        <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
+        <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <div class="footer-col-title">Сторінки</div>
+          <a href="index.html">Головна</a>
+          <a href="products.html">Програми</a>
+          <a href="projects.html">Проєкти</a>
+          <a href="team.html">Команда</a>
+          <a href="contact.html">Контакт</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Програми</div>
+          <a href="products.html#connect">Сузір'я</a>
+          <a href="products.html#learn">HQ Internship</a>
+          <a href="products.html#influence">Посольства</a>
+          <a href="products.html#anchor">Громади</a>
+          <a href="products.html#mentorship">Менторство</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Соцмережі</div>
+          <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+  </div>
+</footer>
+
+<script>
+const orgs = [
+  {country:'Румунія',        flag:'🇷🇴', iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com'},
+  {country:'Литва',          flag:'🇱🇹', iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null},
+  {country:'Нідерланди',     flag:'🇳🇱', iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/'},
+  {country:'Швейцарія',      flag:'🇨🇭', iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/'},
+  {country:'Франція',        flag:'🇫🇷', iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students'},
+  {country:'Велика Британія',flag:'🇬🇧', iso:'gb', name:'UA.Youth / Oxford / Cambridge',                    web:'https://ox-ukraine.org'},
+  {country:'Бельгія',        flag:'🇧🇪', iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be'},
+  {country:'Чехія',          flag:'🇨🇿', iso:'cz', name:'Покоління для України',                            web:null},
+  {country:'Польща',         flag:'🇵🇱', iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/'},
+  {country:'Сакартвело',     flag:'🇬🇪', iso:'ge', name:'Українські активісти в Сакартвело',                web:null},
+  {country:'Іспанія',        flag:'🇪🇸', iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null},
+  {country:'Данія',          flag:'🇩🇰', iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null},
+  {country:'Австрія',        flag:'🇦🇹', iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null},
+  {country:'США',            flag:'🇺🇸', iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null},
+  {country:'Канада',         flag:'🇨🇦', iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca'},
+  {country:'Італія',         flag:'🇮🇹', iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null},
+];
+
+const iso = new URLSearchParams(window.location.search).get('iso');
+const org = orgs.find(o => o.iso === iso);
+const root = document.getElementById('page-root');
+
+if (!org) {
+  root.innerHTML = `
+    <section class="country-content">
+      <div class="container not-found">
+        <h2>Країну не знайдено</h2>
+        <p>Перевірте посилання або поверніться на головну.</p>
+        <a href="index.html#constellation" class="btn btn-primary">На карту</a>
+      </div>
+    </section>`;
+} else {
+  document.title = org.country + ' — HQ Штаб-квартира';
+  root.innerHTML = `
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <a href="index.html#constellation" class="back-link">Назад до мапи</a>
+        <div class="country-hero">
+          <span style="font-size:4rem;line-height:1;">${org.flag}</span>
+          <h1 class="country-name">${org.country}</h1>
+        </div>
+        <div class="s-tag">Сузір'я HQ</div>
+      </div>
+    </div>
+    <section class="country-content">
+      <div class="container">
+        <div class="org-card">
+          <div class="org-label">Організація-партнер</div>
+          <div class="org-name">${org.name}</div>
+          <hr class="org-divider">
+          <div class="org-meta">
+            <div class="org-meta-row">
+              <span class="org-meta-icon">📍</span>
+              <span class="org-meta-text"><strong>Країна:</strong> ${org.country}</span>
+            </div>
+            <div class="org-meta-row">
+              <span class="org-meta-icon">🌐</span>
+              <span class="org-meta-text"><strong>Мережа:</strong> Сузір'я HQ — глобальна мережа українських молодіжних організацій</span>
+            </div>
+          </div>
+          ${org.web
+            ? `<a href="${org.web}" target="_blank" rel="noopener" class="org-link-btn">Відвідати сайт організації →</a>`
+            : `<p class="no-link-note">Сайт організації поки недоступний. Зв'яжіться з нами для деталей.</p>`
+          }
+        </div>
+      </div>
+    </section>`;
+}
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+const navTog = document.getElementById('nav-toggle');
+const navMob = document.getElementById('nav-mobile');
+if (navTog) {
+  navTog.addEventListener('click', () => { navMob.classList.toggle('open'); navTog.classList.toggle('active'); });
+  navMob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navMob.classList.remove('open'); navTog.classList.remove('active'); }));
+}
+</script>
+</body>
+</html>

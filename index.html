@@ -454,22 +454,22 @@ function makeTooltip(html) {
 const UAPos = {longitude: 31.2, latitude: 48.4};
 
 const orgs = [
-  {country:'Румунія',     iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com',     longitude:24.9, latitude:45.9},
-  {country:'Литва',       iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null,                            longitude:23.9, latitude:55.9},
-  {country:'Нідерланди',  iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/',   longitude:4.9,  latitude:52.4},
-  {country:'Швейцарія',   iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/',            longitude:8.5,  latitude:47.4},
-  {country:'Франція',     iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students',longitude:2.3,  latitude:48.8},
-  {country:'Велика Британія',iso:'gb',name:'UA.Youth / Oxford / Cambridge',                  web:'https://ox-ukraine.org',        longitude:-0.1, latitude:51.5},
-  {country:'Бельгія',     iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be',     longitude:4.4,  latitude:50.8},
-  {country:'Чехія',       iso:'cz', name:'Покоління для України',                            web:null,                            longitude:14.4, latitude:50.1},
-  {country:'Польща',      iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/',longitude:21.0, latitude:52.2},
-  {country:'Сакартвело',  iso:'ge', name:'Українські активісти в Сакартвело',                web:null,                            longitude:44.8, latitude:41.7},
-  {country:'Іспанія',     iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null,                            longitude:-3.7, latitude:40.4},
-  {country:'Данія',       iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null,                            longitude:10.0, latitude:56.3},
-  {country:'Австрія',     iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null,                            longitude:16.4, latitude:48.2},
-  {country:'США',         iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null,                            longitude:-77.0,latitude:38.9},
-  {country:'Канада',      iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca',           longitude:-79.4,latitude:43.7},
-  {country:'Італія',      iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null,                            longitude:12.5, latitude:41.9},
+  {country:'Румунія',        flag:'🇷🇴', iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com',     longitude:24.9, latitude:45.9},
+  {country:'Литва',          flag:'🇱🇹', iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null,                            longitude:23.9, latitude:55.9},
+  {country:'Нідерланди',     flag:'🇳🇱', iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/',   longitude:4.9,  latitude:52.4},
+  {country:'Швейцарія',      flag:'🇨🇭', iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/',            longitude:8.5,  latitude:47.4},
+  {country:'Франція',        flag:'🇫🇷', iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students',longitude:2.3,  latitude:48.8},
+  {country:'Велика Британія',flag:'🇬🇧', iso:'gb', name:'UA.Youth / Oxford / Cambridge',                    web:'https://ox-ukraine.org',        longitude:-0.1, latitude:51.5},
+  {country:'Бельгія',        flag:'🇧🇪', iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be',     longitude:4.4,  latitude:50.8},
+  {country:'Чехія',          flag:'🇨🇿', iso:'cz', name:'Покоління для України',                            web:null,                            longitude:14.4, latitude:50.1},
+  {country:'Польща',         flag:'🇵🇱', iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/',longitude:21.0, latitude:52.2},
+  {country:'Сакартвело',     flag:'🇬🇪', iso:'ge', name:'Українські активісти в Сакартвело',                web:null,                            longitude:44.8, latitude:41.7},
+  {country:'Іспанія',        flag:'🇪🇸', iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null,                            longitude:-3.7, latitude:40.4},
+  {country:'Данія',          flag:'🇩🇰', iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null,                            longitude:10.0, latitude:56.3},
+  {country:'Австрія',        flag:'🇦🇹', iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null,                            longitude:16.4, latitude:48.2},
+  {country:'США',            flag:'🇺🇸', iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null,                            longitude:-77.0,latitude:38.9},
+  {country:'Канада',         flag:'🇨🇦', iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca',           longitude:-79.4,latitude:43.7},
+  {country:'Італія',         flag:'🇮🇹', iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null,                            longitude:12.5, latitude:41.9},
 ];
 
 // Ukraine pulsing marker
@@ -496,6 +496,9 @@ pointSeries.bullets.push(function(root2, series, dataItem) {
     `<div class="map-popup"><h4><span class="fi fi-${d.iso}" style="margin-right:.4rem;vertical-align:middle"></span>${d.country}</h4><p>${d.name}</p>${d.web ? `<a href="${d.web}" target="_blank" rel="noopener">Відвідати →</a>` : ''}</div>`
   ));
   c.set("cursorOverStyle", "pointer");
+  c.events.on("click", function() {
+    window.location.href = "country.html?iso=" + d.iso;
+  });
   return am5.Bullet.new(root2, {sprite: c});
 });
 orgs.forEach(org => pointSeries.data.push({
