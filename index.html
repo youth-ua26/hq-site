@@ -7,9 +7,11 @@
 <link rel="icon" href="logo_orig.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 <style>
 :root{
   --bg:#F8FAFC;--card:#FFFFFF;--alt:#F1F5F9;
@@ -100,14 +102,12 @@ section{padding:5rem 4rem;}
 .c-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:20px;font-size:.78rem;color:var(--muted);background:var(--card);cursor:pointer;transition:border-color .2s,color .2s,background .2s;}.c-chip .fi{width:1.1em;height:.85em;border-radius:2px;}
 .c-chip:hover{border-color:var(--accent);color:var(--dark);background:var(--accent-bg);}
 .c-chip.active{border-color:var(--accent);background:var(--accent-bg);color:var(--dark);}
-.leaflet-popup-content-wrapper{border-radius:10px!important;border:1px solid var(--border)!important;box-shadow:var(--sh-md)!important;padding:0!important;}
-.leaflet-popup-content{margin:0!important;}
-.map-popup{padding:.85rem 1.1rem;}
-.map-popup h4{font-size:.875rem;font-weight:700;color:var(--dark);margin-bottom:.25rem;}
+.map-popup{padding:.85rem 1.1rem;min-width:180px;}
+.map-popup h4{font-size:.875rem;font-weight:700;color:var(--dark);margin-bottom:.25rem;display:flex;align-items:center;}
 .map-popup p{font-size:.78rem;color:var(--muted);line-height:1.5;margin-bottom:.3rem;}
 .map-popup a{font-size:.75rem;color:var(--accent);text-decoration:none;font-weight:600;}
 .map-popup a:hover{text-decoration:underline;}
-@keyframes mapPulse{0%,100%{transform:scale(1);opacity:.7;}50%{transform:scale(2.8);opacity:0;}}
+#world-map{background:#DCE8F8;}
 
 /* SHIFT */
 #shift{background:var(--card);border-top:1px solid var(--border);}
@@ -394,56 +394,151 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 </footer>
 
 <script>
-const map = L.map('world-map',{center:[50,10],zoom:3,minZoom:2,maxZoom:10,zoomControl:false});
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles &copy; Esri &mdash; US National Park Service',maxZoom:10}).addTo(map);
-L.control.zoom({position:'bottomright'}).addTo(map);
+// ── amCharts 5 world map ──────────────────────────────────────────────────
+var root = am5.Root.new("world-map");
+if (root._logo) root._logo.dispose();
+root.setThemes([am5themes_Animated.new(root)]);
 
-const UALatLng=[48.4,31.2];
-const ukraineIcon=L.divIcon({className:'',html:`<div style="position:relative;width:24px;height:24px;"><div style="position:absolute;width:24px;height:24px;background:rgba(29,78,216,.25);border-radius:50%;animation:mapPulse 2s ease-in-out infinite;"></div><div style="position:absolute;top:5px;left:5px;width:14px;height:14px;background:#1D4ED8;border:2.5px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(29,78,216,.5);"></div></div>`,iconSize:[24,24],iconAnchor:[12,12],popupAnchor:[0,-18]});
-L.marker(UALatLng,{icon:ukraineIcon}).addTo(map).bindPopup('<div class="map-popup"><h4><span class="fi fi-ua" style="margin-right:.35rem"></span>Україна</h4><p>HQ — Штаб-квартира<br>Центральний вузол мережі</p></div>');
+var chart = root.container.children.push(
+  am5map.MapChart.new(root, {
+    panX: "translateX",
+    panY: "translateY",
+    projection: am5map.geoMercator(),
+    maxZoomLevel: 8,
+    homeZoomLevel: 1.4,
+    homeGeoPoint: {longitude: 14, latitude: 50}
+  })
+);
 
-const orgs=[
-  {country:'Румунія',iso:'ro',name:'Асоціація Української Молоді в Румунії',web:'https://atur.onrender.com',lat:45.9,lng:24.9},
-  {country:'Литва',iso:'lt',name:'Українська Молодіжна Група в Литві',web:null,lat:55.9,lng:23.9},
-  {country:'Нідерланди',iso:'nl',name:'Фонд Лотус / Станція Коновальця',web:'https://www.lotus-fund.org/',lat:52.4,lng:4.9},
-  {country:'Швейцарія',iso:'ch',name:'UASAZ — Українські студенти в Цюриху',web:'https://uasaz.org/',lat:47.4,lng:8.5},
-  {country:'Франція',iso:'fr',name:'Наше студентство у Франції',web:'https://linktr.ee/nef_students',lat:48.8,lng:2.3},
-  {country:'Велика Британія',iso:'gb',name:'UA.Youth / Oxford / Cambridge',web:'https://ox-ukraine.org',lat:51.5,lng:-0.1},
-  {country:'Бельгія',iso:'be',name:"Українська Молодь Об'єднана в Бельгії",web:'https://linktr.ee/uyub.be',lat:50.8,lng:4.4},
-  {country:'Чехія',iso:'cz',name:'Покоління для України',web:null,lat:50.1,lng:14.4},
-  {country:'Польща',iso:'pl',name:'Європейська Україна / Альянс 24/08 / Molodi',web:'https://ukrforum2025.carrd.co/',lat:52.2,lng:21.0},
-  {country:'Сакартвело',iso:'ge',name:'Українські активісти в Сакартвело',web:null,lat:41.7,lng:44.8},
-  {country:'Іспанія',iso:'es',name:'Асоціація українських студентів в Іспанії',web:null,lat:40.4,lng:-3.7},
-  {country:'Данія',iso:'dk',name:'Ukrainsk Ungdom i Danmark',web:null,lat:56.3,lng:10.0},
-  {country:'Австрія',iso:'at',name:'ЮНІЯ — Українські студенти в Австрії',web:null,lat:48.2,lng:16.4},
-  {country:'США',iso:'us',name:'MIT / Harvard / Brown / Georgetown / AU / GWU',web:null,lat:38.9,lng:-77.0},
-  {country:'Канада',iso:'ca',name:'Спілка Українських Студентів у Канаді',web:'https://www.susk.ca',lat:43.7,lng:-79.4},
-  {country:'Італія',iso:'it',name:'Українсько-італійська молодіжна організація UaMi',web:null,lat:41.9,lng:12.5},
-];
+chart.chartContainer.get("background").setAll({fill: am5.color(0xDCE8F8), fillOpacity: 1});
 
-const markers = {};
-orgs.forEach(org=>{
-  const ll=[org.lat,org.lng];
-  L.polyline([UALatLng,ll],{color:'#1D4ED8',weight:1.5,opacity:.18,dashArray:'5 8'}).addTo(map);
-  const marker = L.circleMarker(ll,{radius:7,fillColor:'#D97706',color:'#fff',weight:2,opacity:1,fillOpacity:.9}).addTo(map)
-    .bindPopup(`<div class="map-popup"><h4><span class="fi fi-${org.iso}" style="margin-right:.35rem"></span>${org.country}</h4><p>${org.name}</p>${org.web?`<a href="${org.web}" target="_blank" rel="noopener">Відвідати →</a>`:''}</div>`);
-  markers[org.country] = {marker, ll};
+// Countries
+var polygonSeries = chart.series.push(
+  am5map.MapPolygonSeries.new(root, {geoJSON: am5geodata_worldLow, exclude: ["AQ"]})
+);
+polygonSeries.mapPolygons.template.setAll({
+  fill: am5.color(0x1B70B0),
+  fillOpacity: 0.72,
+  stroke: am5.color(0xFFFFFF),
+  strokeWidth: 0.5,
+  strokeOpacity: 0.8,
+  interactive: true
+});
+polygonSeries.mapPolygons.template.states.create("hover", {
+  fill: am5.color(0x1D4ED8), fillOpacity: 0.95
 });
 
-const allLats=[UALatLng[0],...orgs.map(o=>o.lat)],allLngs=[UALatLng[1],...orgs.map(o=>o.lng)];
-map.fitBounds([[Math.min(...allLats)-4,Math.min(...allLngs)-12],[Math.max(...allLats)+4,Math.max(...allLngs)+12]],{padding:[40,40]});
+// Zoom control
+var zoomControl = chart.set("zoomControl", am5map.ZoomControl.new(root, {}));
+zoomControl.homeButton.set("visible", true);
 
-const chipsEl=document.getElementById('chips-container');
-[...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o=>{
-  const d=document.createElement('div');d.className='c-chip';d.innerHTML=`<span class="fi fi-${o.iso}"></span><span>${o.country}</span>`;
-  d.addEventListener('click',()=>{
-    const data = markers[o.country];
-    if(data){
-      document.querySelectorAll('.c-chip').forEach(c=>c.classList.remove('active'));
-      d.classList.add('active');
-      map.flyTo(data.ll, 5, {duration: 0.8});
-      setTimeout(()=>data.marker.openPopup(), 400);
+// Tooltip factory helper
+function makeTooltip(html) {
+  var t = am5.Tooltip.new(root, {
+    getFillFromSprite: false,
+    autoTextColor: false,
+    paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0,
+    labelHTML: html
+  });
+  t.get("background").setAll({
+    fill: am5.color(0xFFFFFF),
+    stroke: am5.color(0xE2E8F0),
+    strokeWidth: 1,
+    cornerRadiusTL: 10, cornerRadiusTR: 10,
+    cornerRadiusBL: 10, cornerRadiusBR: 10,
+    shadowBlur: 16, shadowColor: am5.color(0x000000), shadowOpacity: 0.07
+  });
+  return t;
+}
+
+const UAPos = {longitude: 31.2, latitude: 48.4};
+
+const orgs = [
+  {country:'Румунія',     iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com',     longitude:24.9, latitude:45.9},
+  {country:'Литва',       iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null,                            longitude:23.9, latitude:55.9},
+  {country:'Нідерланди',  iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/',   longitude:4.9,  latitude:52.4},
+  {country:'Швейцарія',   iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/',            longitude:8.5,  latitude:47.4},
+  {country:'Франція',     iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students',longitude:2.3,  latitude:48.8},
+  {country:'Велика Британія',iso:'gb',name:'UA.Youth / Oxford / Cambridge',                  web:'https://ox-ukraine.org',        longitude:-0.1, latitude:51.5},
+  {country:'Бельгія',     iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be',     longitude:4.4,  latitude:50.8},
+  {country:'Чехія',       iso:'cz', name:'Покоління для України',                            web:null,                            longitude:14.4, latitude:50.1},
+  {country:'Польща',      iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/',longitude:21.0, latitude:52.2},
+  {country:'Сакартвело',  iso:'ge', name:'Українські активісти в Сакартвело',                web:null,                            longitude:44.8, latitude:41.7},
+  {country:'Іспанія',     iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null,                            longitude:-3.7, latitude:40.4},
+  {country:'Данія',       iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null,                            longitude:10.0, latitude:56.3},
+  {country:'Австрія',     iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null,                            longitude:16.4, latitude:48.2},
+  {country:'США',         iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null,                            longitude:-77.0,latitude:38.9},
+  {country:'Канада',      iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca',           longitude:-79.4,latitude:43.7},
+  {country:'Італія',      iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null,                            longitude:12.5, latitude:41.9},
+];
+
+// Dashed connection lines from Ukraine
+var lineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
+lineSeries.mapLines.template.setAll({
+  stroke: am5.color(0x3B82F6),
+  strokeOpacity: 0.28,
+  strokeWidth: 1.2,
+  strokeDasharray: [4, 8]
+});
+orgs.forEach(org => {
+  lineSeries.data.push({
+    geometry: {
+      type: "LineString",
+      coordinates: [[UAPos.longitude, UAPos.latitude], [org.longitude, org.latitude]]
     }
+  });
+});
+
+// Ukraine pulsing marker
+var ukraineSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
+ukraineSeries.bullets.push(function() {
+  var c = am5.Container.new(root, {});
+  var pulse = c.children.push(am5.Circle.new(root, {radius:10, fill:am5.color(0x1D4ED8), fillOpacity:0.2, strokeOpacity:0}));
+  pulse.animate({key:"radius",    from:8,   to:20,  duration:1600, loops:Infinity, easing:am5.ease.out(am5.ease.cubic)});
+  pulse.animate({key:"fillOpacity",from:0.3, to:0,   duration:1600, loops:Infinity, easing:am5.ease.out(am5.ease.cubic)});
+  c.children.push(am5.Circle.new(root, {radius:7, fill:am5.color(0x1D4ED8), stroke:am5.color(0xFFFFFF), strokeWidth:2.5}));
+  c.set("tooltip", makeTooltip('<div class="map-popup"><h4><span class="fi fi-ua" style="margin-right:.4rem;vertical-align:middle"></span>Україна</h4><p>HQ — Штаб-квартира<br>Центральний вузол мережі</p></div>'));
+  c.set("cursorOverStyle", "pointer");
+  return am5.Bullet.new(root, {sprite: c});
+});
+ukraineSeries.data.push({geometry:{type:"Point", coordinates:[UAPos.longitude, UAPos.latitude]}});
+
+// Org markers
+var pointSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
+pointSeries.bullets.push(function(root2, series, dataItem) {
+  var d = dataItem.dataContext;
+  var c = am5.Container.new(root2, {});
+  c.children.push(am5.Circle.new(root2, {radius:7, fill:am5.color(0xD97706), stroke:am5.color(0xFFFFFF), strokeWidth:2, cursorOverStyle:"pointer"}));
+  c.set("tooltip", makeTooltip(
+    `<div class="map-popup"><h4><span class="fi fi-${d.iso}" style="margin-right:.4rem;vertical-align:middle"></span>${d.country}</h4><p>${d.name}</p>${d.web ? `<a href="${d.web}" target="_blank" rel="noopener">Відвідати →</a>` : ''}</div>`
+  ));
+  c.set("cursorOverStyle", "pointer");
+  return am5.Bullet.new(root2, {sprite: c});
+});
+orgs.forEach(org => pointSeries.data.push({
+  geometry: {type:"Point", coordinates:[org.longitude, org.latitude]},
+  country: org.country, iso: org.iso, name: org.name, web: org.web
+}));
+
+chart.goHome();
+
+// Country chips
+const chipsEl = document.getElementById('chips-container');
+[...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o => {
+  const d = document.createElement('div');
+  d.className = 'c-chip';
+  d.innerHTML = `<span class="fi fi-${o.iso}"></span><span>${o.country}</span>`;
+  d.addEventListener('click', () => {
+    document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
+    d.classList.add('active');
+    chart.zoomToGeoPoint({longitude: o.longitude, latitude: o.latitude}, 5, true, 500);
+    setTimeout(() => {
+      pointSeries.dataItems.forEach(di => {
+        if (di.dataContext && di.dataContext.country === o.country) {
+          di.bullets.forEach(b => { var s = b.get("sprite"); if (s) s.showTooltip(); });
+        }
+      });
+    }, 650);
   });
   chipsEl.appendChild(d);
 });
