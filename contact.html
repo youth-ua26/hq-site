@@ -172,13 +172,13 @@ textarea{resize:vertical;min-height:130px;}
           <input type="hidden" name="_next" value="https://youth-ua26.github.io/hq-site/contact.html">
           <input type="hidden" name="_subject" value="Нове звернення з сайту HQ">
           <div class="form-row">
-            <div class="field"><label for="name">Ім'я</label><input type="text" id="name" placeholder="Ваше ім'я" required></div>
-            <div class="field"><label for="email">Email</label><input type="email" id="email" placeholder="email@example.com" required></div>
+            <div class="field"><label for="name">Ім'я</label><input type="text" id="name" name="Імя" placeholder="Ваше ім'я" required></div>
+            <div class="field"><label for="email">Email</label><input type="email" id="email" name="Email" placeholder="email@example.com" required></div>
           </div>
-          <div class="field"><label for="phone">Телефон</label><input type="tel" id="phone" placeholder="+380..."></div>
+          <div class="field"><label for="phone">Телефон</label><input type="tel" id="phone" name="Телефон" placeholder="+380..."></div>
           <div class="field">
             <label for="topic">Тема звернення</label>
-            <select id="topic">
+            <select id="topic" name="Тема">
               <option value="">Оберіть тему</option>
               <option>Приєднатись до мережі</option>
               <option>HQ Internship</option>
@@ -189,7 +189,7 @@ textarea{resize:vertical;min-height:130px;}
               <option>Інше</option>
             </select>
           </div>
-          <div class="field"><label for="message">Повідомлення</label><textarea id="message" placeholder="Розкажіть про себе та вашу ідею..." required></textarea></div>
+          <div class="field"><label for="message">Повідомлення</label><textarea id="message" name="Повідомлення" placeholder="Розкажіть про себе та вашу ідею..." required></textarea></div>
           <button type="submit" class="btn btn-primary">Надіслати →</button>
         </form>
       </div>
