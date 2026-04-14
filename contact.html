@@ -19,6 +19,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
 .nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
+.nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle.active span:nth-child(2){opacity:0;}
+.nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:900px){.nav-toggle{display:flex;}}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:var(--card);border-bottom:1px solid var(--border);padding:1rem 1.5rem 1.5rem;z-index:199;flex-direction:column;gap:.25rem;box-shadow:0 8px 24px rgba(0,0,0,.08);}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{color:var(--dark);text-decoration:none;font-size:.95rem;font-weight:500;padding:.65rem .75rem;border-radius:var(--r-sm);transition:background .15s;}
+.nav-mobile a:hover,.nav-mobile a.active{background:var(--alt);}
+.nav-mobile .mob-cta{background:var(--accent);color:#fff;text-align:center;border-radius:var(--r-sm);margin-top:.5rem;}
+.nav-mobile .mob-cta:hover{background:var(--accent-h);color:#fff;}
 .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.4rem;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .2s;}
 .btn-primary{background:var(--accent);color:#fff;width:100%;}
 .btn-primary:hover{background:var(--accent-h);}
@@ -106,7 +118,14 @@ textarea{resize:vertical;min-height:130px;}
     <li><a href="team.html">Команда</a></li>
     <li><a href="contact.html" class="nav-cta active">Долучитись</a></li>
   </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
 </nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="products.html">Програми</a>
+  <a href="projects.html">Проєкти</a>
+  <a href="team.html">Команда</a>
+  <a href="contact.html" class="mob-cta">Долучитись</a>
+</div>
 
 <div class="page-hero">
   <div class="page-hero-inner">
@@ -184,8 +203,9 @@ textarea{resize:vertical;min-height:130px;}
         <div class="info-block">
           <div class="info-label">Соціальні мережі</div>
           <div class="social-links">
-            <a href="https://www.instagram.com/uniting_uayouth_worldwide" class="social-link">📸 Instagram</a>
-            <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" class="social-link">💼 LinkedIn</a>
+            <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener" class="social-link">📸 Instagram</a>
+            <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener" class="social-link">💼 LinkedIn</a>
+            <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener" class="social-link">👥 Facebook</a>
           </div>
         </div>
         <div class="network-stat">
@@ -207,50 +227,48 @@ textarea{resize:vertical;min-height:130px;}
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
         <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
-        <p class="footer-desc" style="margin-top:.75rem">youth@ua-hq.com</p>
+        <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
       </div>
       <div class="footer-links">
-       <div class="footer-links">
-
-  <div class="footer-col">
-    <div class="footer-col-title">Сторінки</div>
-    <a href="index.html">Головна</a>
-    <a href="products.html">Програми</a>
-    <a href="projects.html">Проєкти</a>
-    <a href="team.html">Команда</a>
-    <a href="contact.html">Контакт</a>
-  </div>
-
-  <div class="footer-col">
-    <div class="footer-col-title">Програми</div>
-    <a href="products.html#connect">Сузір'я</a>
-    <a href="products.html#learn">HQ Internship</a>
-    <a href="products.html#influence">Посольства</a>
-    <a href="products.html#anchor">Громади</a>
-    <a href="products.html#mentorship">Менторство</a>
-  </div>
-
-  <div class="footer-col">
-    <div class="footer-col-title">Соцмережі</div>
-    <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
-  </div>
-
-  <div class="footer-col">
-    <div class="footer-col-title">Правове</div>
-    <a href="#">Політика</a>
-    <a href="#">Умови</a>
-  </div>
-
-</div>
+        <div class="footer-col">
+          <div class="footer-col-title">Сторінки</div>
+          <a href="index.html">Головна</a>
+          <a href="products.html">Програми</a>
+          <a href="projects.html">Проєкти</a>
+          <a href="team.html">Команда</a>
+          <a href="contact.html">Контакт</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Програми</div>
+          <a href="products.html#connect">Сузір'я</a>
+          <a href="products.html#learn">HQ Internship</a>
+          <a href="products.html#influence">Посольства</a>
+          <a href="products.html#anchor">Громади</a>
+          <a href="products.html#mentorship">Менторство</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Соцмережі</div>
+          <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Правове</div>
+          <a href="#">Політика</a>
+          <a href="#">Умови</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2024 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© 2025 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
   </div>
 </footer>
 
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const navTog=document.getElementById('nav-toggle');
+const navMob=document.getElementById('nav-mobile');
+if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
 </script>
 </body>
 </html>
