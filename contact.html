@@ -38,12 +38,8 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 .footer-desc{font-size:.85rem;line-height:1.65;}
 .footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
 .footer-col-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.25);margin-bottom:.75rem;}
-
-/* KEY FIX: flex column so each <a> is on its own line and gap creates space between them */
-.footer-col{display:flex;flex-direction:column;gap:.65rem;}
-.footer-col a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;transition:color .2s;}
+.footer-col a{display:block;color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;margin-bottom:.45rem;transition:color .2s;}
 .footer-col a:hover{color:#fff;}
-
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;display:flex;justify-content:space-between;font-size:.78rem;}
 @media(max-width:900px){footer{padding:3rem 1.5rem 2rem;}.footer-top{grid-template-columns:1fr;gap:2.5rem;}.footer-links{grid-template-columns:repeat(2,1fr);}.footer-bottom{flex-direction:column;gap:.5rem;}}
 
@@ -87,8 +83,8 @@ textarea{resize:vertical;min-height:130px;}
 .info-value{font-size:.95rem;font-weight:600;color:var(--dark);}
 .info-value a{color:var(--accent);text-decoration:none;}
 .info-value a:hover{text-decoration:underline;}
-.social-links{display:flex;flex-direction:column;gap:1rem;margin-top:.75rem;}
-.social-link{display:flex;align-items:center;gap:.75rem;font-size:.875rem;color:var(--muted);text-decoration:none;padding:.5rem .6rem;border-radius:var(--r-sm);transition:color .15s,background .15s;}
+.social-links{display:flex;flex-direction:column;gap:.5rem;margin-top:.75rem;}
+.social-link{display:flex;align-items:center;gap:.75rem;font-size:.875rem;color:var(--muted);text-decoration:none;padding:.4rem .5rem;border-radius:var(--r-sm);transition:color .15s,background .15s;}
 .social-link:hover{color:var(--accent);background:var(--accent-bg);}
 .network-stat{background:var(--dark);border-radius:var(--r);padding:1.5rem;}
 .network-stat .info-label{color:rgba(255,255,255,.35);}
@@ -178,13 +174,17 @@ textarea{resize:vertical;min-height:130px;}
       <div class="contact-info reveal">
         <div class="info-block">
           <div class="info-label">Email</div>
-          <div class="info-value"><a href="/cdn-cgi/l/email-protection#1c75727a735c746d3169776e7d75727932736e7b"><span class="__cf_email__" data-cfemail="2d44434b426d455c0058465f4c44434803425f4a">[email&#160;protected]</span></a></div>
+          <div class="info-value"><a href="mailto:info@hq-ukraine.org">info@hq-ukraine.org</a></div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Telegram</div>
+          <div class="info-value"><a href="#">@hq_ukraine</a></div>
         </div>
         <div class="info-block">
           <div class="info-label">Соціальні мережі</div>
           <div class="social-links">
-            <a href="https://www.instagram.com/uniting_uayouth_worldwide/" class="social-link" target="_blank" rel="noopener">📸 Instagram</a>
-            <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" class="social-link" target="_blank" rel="noopener">💼 LinkedIn</a>
+            <a href="https://www.instagram.com/uniting_uayouth_worldwide" class="social-link">📸 Instagram</a>
+            <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" class="social-link">💼 LinkedIn</a>
           </div>
         </div>
         <div class="network-stat">
@@ -206,50 +206,22 @@ textarea{resize:vertical;min-height:130px;}
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
         <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
-        <p class="footer-desc" style="margin-top:.75rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed7d0d8d1fed6cf93cbd5ccdfd7d0db90d1ccd9">[email&#160;protected]</a></p>
+        <p class="footer-desc" style="margin-top:.75rem">info@hq-ukraine.org</p>
       </div>
-            <div class="footer-links">
-        <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
-          <a href="products.html#connect">Сузір'я</a>
-          <a href="products.html#learn">HQ Internship</a>
-          <a href="products.html#influence">Посольства</a>
-          <a href="products.html#anchor">Громади</a>
-          <a href="products.html#mentorship">Менторство</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
-          <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Правове</div>
-          <a href="#">Політика</a>
-          <a href="#">Умови</a>
-        </div>
+      <div class="footer-links">
+        <div><div class="footer-col-title">Сторінки</div><a href="index.html">Головна</a><a href="products.html">Програми</a><a href="projects.html">Проєкти</a><a href="team.html">Команда</a><a href="contact.html">Контакт</a></div>
+        <div><div class="footer-col-title">Програми</div><a href="products.html#connect">Сузір'я</a><a href="products.html#learn">HQ Internship</a><a href="products.html#influence">Посольства</a><a href="products.html#anchor">Громади</a><a href="products.html#mentorship">Менторство</a></div>
+        <div><div class="footer-col-title">Соцмережі</div><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a><a href="#">Telegram</a></div>
+        <div><div class="footer-col-title">Правове</div><a href="#">Політика</a><a href="#">Умови</a></div>
       </div>
-      </div>
-      <div class="footer-bottom"><span>© 2024 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    </div>
+    <div class="footer-bottom"><span>© 2024 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
   </div>
 </footer>
 
 <script>
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-},{threshold:0,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>{
-  const rect=el.getBoundingClientRect();
-  if(rect.top<window.innerHeight){el.classList.add('visible');}
-  else{obs.observe(el);}
-});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
