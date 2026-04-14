@@ -388,7 +388,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© 2025 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
   </div>
 </footer>
 
@@ -449,6 +449,7 @@ const chipsEl=document.getElementById('chips-container');
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.getElementById('yr').textContent=new Date().getFullYear();
 const navTog=document.getElementById('nav-toggle');
 const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
