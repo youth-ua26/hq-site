@@ -275,17 +275,35 @@ const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
 const contactForm=document.getElementById('contact-form');
 const toast=document.getElementById('toast');
-function showToast(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),4000);}
-contactForm.addEventListener('submit',async(e)=>{
+function showToast(){
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),4000);
+}
+contactForm.addEventListener('submit',async function(e){
   e.preventDefault();
   const btn=contactForm.querySelector('button[type=submit]');
-  btn.disabled=true;btn.textContent='Надсилається...';
+  btn.disabled=true;
+  btn.textContent='Надсилається...';
+  const data={};
+  new FormData(contactForm).forEach((v,k)=>{ data[k]=v; });
   try{
-    const res=await fetch('https://formsubmit.co/ajax/youth@ua-hq.com',{method:'POST',body:new FormData(contactForm),headers:{'Accept':'application/json'}});
-    if(res.ok){contactForm.reset();showToast();}
-    else{alert('Помилка. Спробуйте ще раз.');}
-  }catch{alert('Помилка. Перевірте з\'єднання.');}
-  btn.disabled=false;btn.textContent='Надіслати →';
+    const res=await fetch('https://formsubmit.co/ajax/youth@ua-hq.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(data)
+    });
+    const json=await res.json();
+    if(json.success==='true'||json.success===true){
+      contactForm.reset();
+      showToast();
+    } else {
+      alert('Помилка відправки. Спробуйте ще раз.');
+    }
+  } catch(err){
+    alert('Помилка з\'єднання. Спробуйте ще раз.');
+  }
+  btn.disabled=false;
+  btn.textContent='Надіслати →';
 });
 </script>
 </body>
