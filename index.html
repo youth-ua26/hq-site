@@ -475,10 +475,7 @@ const orgs = [
 // Dashed connection lines from Ukraine
 var lineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
 lineSeries.mapLines.template.setAll({
-  stroke: am5.color(0x3B82F6),
-  strokeOpacity: 0.28,
-  strokeWidth: 1.2,
-  strokeDasharray: [4, 8]
+  strokeOpacity: 0
 });
 orgs.forEach(org => {
   lineSeries.data.push({
