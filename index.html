@@ -472,20 +472,6 @@ const orgs = [
   {country:'Італія',      iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null,                            longitude:12.5, latitude:41.9},
 ];
 
-// Dashed connection lines from Ukraine
-var lineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
-lineSeries.mapLines.template.setAll({
-  strokeOpacity: 0
-});
-orgs.forEach(org => {
-  lineSeries.data.push({
-    geometry: {
-      type: "LineString",
-      coordinates: [[UAPos.longitude, UAPos.latitude], [org.longitude, org.latitude]]
-    }
-  });
-});
-
 // Ukraine pulsing marker
 var ukraineSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
 ukraineSeries.bullets.push(function() {
@@ -521,6 +507,18 @@ chart.goHome();
 
 // Country chips
 const chipsEl = document.getElementById('chips-container');
+
+// Home chip
+const homeChip = document.createElement('div');
+homeChip.className = 'c-chip active';
+homeChip.innerHTML = `<span style="font-size:.9em">🌍</span><span>Всі країни</span>`;
+homeChip.addEventListener('click', () => {
+  document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
+  homeChip.classList.add('active');
+  chart.goHome();
+});
+chipsEl.appendChild(homeChip);
+
 [...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o => {
   const d = document.createElement('div');
   d.className = 'c-chip';
