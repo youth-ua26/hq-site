@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 :root{
@@ -96,7 +97,7 @@ section{padding:5rem 4rem;}
 .map-wrap{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh-md);margin-top:2.5rem;isolation:isolate;}
 #world-map{height:520px;width:100%;}
 .countries-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;}
-.c-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:20px;font-size:.78rem;color:var(--muted);background:var(--card);cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
+.c-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:20px;font-size:.78rem;color:var(--muted);background:var(--card);cursor:pointer;transition:border-color .2s,color .2s,background .2s;}.c-chip .fi{width:1.1em;height:.85em;border-radius:2px;}
 .c-chip:hover{border-color:var(--accent);color:var(--dark);background:var(--accent-bg);}
 .c-chip.active{border-color:var(--accent);background:var(--accent-bg);color:var(--dark);}
 .leaflet-popup-content-wrapper{border-radius:10px!important;border:1px solid var(--border)!important;box-shadow:var(--sh-md)!important;padding:0!important;}
@@ -399,25 +400,25 @@ L.control.zoom({position:'bottomright'}).addTo(map);
 
 const UALatLng=[48.4,31.2];
 const ukraineIcon=L.divIcon({className:'',html:`<div style="position:relative;width:24px;height:24px;"><div style="position:absolute;width:24px;height:24px;background:rgba(29,78,216,.25);border-radius:50%;animation:mapPulse 2s ease-in-out infinite;"></div><div style="position:absolute;top:5px;left:5px;width:14px;height:14px;background:#1D4ED8;border:2.5px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(29,78,216,.5);"></div></div>`,iconSize:[24,24],iconAnchor:[12,12],popupAnchor:[0,-18]});
-L.marker(UALatLng,{icon:ukraineIcon}).addTo(map).bindPopup('<div class="map-popup"><h4>🇺🇦 Україна</h4><p>HQ — Штаб-квартира<br>Центральний вузол мережі</p></div>');
+L.marker(UALatLng,{icon:ukraineIcon}).addTo(map).bindPopup('<div class="map-popup"><h4><span class="fi fi-ua" style="margin-right:.35rem"></span>Україна</h4><p>HQ — Штаб-квартира<br>Центральний вузол мережі</p></div>');
 
 const orgs=[
-  {country:'Румунія',flag:'🇷🇴',name:'Асоціація Української Молоді в Румунії',web:'https://atur.onrender.com',lat:45.9,lng:24.9},
-  {country:'Литва',flag:'🇱🇹',name:'Українська Молодіжна Група в Литві',web:null,lat:55.9,lng:23.9},
-  {country:'Нідерланди',flag:'🇳🇱',name:'Фонд Лотус / Станція Коновальця',web:'https://www.lotus-fund.org/',lat:52.4,lng:4.9},
-  {country:'Швейцарія',flag:'🇨🇭',name:'UASAZ — Українські студенти в Цюриху',web:'https://uasaz.org/',lat:47.4,lng:8.5},
-  {country:'Франція',flag:'🇫🇷',name:'Наше студентство у Франції',web:'https://linktr.ee/nef_students',lat:48.8,lng:2.3},
-  {country:'Велика Британія',flag:'🇬🇧',name:'UA.Youth / Oxford / Cambridge',web:'https://ox-ukraine.org',lat:51.5,lng:-0.1},
-  {country:'Бельгія',flag:'🇧🇪',name:"Українська Молодь Об'єднана в Бельгії",web:'https://linktr.ee/uyub.be',lat:50.8,lng:4.4},
-  {country:'Чехія',flag:'🇨🇿',name:'Покоління для України',web:null,lat:50.1,lng:14.4},
-  {country:'Польща',flag:'🇵🇱',name:'Європейська Україна / Альянс 24/08 / Molodi',web:'https://ukrforum2025.carrd.co/',lat:52.2,lng:21.0},
-  {country:'Сакартвело',flag:'🇬🇪',name:'Українські активісти в Сакартвело',web:null,lat:41.7,lng:44.8},
-  {country:'Іспанія',flag:'🇪🇸',name:'Асоціація українських студентів в Іспанії',web:null,lat:40.4,lng:-3.7},
-  {country:'Данія',flag:'🇩🇰',name:'Ukrainsk Ungdom i Danmark',web:null,lat:56.3,lng:10.0},
-  {country:'Австрія',flag:'🇦🇹',name:'ЮНІЯ — Українські студенти в Австрії',web:null,lat:48.2,lng:16.4},
-  {country:'США',flag:'🇺🇸',name:'MIT / Harvard / Brown / Georgetown / AU / GWU',web:null,lat:38.9,lng:-77.0},
-  {country:'Канада',flag:'🇨🇦',name:'Спілка Українських Студентів у Канаді',web:'https://www.susk.ca',lat:43.7,lng:-79.4},
-  {country:'Італія',flag:'🇮🇹',name:'Українсько-італійська молодіжна організація UaMi',web:null,lat:41.9,lng:12.5},
+  {country:'Румунія',iso:'ro',name:'Асоціація Української Молоді в Румунії',web:'https://atur.onrender.com',lat:45.9,lng:24.9},
+  {country:'Литва',iso:'lt',name:'Українська Молодіжна Група в Литві',web:null,lat:55.9,lng:23.9},
+  {country:'Нідерланди',iso:'nl',name:'Фонд Лотус / Станція Коновальця',web:'https://www.lotus-fund.org/',lat:52.4,lng:4.9},
+  {country:'Швейцарія',iso:'ch',name:'UASAZ — Українські студенти в Цюриху',web:'https://uasaz.org/',lat:47.4,lng:8.5},
+  {country:'Франція',iso:'fr',name:'Наше студентство у Франції',web:'https://linktr.ee/nef_students',lat:48.8,lng:2.3},
+  {country:'Велика Британія',iso:'gb',name:'UA.Youth / Oxford / Cambridge',web:'https://ox-ukraine.org',lat:51.5,lng:-0.1},
+  {country:'Бельгія',iso:'be',name:"Українська Молодь Об'єднана в Бельгії",web:'https://linktr.ee/uyub.be',lat:50.8,lng:4.4},
+  {country:'Чехія',iso:'cz',name:'Покоління для України',web:null,lat:50.1,lng:14.4},
+  {country:'Польща',iso:'pl',name:'Європейська Україна / Альянс 24/08 / Molodi',web:'https://ukrforum2025.carrd.co/',lat:52.2,lng:21.0},
+  {country:'Сакартвело',iso:'ge',name:'Українські активісти в Сакартвело',web:null,lat:41.7,lng:44.8},
+  {country:'Іспанія',iso:'es',name:'Асоціація українських студентів в Іспанії',web:null,lat:40.4,lng:-3.7},
+  {country:'Данія',iso:'dk',name:'Ukrainsk Ungdom i Danmark',web:null,lat:56.3,lng:10.0},
+  {country:'Австрія',iso:'at',name:'ЮНІЯ — Українські студенти в Австрії',web:null,lat:48.2,lng:16.4},
+  {country:'США',iso:'us',name:'MIT / Harvard / Brown / Georgetown / AU / GWU',web:null,lat:38.9,lng:-77.0},
+  {country:'Канада',iso:'ca',name:'Спілка Українських Студентів у Канаді',web:'https://www.susk.ca',lat:43.7,lng:-79.4},
+  {country:'Італія',iso:'it',name:'Українсько-італійська молодіжна організація UaMi',web:null,lat:41.9,lng:12.5},
 ];
 
 const markers = {};
@@ -425,7 +426,7 @@ orgs.forEach(org=>{
   const ll=[org.lat,org.lng];
   L.polyline([UALatLng,ll],{color:'#1D4ED8',weight:1.5,opacity:.18,dashArray:'5 8'}).addTo(map);
   const marker = L.circleMarker(ll,{radius:7,fillColor:'#D97706',color:'#fff',weight:2,opacity:1,fillOpacity:.9}).addTo(map)
-    .bindPopup(`<div class="map-popup"><h4>${org.flag} ${org.country}</h4><p>${org.name}</p>${org.web?`<a href="${org.web}" target="_blank" rel="noopener">Відвідати →</a>`:''}</div>`);
+    .bindPopup(`<div class="map-popup"><h4><span class="fi fi-${org.iso}" style="margin-right:.35rem"></span>${org.country}</h4><p>${org.name}</p>${org.web?`<a href="${org.web}" target="_blank" rel="noopener">Відвідати →</a>`:''}</div>`);
   markers[org.country] = {marker, ll};
 });
 
@@ -434,7 +435,7 @@ map.fitBounds([[Math.min(...allLats)-4,Math.min(...allLngs)-12],[Math.max(...all
 
 const chipsEl=document.getElementById('chips-container');
 [...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o=>{
-  const d=document.createElement('div');d.className='c-chip';d.innerHTML=`<span>${o.flag}</span><span>${o.country}</span>`;
+  const d=document.createElement('div');d.className='c-chip';d.innerHTML=`<span class="fi fi-${o.iso}"></span><span>${o.country}</span>`;
   d.addEventListener('click',()=>{
     const data = markers[o.country];
     if(data){
