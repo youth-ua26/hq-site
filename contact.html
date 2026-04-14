@@ -106,6 +106,10 @@ textarea{resize:vertical;min-height:130px;}
 .net-num{text-align:center;}
 .net-n{font-size:1.75rem;font-weight:800;color:#60A5FA;line-height:1;}
 .net-l{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:.25rem;}
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--dark);color:#fff;padding:.85rem 1.5rem;border-radius:var(--r);font-size:.875rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.2);display:flex;align-items:center;gap:.6rem;transform:translateY(140%);transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:999;}
+.toast.show{transform:translateY(0);}
+.toast-icon{width:20px;height:20px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;}
+@media(max-width:600px){.toast{left:1rem;right:1rem;bottom:1rem;}}
 </style>
 </head>
 <body>
@@ -167,9 +171,8 @@ textarea{resize:vertical;min-height:130px;}
 
       <div class="contact-form reveal">
         <div class="form-title">Надіслати повідомлення</div>
-        <form action="https://formsubmit.co/youth@ua-hq.com" method="POST">
+        <form id="contact-form">
           <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://youth-ua26.github.io/hq-site/contact.html">
           <input type="hidden" name="_subject" value="Нове звернення з сайту HQ">
           <div class="form-row">
             <div class="field"><label for="name">Ім'я</label><input type="text" id="name" name="Імя" placeholder="Ваше ім'я" required></div>
@@ -262,12 +265,27 @@ textarea{resize:vertical;min-height:130px;}
   </div>
 </footer>
 
+<div class="toast" id="toast"><span class="toast-icon">✓</span>Ваш запит прийнято — ми зв'яжемось незабаром</div>
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 const navTog=document.getElementById('nav-toggle');
 const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
+const contactForm=document.getElementById('contact-form');
+const toast=document.getElementById('toast');
+function showToast(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),4000);}
+contactForm.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const btn=contactForm.querySelector('button[type=submit]');
+  btn.disabled=true;btn.textContent='Надсилається...';
+  try{
+    const res=await fetch('https://formsubmit.co/ajax/youth@ua-hq.com',{method:'POST',body:new FormData(contactForm),headers:{'Accept':'application/json'}});
+    if(res.ok){contactForm.reset();showToast();}
+    else{alert('Помилка. Спробуйте ще раз.');}
+  }catch{alert('Помилка. Перевірте з\'єднання.');}
+  btn.disabled=false;btn.textContent='Надіслати →';
+});
 </script>
 </body>
 </html>
