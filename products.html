@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Програми — HQ Штаб-квартира</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8FAFC;--card:#FFFFFF;--alt:#F1F5F9;--dark:#0F172A;--muted:#64748B;--accent:#1D4ED8;--accent-h:#1E40AF;--accent-bg:#EFF6FF;--gold:#D97706;--border:#E2E8F0;--r:12px;--r-sm:8px;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);--sh-md:0 4px 20px rgba(0,0,0,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--dark);font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden;line-height:1.6;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;backdrop-filter:blur(20px) saturate(180%);background:rgba(248,250,252,.92);border-bottom:1px solid var(--border);}
+.nav-brand{font-size:1.1rem;font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem;}
+.nav-brand span{color:var(--dark);font-weight:400;font-size:.9rem;}
+.nav-links{display:flex;gap:.2rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;padding:.4rem .8rem;border-radius:var(--r-sm);transition:color .15s,background .15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--dark);background:var(--alt);}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
+.nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;border:none;background:none;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(248,250,252,.98);border-bottom:1px solid var(--border);padding:1rem 1.5rem;z-index:199;backdrop-filter:blur(20px);}
+.nav-mobile.open{display:flex;flex-direction:column;gap:.25rem;}
+.nav-mobile a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;padding:.6rem .8rem;border-radius:var(--r-sm);transition:color .15s,background .15s;display:block;}
+.nav-mobile a:hover,.nav-mobile a.active{color:var(--dark);background:var(--alt);}
+.nav-mobile .nav-cta{background:var(--accent)!important;color:#fff!important;text-align:center;margin-top:.5rem;}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.nav-hamburger{display:flex;}}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.4rem;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .2s;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-h);transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3);}
+.btn-outline{background:transparent;color:var(--dark);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--dark);}
+.btn-white{background:#fff;color:var(--accent);font-weight:700;}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);}
+.btn-ghost:hover{background:rgba(255,255,255,.22);}
+section{padding:5rem 4rem;}.container{max-width:1100px;margin:0 auto;}
+.s-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:1rem;}
+.s-tag::before{content:'';width:18px;height:2px;background:var(--accent);border-radius:2px;}
+.s-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:700;line-height:1.2;color:var(--dark);margin-bottom:.75rem;}
+.s-title em{font-style:italic;color:var(--accent);}
+.s-sub{font-size:1rem;line-height:1.75;color:var(--muted);max-width:560px;}
+@media(max-width:900px){section{padding:3.5rem 1.5rem;}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:260px 1fr;gap:4rem;margin-bottom:3rem;}
+.footer-brand-name{color:#fff;font-size:1.05rem;font-weight:800;margin-bottom:.75rem;}
+.footer-desc{font-size:.85rem;line-height:1.65;}
+.footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.footer-col-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.25);margin-bottom:.75rem;}
+.footer-col a{display:block;color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;margin-bottom:.45rem;transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;display:flex;justify-content:space-between;font-size:.78rem;}
+@media(max-width:900px){footer{padding:3rem 1.5rem 2rem;}.footer-top{grid-template-columns:1fr;gap:2.5rem;}.footer-links{grid-template-columns:repeat(2,1fr);}.footer-bottom{flex-direction:column;gap:.5rem;}}
+
+/* PAGE HERO */
+.page-hero{padding:9rem 4rem 5rem;background:var(--card);border-bottom:1px solid var(--border);}
+.page-hero-inner{max-width:1100px;margin:0 auto;}
+.page-hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1rem;color:var(--dark);}
+.page-hero h1 em{font-style:italic;color:var(--accent);}
+.page-hero-sub{font-size:1.05rem;line-height:1.75;color:var(--muted);max-width:540px;}
+@media(max-width:900px){.page-hero{padding:7rem 1.5rem 4rem;}}
+
+/* PRODUCTS */
+.products-section{background:var(--bg);}
+.program-block{border:1px solid var(--border);border-radius:var(--r);background:var(--card);overflow:hidden;margin-bottom:1.5rem;transition:box-shadow .25s;}
+.program-block:hover{box-shadow:var(--sh-md);}
+.program-header{padding:2.5rem 2.5rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem;align-items:start;cursor:pointer;}
+.program-num{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);background:var(--accent-bg);padding:.35rem .75rem;border-radius:4px;white-space:nowrap;}
+.program-icon{font-size:2rem;margin-bottom:.75rem;}
+.program-name{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;}
+.program-tagline{font-size:.875rem;color:var(--muted);line-height:1.6;}
+.program-body{padding:0 2.5rem 2.5rem;}
+.program-divider{border:none;border-top:1px solid var(--border);margin-bottom:2rem;}
+.program-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;}
+.program-desc{font-size:.925rem;line-height:1.75;color:var(--muted);}
+.program-features{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.program-features li{font-size:.875rem;color:var(--muted);display:flex;align-items:flex-start;gap:.6rem;line-height:1.5;}
+.program-features li::before{content:'→';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px;}
+@media(max-width:700px){.program-header{grid-template-columns:1fr;}.program-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html" class="active">Програми</a></li>
+    <li><a href="projects.html">Проєкти</a></li>
+    <li><a href="team.html">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta">Долучитись</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="products.html" class="active">Програми</a>
+  <a href="projects.html">Проєкти</a>
+  <a href="team.html">Команда</a>
+  <a href="contact.html" class="nav-cta">Долучитись</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="s-tag reveal">Наші програми</div>
+    <h1 class="reveal">Системні рішення для<br><em>нового покоління</em></h1>
+    <p class="page-hero-sub reveal">П'ять взаємопов'язаних програм, що формують повний цикл від побудови мережі до виховання нової управлінської еліти.</p>
+  </div>
+</div>
+
+<section class="products-section">
+  <div class="container">
+
+    <div class="program-block reveal" id="connect">
+      <div class="program-header">
+        <span class="program-num">01</span>
+        <div>
+          <div class="program-icon">🌐</div>
+          <div class="program-name">Сузір'я</div>
+          <p class="program-tagline">Connect — Глобальна мережа українських організацій</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+      </div>
+      <div class="program-body">
+        <hr class="program-divider">
+        <div class="program-grid">
+          <p class="program-desc">Сузір'я — це координаційна платформа, що об'єднує 26+ українських молодіжних організацій у 16 країнах. Ми створюємо єдиний простір для обміну досвідом, ресурсами та стратегічного планування спільних дій.</p>
+          <ul class="program-features">
+            <li>26+ організацій у 16 країнах</li>
+            <li>Регулярні координаційні зустрічі</li>
+            <li>Платформа обміну знаннями</li>
+            <li>Спільні проєкти та ініціативи</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-block reveal" id="learn">
+      <div class="program-header">
+        <span class="program-num">02</span>
+        <div>
+          <div class="program-icon">🎓</div>
+          <div class="program-name">HQ Internship Programme</div>
+          <p class="program-tagline">Learn — Освітня програма для лідерів</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+      </div>
+      <div class="program-body">
+        <hr class="program-divider">
+        <div class="program-grid">
+          <p class="program-desc">Тримісячна інтенсивна програма для найкращих молодих українців. 150+ заявок на 10 позицій — конкурентний відбір забезпечує найвищий рівень учасників. Реальні завдання, реальний вплив.</p>
+          <ul class="program-features">
+            <li>3-місячна програма з реальними завданнями</li>
+            <li>Менторство від досвідчених фахівців</li>
+            <li>Доступ до мережі HQ</li>
+            <li>Сертифікація та рекомендації</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-block reveal" id="influence">
+      <div class="program-header">
+        <span class="program-num">03</span>
+        <div>
+          <div class="program-icon">🏛️</div>
+          <div class="program-name">Посольства</div>
+          <p class="program-tagline">Influence — Дипломатичні стажування</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+      </div>
+      <div class="program-body">
+        <hr class="program-divider">
+        <div class="program-grid">
+          <p class="program-desc">Партнерство з МЗС України відкриває унікальну можливість пройти стажування безпосередньо в посольствах. Програма готує нове покоління українських дипломатів та державних управлінців.</p>
+          <ul class="program-features">
+            <li>Партнерство з МЗС України</li>
+            <li>Стажування в 10+ посольствах</li>
+            <li>Реальний дипломатичний досвід</li>
+            <li>Підготовка до кар'єри у держсекторі</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-block reveal" id="anchor">
+      <div class="program-header">
+        <span class="program-num">04</span>
+        <div>
+          <div class="program-icon">🏘️</div>
+          <div class="program-name">Громади</div>
+          <p class="program-tagline">Anchor — Дистанційне залучення до громад</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+      </div>
+      <div class="program-body">
+        <hr class="program-divider">
+        <div class="program-grid">
+          <p class="program-desc">Механізми, що дозволяють українцям за кордоном активно долучатись до розвитку конкретних громад в Україні. Remote engagement — ефективна модель збереження зв'язку з батьківщиною.</p>
+          <ul class="program-features">
+            <li>Партнерство з 20+ громадами</li>
+            <li>Дистанційні формати участі</li>
+            <li>Підтримка проєктів та ментоство</li>
+            <li>Платформа для повернення</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-block reveal" id="mentorship">
+      <div class="program-header">
+        <span class="program-num">05</span>
+        <div>
+          <div class="program-icon">🤝</div>
+          <div class="program-name">Менторська програма</div>
+          <p class="program-tagline">Mentorship — Індивідуальний розвиток лідерів</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+      </div>
+      <div class="program-body">
+        <hr class="program-divider">
+        <div class="program-grid">
+          <p class="program-desc">Персоналізований підбір пар ментор–менті на основі цілей та напряму розвитку. Тримісячні цикли з чіткими результатами та доступом до всієї мережі HQ.</p>
+          <ul class="program-features">
+            <li>Індивідуальний підбір ментора</li>
+            <li>3-місячні цикли з чіткими результатами</li>
+            <li>Доступ до мережі HQ</li>
+            <li>Сесії та практичні завдання</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="background:var(--accent);text-align:center;">
+  <div class="container">
+    <div class="s-tag reveal" style="color:rgba(255,255,255,.5);justify-content:center;"><span style="background:rgba(255,255,255,.3);width:18px;height:2px;border-radius:2px;display:block;"></span>Долучайтеся</div>
+    <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1.5rem;" class="reveal">Готові стати частиною<br><em style="opacity:.75">глобальної мережі?</em></h2>
+    <div class="reveal" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-white">Подати заявку</a>
+      <a href="contact.html" class="btn btn-ghost">Дізнатись більше</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">HQ Штаб-квартира</div>
+        <p class="footer-desc">Глобальна мережа українських організацій та лідерів. Ми будуємо інфраструктуру, що перетворює потенціал на силу для України.</p>
+        <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Сторінки</div>
+          <a href="index.html">Головна</a>
+          <a href="products.html">Програми</a>
+          <a href="projects.html">Проєкти</a>
+          <a href="team.html">Команда</a>
+          <a href="contact.html">Контакт</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Програми</div>
+          <a href="products.html#connect">Сузір'я</a>
+          <a href="products.html#learn">HQ Internship</a>
+          <a href="products.html#influence">Посольства</a>
+          <a href="products.html#anchor">Громади</a>
+          <a href="products.html#mentorship">Менторство</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Соцмережі</div>
+          <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Правове</div>
+          <a href="#">Політика</a>
+          <a href="#">Умови</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
