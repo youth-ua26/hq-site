@@ -34,6 +34,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .nav-links a:hover,.nav-links a.active{color:var(--dark);background:var(--alt);}
 .nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
 .nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
+.lang-btn{background:none;border:1.5px solid var(--border);color:var(--muted);font-size:.75rem;font-weight:700;padding:.3rem .65rem;border-radius:var(--r-sm);cursor:pointer;transition:border-color .15s,color .15s;letter-spacing:.04em;}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent);}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
@@ -202,20 +204,22 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 <body>
 
 <nav>
-  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
   <ul class="nav-links">
-    <li><a href="products.html">Програми</a></li>
-    <li><a href="projects.html">Проєкти</a></li>
-    <li><a href="team.html">Команда</a></li>
-    <li><a href="contact.html" class="nav-cta">Долучитись</a></li>
+    <li><a href="products.html" data-i18n="nav.programs">Програми</a></li>
+    <li><a href="projects.html" data-i18n="nav.projects">Проєкти</a></li>
+    <li><a href="team.html" data-i18n="nav.team">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta" data-i18n="nav.join">Долучитись</a></li>
+    <li><button class="lang-btn">EN</button></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="products.html">Програми</a>
-  <a href="projects.html">Проєкти</a>
-  <a href="team.html">Команда</a>
-  <a href="contact.html" class="mob-cta">Долучитись</a>
+  <a href="products.html" data-i18n="nav.programs">Програми</a>
+  <a href="projects.html" data-i18n="nav.projects">Проєкти</a>
+  <a href="team.html" data-i18n="nav.team">Команда</a>
+  <a href="contact.html" class="mob-cta" data-i18n="nav.join">Долучитись</a>
+  <button class="lang-btn" style="margin-top:.5rem;align-self:flex-start;">EN</button>
 </div>
 
 <div id="map-tip"><div class="mt-country"></div><div class="mt-org"></div></div>
@@ -223,31 +227,31 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <div class="hero-eyebrow">Глобальна мережа українських лідерів</div>
-  <h1>Ми будуємо<br><em>майбутнє</em> України<br>разом</h1>
-  <p class="hero-sub">HQ — платформа, що перетворює розпорошену діаспору на глобальну мережу організацій, лідерів та ідей для відновлення України.</p>
+  <div class="hero-eyebrow" data-i18n="hero.eyebrow">Глобальна мережа українських лідерів</div>
+  <h1 data-i18n="hero.title">Ми будуємо<br><em>майбутнє</em> України<br>разом</h1>
+  <p class="hero-sub" data-i18n="hero.sub">HQ — платформа, що перетворює розпорошену діаспору на глобальну мережу організацій, лідерів та ідей для відновлення України.</p>
   <div class="hero-cta">
-    <a href="contact.html" class="btn btn-primary">Долучитись до мережі</a>
-    <a href="#constellation" class="btn btn-outline">Дізнатись більше</a>
+    <a href="contact.html" class="btn btn-primary" data-i18n="hero.cta1">Долучитись до мережі</a>
+    <a href="#constellation" class="btn btn-outline" data-i18n="hero.cta2">Дізнатись більше</a>
   </div>
-  <div class="hero-scroll">Гортати</div>
+  <div class="hero-scroll" data-i18n="hero.scroll">Гортати</div>
 </section>
 
 <section id="kpi">
   <div class="kpi-inner">
-    <div class="kpi-item"><div class="kpi-num">26+</div><div class="kpi-label">Організацій у мережі</div></div>
-    <div class="kpi-item"><div class="kpi-num">16</div><div class="kpi-label">Країн присутності</div></div>
-    <div class="kpi-item"><div class="kpi-num">150+</div><div class="kpi-label">Заявок на інтернатуру</div></div>
-    <div class="kpi-item"><div class="kpi-num">4</div><div class="kpi-label">Флагманські програми</div></div>
+    <div class="kpi-item"><div class="kpi-num">26+</div><div class="kpi-label" data-i18n="kpi.orgs">Організацій у мережі</div></div>
+    <div class="kpi-item"><div class="kpi-num">16</div><div class="kpi-label" data-i18n="kpi.countries">Країн присутності</div></div>
+    <div class="kpi-item"><div class="kpi-num">150+</div><div class="kpi-label" data-i18n="kpi.applications">Заявок на інтернатуру</div></div>
+    <div class="kpi-item"><div class="kpi-num">4</div><div class="kpi-label" data-i18n="kpi.programs">Флагманські програми</div></div>
   </div>
 </section>
 
 <section id="constellation">
   <div class="container">
     <div class="reveal">
-      <div class="s-tag">Сузір'я</div>
-      <h2 class="s-title">Мережа присутності в <em>16 країнах</em></h2>
-      <p class="s-sub">HQ об'єднує провідні українські молодіжні організації, університетські клуби та ініціативи по всьому світу в єдину координовану систему.</p>
+      <div class="s-tag" data-i18n="const.tag">Сузір'я</div>
+      <h2 class="s-title" data-i18n="const.title">Мережа присутності в <em>16 країнах</em></h2>
+      <p class="s-sub" data-i18n="const.sub">HQ об'єднує провідні українські молодіжні організації, університетські клуби та ініціативи по всьому світу в єдину координовану систему.</p>
     </div>
     <div class="map-wrap reveal"><div id="world-map"></div></div>
     <div class="countries-chips reveal" id="chips-container"></div>
@@ -258,14 +262,14 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
   <div class="container">
     <div class="shift-grid">
       <div>
-        <div class="s-tag reveal">The Shift</div>
-        <h2 class="s-title reveal">Від діаспори<br>до <em>мережі</em></h2>
-        <p class="s-sub reveal">Ми змінюємо підхід до того, як Україна взаємодіє зі своїми людьми за кордоном.</p>
+        <div class="s-tag reveal" data-i18n="shift.tag">The Shift</div>
+        <h2 class="s-title reveal" data-i18n="shift.title">Від діаспори<br>до <em>мережі</em></h2>
+        <p class="s-sub reveal" data-i18n="shift.sub">Ми змінюємо підхід до того, як Україна взаємодіє зі своїми людьми за кордоном.</p>
       </div>
       <div class="shift-rows reveal">
-        <div class="shift-row"><span class="shift-from">Розпорошена діаспора</span><span class="shift-arrow">→</span><span class="shift-to">Глобальна мережа</span></div>
-        <div class="shift-row"><span class="shift-from">Тимчасова мобільність</span><span class="shift-arrow">→</span><span class="shift-to">Довгостроковий капітал</span></div>
-        <div class="shift-row"><span class="shift-from">Втрата людей</span><span class="shift-arrow">→</span><span class="shift-to">Нова еліта</span></div>
+        <div class="shift-row"><span class="shift-from" data-i18n="shift.from1">Розпорошена діаспора</span><span class="shift-arrow">→</span><span class="shift-to" data-i18n="shift.to1">Глобальна мережа</span></div>
+        <div class="shift-row"><span class="shift-from" data-i18n="shift.from2">Тимчасова мобільність</span><span class="shift-arrow">→</span><span class="shift-to" data-i18n="shift.to2">Довгостроковий капітал</span></div>
+        <div class="shift-row"><span class="shift-from" data-i18n="shift.from3">Втрата людей</span><span class="shift-arrow">→</span><span class="shift-to" data-i18n="shift.to3">Нова еліта</span></div>
       </div>
     </div>
   </div>
@@ -273,16 +277,16 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <section id="products-preview">
   <div class="container">
-    <div class="s-tag reveal">Наші програми</div>
-    <h2 class="s-title reveal">Чотири напрями роботи</h2>
-    <p class="s-sub reveal">Системний підхід від побудови мережі до формування нового покоління управлінців.</p>
+    <div class="s-tag reveal" data-i18n="prod.tag">Наші програми</div>
+    <h2 class="s-title reveal" data-i18n="prod.title">Чотири напрями роботи</h2>
+    <p class="s-sub reveal" data-i18n="prod.sub">Системний підхід від побудови мережі до формування нового покоління управлінців.</p>
     <div class="products-grid">
-      <a href="products.html#connect" class="product-card reveal"><div class="product-icon">🌐</div><div class="product-name">Сузір'я</div><p class="product-desc">Глобальна мережа українських організацій та ініціатив, об'єднаних спільною метою.</p><span class="product-link">Дізнатись більше →</span></a>
-      <a href="products.html#learn" class="product-card reveal"><div class="product-icon">🎓</div><div class="product-name">HQ Internship</div><p class="product-desc">Освітня програма для формування нового покоління управлінців. 150+ заявок / 10 позицій.</p><span class="product-link">Дізнатись більше →</span></a>
-      <a href="products.html#influence" class="product-card reveal"><div class="product-icon">🏛️</div><div class="product-name">Посольства</div><p class="product-desc">Стажування в посольствах України — інтеграція молоді в міжнародні процеси.</p><span class="product-link">Дізнатись більше →</span></a>
-      <a href="products.html#anchor" class="product-card reveal"><div class="product-icon">🏘️</div><div class="product-name">Громади</div><p class="product-desc">Remote engagement in hromadas — механізми дистанційного залучення до розвитку громад.</p><span class="product-link">Дізнатись більше →</span></a>
-      <a href="products.html#mentorship" class="product-card reveal"><div class="product-icon">🤝</div><div class="product-name">Менторство</div><p class="product-desc">Програма менторства для молодих лідерів від досвідчених українських управлінців.</p><span class="product-link">Дізнатись більше →</span></a>
-      <a href="contact.html" class="product-card reveal" style="border-style:dashed;display:flex;align-items:center;justify-content:center;text-align:center;min-height:180px;"><div><div style="font-size:2rem;margin-bottom:.75rem;opacity:.2">+</div><div class="product-name" style="opacity:.35">Ваша ідея</div><p class="product-desc">Маєте ідею для співпраці? Зв'яжіться з нами.</p></div></a>
+      <a href="products.html#connect" class="product-card reveal"><div class="product-icon">🌐</div><div class="product-name" data-i18n="prod.suz.name">Сузір'я</div><p class="product-desc" data-i18n="prod.suz.desc">Глобальна мережа українських організацій та ініціатив, об'єднаних спільною метою.</p><span class="product-link" data-i18n="prod.more">Дізнатись більше →</span></a>
+      <a href="products.html#learn" class="product-card reveal"><div class="product-icon">🎓</div><div class="product-name">HQ Internship</div><p class="product-desc" data-i18n="prod.int.desc">Освітня програма для формування нового покоління управлінців. 150+ заявок / 10 позицій.</p><span class="product-link" data-i18n="prod.more">Дізнатись більше →</span></a>
+      <a href="products.html#influence" class="product-card reveal"><div class="product-icon">🏛️</div><div class="product-name" data-i18n="prod.emb.name">Посольства</div><p class="product-desc" data-i18n="prod.emb.desc">Стажування в посольствах України — інтеграція молоді в міжнародні процеси.</p><span class="product-link" data-i18n="prod.more">Дізнатись більше →</span></a>
+      <a href="products.html#anchor" class="product-card reveal"><div class="product-icon">🏘️</div><div class="product-name" data-i18n="prod.hrom.name">Громади</div><p class="product-desc" data-i18n="prod.hrom.desc">Remote engagement in hromadas — механізми дистанційного залучення до розвитку громад.</p><span class="product-link" data-i18n="prod.more">Дізнатись більше →</span></a>
+      <a href="products.html#mentorship" class="product-card reveal"><div class="product-icon">🤝</div><div class="product-name" data-i18n="prod.ment.name">Менторство</div><p class="product-desc" data-i18n="prod.ment.desc">Програма менторства для молодих лідерів від досвідчених українських управлінців.</p><span class="product-link" data-i18n="prod.more">Дізнатись більше →</span></a>
+      <a href="contact.html" class="product-card reveal" style="border-style:dashed;display:flex;align-items:center;justify-content:center;text-align:center;min-height:180px;"><div><div style="font-size:2rem;margin-bottom:.75rem;opacity:.2">+</div><div class="product-name" style="opacity:.35" data-i18n="prod.idea.name">Ваша ідея</div><p class="product-desc" data-i18n="prod.idea.desc">Маєте ідею для співпраці? Зв'яжіться з нами.</p></div></a>
     </div>
   </div>
 </section>
@@ -291,15 +295,15 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
   <div class="container">
     <div class="mentor-grid">
       <div>
-        <div class="s-tag reveal">Менторство</div>
-        <h2 class="s-title reveal">Досвід, що<br><em>передається</em></h2>
-        <p class="s-sub reveal">Програма з'єднує молодих українських лідерів з досвідченими фахівцями у сферах державного управління, дипломатії та бізнесу.</p>
+        <div class="s-tag reveal" data-i18n="ment.tag">Менторство</div>
+        <h2 class="s-title reveal" data-i18n="ment.title">Досвід, що<br><em>передається</em></h2>
+        <p class="s-sub reveal" data-i18n="ment.sub">Програма з'єднує молодих українських лідерів з досвідченими фахівцями у сферах державного управління, дипломатії та бізнесу.</p>
         <div class="mentor-steps reveal">
-          <div class="mentor-step"><span class="step-num">01</span><span class="step-text"><strong>Подача заявки</strong> — розкажіть про свої цілі та сферу розвитку</span></div>
-          <div class="mentor-step"><span class="step-num">02</span><span class="step-text"><strong>Метч з ментором</strong> — підбір на основі напряму та потреб</span></div>
-          <div class="mentor-step"><span class="step-num">03</span><span class="step-text"><strong>3 місяці роботи</strong> — регулярні сесії, конкретні результати</span></div>
+          <div class="mentor-step"><span class="step-num">01</span><span class="step-text"><strong data-i18n="ment.s1t">Подача заявки</strong> — <span data-i18n="ment.s1d">розкажіть про свої цілі та сферу розвитку</span></span></div>
+          <div class="mentor-step"><span class="step-num">02</span><span class="step-text"><strong data-i18n="ment.s2t">Метч з ментором</strong> — <span data-i18n="ment.s2d">підбір на основі напряму та потреб</span></span></div>
+          <div class="mentor-step"><span class="step-num">03</span><span class="step-text"><strong data-i18n="ment.s3t">3 місяці роботи</strong> — <span data-i18n="ment.s3d">регулярні сесії, конкретні результати</span></span></div>
         </div>
-        <div style="margin-top:2.5rem" class="reveal"><a href="contact.html" class="btn btn-primary">Подати заявку</a></div>
+        <div style="margin-top:2.5rem" class="reveal"><a href="contact.html" class="btn btn-primary" data-i18n="ment.cta">Подати заявку</a></div>
       </div>
       <div class="mentor-visual reveal"><div class="mentor-visual-text">HQ</div></div>
     </div>
@@ -308,28 +312,28 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <section id="approach">
   <div class="container">
-    <div class="s-tag reveal">Наш підхід</div>
-    <h2 class="s-title reveal">Чотири виміри нашої роботи</h2>
+    <div class="s-tag reveal" data-i18n="appr.tag">Наш підхід</div>
+    <h2 class="s-title reveal" data-i18n="appr.title">Чотири виміри нашої роботи</h2>
     <div class="approach-grid">
-      <div class="approach-card"><div class="approach-num">01</div><div class="approach-tag">Connect</div><div class="approach-title">Building the constellation</div><p class="approach-text">Ми об'єднуємо українські організації, лідерів і експертів по всьому світу в єдину систему.</p><div class="approach-flagship">Flagship: Сузір'я — глобальна мережа українських ініціатив</div></div>
-      <div class="approach-card"><div class="approach-num">02</div><div class="approach-tag">Learn</div><div class="approach-title">Developing future leaders</div><p class="approach-text">Ми створюємо освітні та професійні можливості для формування нового покоління управлінців.</p><div class="approach-flagship">Flagship: HQ Internship Programme — 150+ заявок / 10 позицій</div></div>
-      <div class="approach-card"><div class="approach-num">03</div><div class="approach-tag">Influence</div><div class="approach-title">Shaping policy and global agenda</div><p class="approach-text">Ми інтегруємо українську молодь у міжнародні процеси, політики та адвокацію.</p><div class="approach-flagship">Flagship: Стажування в посольствах України</div></div>
-      <div class="approach-card"><div class="approach-num">04</div><div class="approach-tag">Anchor</div><div class="approach-title">Keeping Ukraine at the center</div><p class="approach-text">Ми створюємо механізми повернення та дистанційного залучення.</p><div class="approach-flagship">Flagship: Remote engagement in hromadas</div></div>
+      <div class="approach-card"><div class="approach-num">01</div><div class="approach-tag">Connect</div><div class="approach-title">Building the constellation</div><p class="approach-text" data-i18n="appr.01t">Ми об'єднуємо українські організації, лідерів і експертів по всьому світу в єдину систему.</p><div class="approach-flagship" data-i18n="appr.01f">Flagship: Сузір'я — глобальна мережа українських ініціатив</div></div>
+      <div class="approach-card"><div class="approach-num">02</div><div class="approach-tag">Learn</div><div class="approach-title">Developing future leaders</div><p class="approach-text" data-i18n="appr.02t">Ми створюємо освітні та професійні можливості для формування нового покоління управлінців.</p><div class="approach-flagship" data-i18n="appr.02f">Flagship: HQ Internship Programme — 150+ заявок / 10 позицій</div></div>
+      <div class="approach-card"><div class="approach-num">03</div><div class="approach-tag">Influence</div><div class="approach-title">Shaping policy and global agenda</div><p class="approach-text" data-i18n="appr.03t">Ми інтегруємо українську молодь у міжнародні процеси, політики та адвокацію.</p><div class="approach-flagship" data-i18n="appr.03f">Flagship: Стажування в посольствах України</div></div>
+      <div class="approach-card"><div class="approach-num">04</div><div class="approach-tag">Anchor</div><div class="approach-title">Keeping Ukraine at the center</div><p class="approach-text" data-i18n="appr.04t">Ми створюємо механізми повернення та дистанційного залучення.</p><div class="approach-flagship" data-i18n="appr.04f">Flagship: Remote engagement in hromadas</div></div>
     </div>
   </div>
 </section>
 
 <section id="why">
   <div class="container">
-    <p class="why-statement reveal">Без системної роботи Україна ризикує <em>втратити покоління</em>.<br>З правильною системою — це покоління стає новим <em>державним, дипломатичним та управлінським потенціалом</em>.</p>
-    <div class="reveal"><a href="projects.html" class="btn btn-outline">Переглянути проєкти</a></div>
+    <p class="why-statement reveal" data-i18n="why.statement">Без системної роботи Україна ризикує <em>втратити покоління</em>.<br>З правильною системою — це покоління стає новим <em>державним, дипломатичним та управлінським потенціалом</em>.</p>
+    <div class="reveal"><a href="projects.html" class="btn btn-outline" data-i18n="why.cta">Переглянути проєкти</a></div>
   </div>
 </section>
 
 <section id="partners">
   <div class="container">
-    <div class="s-tag reveal">Наші партнери</div>
-    <h2 class="s-title reveal">Разом із лідерами сектору</h2>
+    <div class="s-tag reveal" data-i18n="part.tag">Наші партнери</div>
+    <h2 class="s-title reveal" data-i18n="part.title">Разом із лідерами сектору</h2>
     <div class="partners-row reveal">
       <div class="partner-pill">МЗС України</div>
       <div class="partner-pill">Молрада при МЗС</div>
@@ -342,18 +346,18 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <section id="cta">
   <div class="container">
-    <div class="s-tag reveal">Долучайтеся</div>
+    <div class="s-tag reveal" data-i18n="cta.tag">Долучайтеся</div>
     <h2 class="cta-big reveal">Join the network<br>shaping <em>Ukraine</em></h2>
     <div class="who-tags reveal">
-      <span class="who-tag">Українська спільнота за кордоном</span>
-      <span class="who-tag">Молодіжні організації</span>
-      <span class="who-tag">Інституції</span>
-      <span class="who-tag">Партнери</span>
+      <span class="who-tag" data-i18n="cta.who1">Українська спільнота за кордоном</span>
+      <span class="who-tag" data-i18n="cta.who2">Молодіжні організації</span>
+      <span class="who-tag" data-i18n="cta.who3">Інституції</span>
+      <span class="who-tag" data-i18n="cta.who4">Партнери</span>
     </div>
     <p class="cta-sub reveal">Ukrainians worldwide already exist. We connect them.</p>
     <div class="cta-btns reveal">
-      <a href="contact.html" class="btn btn-white">Долучитись</a>
-      <a href="contact.html" class="btn btn-ghost">Партнерство</a>
+      <a href="contact.html" class="btn btn-white" data-i18n="cta.btn1">Долучитись</a>
+      <a href="contact.html" class="btn btn-ghost" data-i18n="cta.btn2">Партнерство</a>
     </div>
   </div>
 </section>
@@ -363,35 +367,35 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
     <div class="footer-top">
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
-        <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
+        <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
         <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
+          <div class="footer-col-title" data-i18n="ft.col1">Сторінки</div>
+          <a href="index.html" data-i18n="ft.home">Головна</a>
+          <a href="products.html" data-i18n="ft.programs">Програми</a>
+          <a href="projects.html" data-i18n="ft.projects">Проєкти</a>
+          <a href="team.html" data-i18n="ft.team">Команда</a>
+          <a href="contact.html" data-i18n="ft.contact">Контакт</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
-          <a href="products.html#connect">Сузір'я</a>
+          <div class="footer-col-title" data-i18n="ft.col2">Програми</div>
+          <a href="products.html#connect" data-i18n="prod.suz.name">Сузір'я</a>
           <a href="products.html#learn">HQ Internship</a>
-          <a href="products.html#influence">Посольства</a>
-          <a href="products.html#anchor">Громади</a>
-          <a href="products.html#mentorship">Менторство</a>
+          <a href="products.html#influence" data-i18n="prod.emb.name">Посольства</a>
+          <a href="products.html#anchor" data-i18n="prod.hrom.name">Громади</a>
+          <a href="products.html#mentorship" data-i18n="prod.ment.name">Менторство</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
+          <div class="footer-col-title" data-i18n="ft.col3">Соцмережі</div>
           <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span></div>
   </div>
 </footer>
 
@@ -591,7 +595,7 @@ const chipsEl = document.getElementById('chips-container');
 // Home chip
 const homeChip = document.createElement('div');
 homeChip.className = 'c-chip active';
-homeChip.innerHTML = `<span style="font-size:.9em">🌍</span><span>Всі країни</span>`;
+homeChip.innerHTML = `<span style="font-size:.9em">🌍</span><span data-i18n="map.all">Всі країни</span>`;
 homeChip.addEventListener('click', () => {
   document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
   homeChip.classList.add('active');
@@ -625,5 +629,6 @@ const navTog=document.getElementById('nav-toggle');
 const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
 </script>
+<script src="lang.js"></script>
 </body>
 </html>
