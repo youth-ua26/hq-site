@@ -83,74 +83,82 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 .join-section .s-tag::before{background:rgba(255,255,255,.2);}
 .join-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1rem;}
 .join-title em{font-style:italic;color:#60A5FA;}
+
+.lang-btn{background:none;border:1.5px solid var(--border);color:var(--muted);font-size:.78rem;font-weight:700;padding:.3rem .65rem;border-radius:var(--r-sm);cursor:pointer;letter-spacing:.04em;transition:color .15s,border-color .15s;}
+.lang-btn:hover{color:var(--dark);border-color:var(--dark);}
+.lang-btn-footer{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.55);}
+.lang-btn-footer:hover{border-color:#fff;color:#fff;}
+@media(min-width:901px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.nav-links .lang-btn{display:none;}}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
   <ul class="nav-links">
-    <li><a href="products.html">Програми</a></li>
-    <li><a href="projects.html">Проєкти</a></li>
-    <li><a href="team.html" class="active">Команда</a></li>
-    <li><a href="contact.html" class="nav-cta">Долучитись</a></li>
+    <li><a href="products.html" data-i18n="nav.programs">Програми</a></li>
+    <li><a href="projects.html" data-i18n="nav.projects">Проєкти</a></li>
+    <li><a href="team.html" class="active" data-i18n="nav.team">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta" data-i18n="nav.join">Долучитись</a></li>
+    <li><button class="lang-btn">EN</button></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="products.html">Програми</a>
-  <a href="projects.html">Проєкти</a>
-  <a href="team.html" class="active">Команда</a>
-  <a href="contact.html" class="mob-cta">Долучитись</a>
+  <a href="products.html" data-i18n="nav.programs">Програми</a>
+  <a href="projects.html" data-i18n="nav.projects">Проєкти</a>
+  <a href="team.html" class="active" data-i18n="nav.team">Команда</a>
+  <a href="contact.html" class="mob-cta" data-i18n="nav.join">Долучитись</a>
 </div>
 
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="s-tag reveal">Команда</div>
-    <h1 class="reveal">Люди, що будують<br><em>мережу майбутнього</em></h1>
-    <p class="page-hero-sub reveal">Невелика команда з великою місією. Ми віримо, що правильна інфраструктура може змінити те, як Україна взаємодіє зі своїм потенціалом у світі.</p>
+    <div class="s-tag reveal" data-i18n="team.tag">Команда</div>
+    <h1 class="reveal" data-i18n="team.title">Люди, що будують<br><em>мережу майбутнього</em></h1>
+    <p class="page-hero-sub reveal" data-i18n="team.sub">Невелика команда з великою місією. Ми віримо, що правильна інфраструктура може змінити те, як Україна взаємодіє зі своїм потенціалом у світі.</p>
   </div>
 </div>
 
 <section>
   <div class="container">
-    <div class="s-tag reveal">Наша команда</div>
-    <h2 class="s-title reveal">Хто ми</h2>
+    <div class="s-tag reveal" data-i18n="team.section">Наша команда</div>
+    <h2 class="s-title reveal" data-i18n="team.who">Хто ми</h2>
     <div class="team-grid">
 
       <div class="team-card reveal">
         <div class="team-avatar"><img src="Photo D.PNG" alt="Дарина Вареник" style="object-position:center 10%;"></div>
         <div class="team-name">Дарина Вареник</div>
-        <div class="team-role">Засновник і директор</div>
-        <p class="team-bio">Архітектор мережі HQ. Координує стратегічний напрям, партнерства та розвиток організації.</p>
+        <div class="team-role" data-i18n="team.d.role">Засновниця і директорка</div>
+        <p class="team-bio" data-i18n="team.d.bio">Архітектор мережі HQ. Координує стратегічний напрям, партнерства та розвиток організації.</p>
       </div>
 
       <div class="team-card reveal">
         <div class="team-avatar"><img src="Photo N.jpg" alt="Зубенко Нікіта" style="object-position:center 12%;"></div>
         <div class="team-name">Зубенко Нікіта</div>
-        <div class="team-role">Засновник і координатор програм</div>
-        <p class="team-bio">Відповідає за операційну діяльність флагманських програм та фандрейзинг.</p>
+        <div class="team-role" data-i18n="team.n.role">Засновник і координатор програм</div>
+        <p class="team-bio" data-i18n="team.n.bio">Відповідає за операційну діяльність флагманських програм та фандрейзинг.</p>
       </div>
 
       <div class="team-card reveal">
-        <div class="team-avatar">РС</div>
+        <div class="team-avatar"><img src="Photo R.jpeg" alt="Роксолана Смеречинська" style="object-position:center 10%;"></div>
         <div class="team-name">Роксолана Смеречинська</div>
-        <div class="team-role">Засновниця і менеджер зі стратегічного</div>
-        <p class="team-bio">Відповідає за розвиток стратегічних програм.</p>
+        <div class="team-role" data-i18n="team.r.role">Засновниця і менеджерка зі стратегічного</div>
+        <p class="team-bio" data-i18n="team.r.bio">Відповідає за розвиток стратегічних програм.</p>
       </div>
 
       <div class="team-card reveal">
         <div class="team-avatar"><img src="Photo S.JPG" alt="Софія Олійник" style="object-position:center 10%;"></div>
         <div class="team-name">Софія Олійник</div>
-        <div class="team-role">Засновник і менеджер програм залучення молоді</div>
-        <p class="team-bio">Відповідає за програми залучення молоді.</p>
+        <div class="team-role" data-i18n="team.s.role">Засновниця і менеджерка програм залучення молоді</div>
+        <p class="team-bio" data-i18n="team.s.bio">Відповідає за програми залучення молоді.</p>
       </div>
 
       <div class="team-card reveal">
         <div class="team-avatar"><img src="Photo L.JPEG" alt="Єлизавета Кайдаш" style="object-position:center 8%;"></div>
         <div class="team-name">Єлизавета Кайдаш</div>
-        <div class="team-role">Засновник і менеджер напрямку молодіжної дипломатії</div>
-        <p class="team-bio">Координує комунікацію з МЗС.</p>
+        <div class="team-role" data-i18n="team.l.role">Засновниця і менеджерка напрямку молодіжної дипломатії</div>
+        <p class="team-bio" data-i18n="team.l.bio">Координує комунікацію з МЗС.</p>
       </div>
 
 
@@ -160,11 +168,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <section class="join-section">
   <div class="container">
-    <div class="s-tag reveal">Долучайтеся</div>
-    <h2 class="join-title reveal">Хочете приєднатись<br><em>до команди?</em></h2>
-    <p style="color:rgba(255,255,255,.45);margin-bottom:2rem;font-size:.95rem;max-width:460px;margin-left:auto;margin-right:auto;" class="reveal">Ми шукаємо людей, що поділяють нашу місію та хочуть реально впливати на майбутнє України.</p>
+    <div class="s-tag reveal" data-i18n="team.join.tag">Долучайтеся</div>
+    <h2 class="join-title reveal" data-i18n="team.join.title">Хочете приєднатись<br><em>до команди?</em></h2>
+    <p style="color:rgba(255,255,255,.45);margin-bottom:2rem;font-size:.95rem;max-width:460px;margin-left:auto;margin-right:auto;" class="reveal" data-i18n="team.join.sub">Ми шукаємо людей, що поділяють нашу місію та хочуть реально впливати на майбутнє України.</p>
     <div class="reveal" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="contact.html" class="btn btn-primary">Написати нам</a>
+      <a href="contact.html" class="btn btn-primary" data-i18n="team.join.btn">Написати нам</a>
     </div>
   </div>
 </section>
@@ -174,20 +182,20 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
     <div class="footer-top">
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
-        <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
+        <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
         <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
+          <div class="footer-col-title" data-i18n="ft.col1">Сторінки</div>
+          <a href="index.html" data-i18n="ft.home">Головна</a>
+          <a href="products.html" data-i18n="ft.programs">Програми</a>
+          <a href="projects.html" data-i18n="ft.projects">Проєкти</a>
+          <a href="team.html" data-i18n="ft.team">Команда</a>
+          <a href="contact.html" data-i18n="ft.contact">Контакт</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
+          <div class="footer-col-title" data-i18n="ft.col2">Програми</div>
           <a href="products.html#connect">Сузір'я</a>
           <a href="products.html#learn">HQ Internship</a>
           <a href="products.html#influence">Посольства</a>
@@ -195,14 +203,14 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
           <a href="products.html#mentorship">Менторство</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
+          <div class="footer-col-title" data-i18n="ft.col3">Соцмережі</div>
           <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span><button class="lang-btn lang-btn-footer">EN</button></div>
   </div>
 </footer>
 
@@ -214,5 +222,6 @@ const navTog=document.getElementById('nav-toggle');
 const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
 </script>
+<script src="lang.js"></script>
 </body>
 </html>
