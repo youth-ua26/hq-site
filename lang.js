@@ -67,6 +67,10 @@ const HQ_T = {
     // Approach
     'appr.tag':        'Наш підхід',
     'appr.title':      'Чотири виміри нашої роботи',
+    'appr.01tag':      'Об\'єднання',
+    'appr.02tag':      'Навчання',
+    'appr.03tag':      'Вплив',
+    'appr.04tag':      'Якір',
     'appr.01t':        'Ми об\'єднуємо українські організації, лідерів і експертів по всьому світу в єдину систему.',
     'appr.01f':        'Flagship: Сузір\'я — глобальна мережа українських ініціатив',
     'appr.02t':        'Ми створюємо освітні та професійні можливості для формування нового покоління управлінців.',
@@ -321,6 +325,10 @@ const HQ_T = {
     // Approach
     'appr.tag':        'Our approach',
     'appr.title':      'Four dimensions of our work',
+    'appr.01tag':      'Connect',
+    'appr.02tag':      'Learn',
+    'appr.03tag':      'Influence',
+    'appr.04tag':      'Anchor',
     'appr.01t':        'We unite Ukrainian organizations, leaders and experts across the world into a single system.',
     'appr.01f':        'Flagship: Constellation — global network of Ukrainian initiatives',
     'appr.02t':        'We create educational and professional opportunities to develop the next generation of leaders.',
