@@ -88,7 +88,11 @@ section{padding:5rem 4rem;}
 .hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);border-radius:2px;}
 .hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.8rem,6vw,5.2rem);font-weight:900;line-height:1.05;max-width:780px;position:relative;z-index:1;margin-bottom:1.5rem;color:var(--dark);}
 .hero h1 em{font-style:italic;color:var(--accent);}
-.hero-sub{max-width:500px;font-size:1.05rem;line-height:1.75;color:var(--muted);position:relative;z-index:1;margin-bottom:2.5rem;}
+.hero-sub{max-width:500px;font-size:1.05rem;line-height:1.75;color:var(--muted);position:relative;z-index:1;margin-bottom:2rem;}
+.hero-vm{display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;margin-bottom:2.5rem;max-width:680px;}
+.hero-vm-item{flex:1;min-width:240px;padding:.9rem 1.1rem;border-left:2px solid var(--accent);background:var(--accent-bg);border-radius:0 var(--r-sm) var(--r-sm) 0;}
+.hero-vm-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);display:block;margin-bottom:.3rem;}
+.hero-vm-item p{font-size:.84rem;line-height:1.65;color:var(--muted);}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;}
 .hero-scroll{position:absolute;bottom:2.5rem;left:4rem;z-index:1;display:flex;align-items:center;gap:.8rem;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);opacity:.4;}
 .hero-scroll::after{content:'';display:block;width:40px;height:1px;background:currentColor;}
@@ -238,8 +242,16 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
   <div class="hero-eyebrow" data-i18n="hero.eyebrow">Глобальна мережа українських лідерів</div>
   <h1 data-i18n="hero.title">Ми будуємо<br><em>майбутнє</em> України<br>разом</h1>
   <p class="hero-sub" data-i18n="hero.sub">HQ — платформа, що перетворює розпорошену діаспору на глобальну мережу організацій, лідерів та ідей для стратегічного посилення України у світі та її довгострокового розвитку.</p>
-  <p class="hero-sub" data-i18n="hero.sub">ВІЗІЯ: Українська молодь по світу — це глобальна сила, яка поколіннями підтримує і розвиває успішну Україну.</p>
-  <p class="hero-sub" data-i18n="hero.sub">МІСІЯ: Об’єднувати та навчати українську молодь у світі для посилення впливу України та формування надійного зв’язку з домом для майбутнього повернення.</p>
+  <div class="hero-vm">
+    <div class="hero-vm-item">
+      <span class="hero-vm-label" data-i18n="hero.vision_l">Візія</span>
+      <p data-i18n="hero.vision">Українська молодь по світу — це глобальна сила, яка поколіннями підтримує і розвиває успішну Україну.</p>
+    </div>
+    <div class="hero-vm-item">
+      <span class="hero-vm-label" data-i18n="hero.mission_l">Місія</span>
+      <p data-i18n="hero.mission">Об’єднувати та навчати українську молодь у світі для посилення впливу України та формування надійного зв’язку з домом для майбутнього повернення.</p>
+    </div>
+  </div>
   <div class="hero-cta">
     <a href="contact.html" class="btn btn-primary" data-i18n="hero.cta1">Долучитись до мережі</a>
     <a href="#constellation" class="btn btn-outline" data-i18n="hero.cta2">Дізнатись більше</a>
