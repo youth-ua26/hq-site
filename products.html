@@ -19,6 +19,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .nav-links a:hover,.nav-links a.active{color:var(--dark);background:var(--alt);}
 .nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
 .nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
+.lang-btn{background:none;border:1.5px solid var(--border);color:var(--muted);font-size:.75rem;font-weight:700;padding:.3rem .65rem;border-radius:var(--r-sm);cursor:pointer;transition:border-color .15s,color .15s;letter-spacing:.04em;}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+.lang-btn-footer{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);}
+.lang-btn-footer:hover{border-color:#fff;color:#fff;}
+@media(min-width:901px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.nav-links .lang-btn{display:none;}}
+.lang-btn-nav-mob{display:none;margin-left:auto;margin-right:.6rem;}
+@media(max-width:900px){.lang-btn-nav-mob{display:flex;}}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
@@ -56,7 +65,8 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 .footer-desc{font-size:.85rem;line-height:1.65;}
 .footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
 .footer-col-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.25);margin-bottom:.75rem;}
-.footer-col a{display:block;color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;margin-bottom:.45rem;transition:color .2s;}
+.footer-col{display:flex;flex-direction:column;gap:.65rem;}
+.footer-col a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;transition:color .2s;}
 .footer-col a:hover{color:#fff;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;display:flex;justify-content:space-between;font-size:.78rem;}
 @media(max-width:900px){footer{padding:3rem 1.5rem 2rem;}.footer-top{grid-template-columns:1fr;gap:2.5rem;}.footer-links{grid-template-columns:repeat(2,1fr);}.footer-bottom{flex-direction:column;gap:.5rem;}}
@@ -73,7 +83,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 .products-section{background:var(--bg);}
 .program-block{border:1px solid var(--border);border-radius:var(--r);background:var(--card);overflow:hidden;margin-bottom:1.5rem;transition:box-shadow .25s;}
 .program-block:hover{box-shadow:var(--sh-md);}
-.program-header{padding:2.5rem 2.5rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem;align-items:start;cursor:pointer;}
+.program-header{padding:2.5rem 2.5rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem;align-items:start;}
 .program-num{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);background:var(--accent-bg);padding:.35rem .75rem;border-radius:4px;white-space:nowrap;}
 .program-icon{font-size:2rem;margin-bottom:.75rem;}
 .program-name{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;}
@@ -91,27 +101,29 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 <body>
 
 <nav>
-  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
+  <button class="lang-btn lang-btn-nav-mob">EN</button>
   <ul class="nav-links">
-    <li><a href="products.html" class="active">Програми</a></li>
-    <li><a href="projects.html">Проєкти</a></li>
-    <li><a href="team.html">Команда</a></li>
-    <li><a href="contact.html" class="nav-cta">Долучитись</a></li>
+    <li><a href="products.html" class="active" data-i18n="nav.programs">Програми</a></li>
+    <li><a href="projects.html" data-i18n="nav.projects">Проєкти</a></li>
+    <li><a href="team.html" data-i18n="nav.team">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta" data-i18n="nav.join">Долучитись</a></li>
+    <li><button class="lang-btn">EN</button></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="products.html" class="active">Програми</a>
-  <a href="projects.html">Проєкти</a>
-  <a href="team.html">Команда</a>
-  <a href="contact.html" class="mob-cta">Долучитись</a>
+  <a href="products.html" class="active" data-i18n="nav.programs">Програми</a>
+  <a href="projects.html" data-i18n="nav.projects">Проєкти</a>
+  <a href="team.html" data-i18n="nav.team">Команда</a>
+  <a href="contact.html" class="mob-cta" data-i18n="nav.join">Долучитись</a>
 </div>
 
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="s-tag reveal">Наші програми</div>
-    <h1 class="reveal">Системні рішення для<br><em>нового покоління</em></h1>
-    <p class="page-hero-sub reveal">П'ять взаємопов'язаних програм, що формують повний цикл від побудови мережі до виховання нової управлінської еліти.</p>
+    <div class="s-tag reveal" data-i18n="prod.page.tag">Наші програми</div>
+    <h1 class="reveal" data-i18n="prod.page.title">Системні рішення для<br><em>нового покоління</em></h1>
+    <p class="page-hero-sub reveal" data-i18n="prod.page.sub">П'ять взаємопов'язаних програм, що формують повний цикл від побудови мережі до виховання нової управлінської еліти.</p>
   </div>
 </div>
 
@@ -123,20 +135,20 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
         <span class="program-num">01</span>
         <div>
           <div class="program-icon">🌐</div>
-          <div class="program-name">Сузір'я</div>
-          <p class="program-tagline">Connect — Глобальна мережа українських організацій</p>
+          <div class="program-name" data-i18n="prod.suz.name">Сузір'я</div>
+          <p class="program-tagline" data-i18n="prod.suz.tagline">Connect — Глобальна мережа українських організацій</p>
         </div>
-        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="prod.suz.apply">Подати заявку</a>
       </div>
       <div class="program-body">
         <hr class="program-divider">
         <div class="program-grid">
-          <p class="program-desc">Сузір'я — це координаційна платформа, що об'єднує 26+ українських молодіжних організацій у 16 країнах. Ми створюємо єдиний простір для обміну досвідом, ресурсами та стратегічного планування спільних дій.</p>
+          <p class="program-desc" data-i18n="prod.suz.full">Сузір'я — це координаційна платформа, що об'єднує 26+ українських молодіжних організацій у 16 країнах. Ми створюємо єдиний простір для обміну досвідом, ресурсами та стратегічного планування спільних дій.</p>
           <ul class="program-features">
-            <li>26+ організацій у 16 країнах</li>
-            <li>Регулярні координаційні зустрічі</li>
-            <li>Платформа обміну знаннями</li>
-            <li>Спільні проєкти та ініціативи</li>
+            <li data-i18n="prod.suz.f1">26+ організацій у 16 країнах</li>
+            <li data-i18n="prod.suz.f2">Регулярні координаційні зустрічі</li>
+            <li data-i18n="prod.suz.f3">Платформа обміну знаннями</li>
+            <li data-i18n="prod.suz.f4">Спільні проєкти та ініціативи</li>
           </ul>
         </div>
       </div>
@@ -148,19 +160,19 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
         <div>
           <div class="program-icon">🎓</div>
           <div class="program-name">HQ Internship Programme</div>
-          <p class="program-tagline">Learn — Освітня програма для лідерів</p>
+          <p class="program-tagline" data-i18n="prod.int.tagline">Learn — Освітня програма для лідерів</p>
         </div>
-        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="prod.suz.apply">Подати заявку</a>
       </div>
       <div class="program-body">
         <hr class="program-divider">
         <div class="program-grid">
-          <p class="program-desc">Тримісячна інтенсивна програма для найкращих молодих українців. 150+ заявок на 10 позицій — конкурентний відбір забезпечує найвищий рівень учасників. Реальні завдання, реальний вплив.</p>
+          <p class="program-desc" data-i18n="prod.int.full">Тримісячна інтенсивна програма для найкращих молодих українців. 150+ заявок на 10 позицій — конкурентний відбір забезпечує найвищий рівень учасників. Реальні завдання, реальний вплив.</p>
           <ul class="program-features">
-            <li>3-місячна програма з реальними завданнями</li>
-            <li>Менторство від досвідчених фахівців</li>
-            <li>Доступ до мережі HQ</li>
-            <li>Сертифікація та рекомендації</li>
+            <li data-i18n="prod.int.f1">3-місячна програма з реальними завданнями</li>
+            <li data-i18n="prod.int.f2">Менторство від досвідчених фахівців</li>
+            <li data-i18n="prod.int.f3">Доступ до мережі HQ</li>
+            <li data-i18n="prod.int.f4">Сертифікація та рекомендації</li>
           </ul>
         </div>
       </div>
@@ -171,20 +183,20 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
         <span class="program-num">03</span>
         <div>
           <div class="program-icon">🏛️</div>
-          <div class="program-name">Посольства</div>
-          <p class="program-tagline">Influence — Дипломатичні стажування</p>
+          <div class="program-name" data-i18n="prod.emb.name">Посольства</div>
+          <p class="program-tagline" data-i18n="prod.emb.tagline">Influence — Дипломатичні стажування</p>
         </div>
-        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="prod.suz.apply">Подати заявку</a>
       </div>
       <div class="program-body">
         <hr class="program-divider">
         <div class="program-grid">
-          <p class="program-desc">Партнерство з МЗС України відкриває унікальну можливість пройти стажування безпосередньо в посольствах. Програма готує нове покоління українських дипломатів та державних управлінців.</p>
+          <p class="program-desc" data-i18n="prod.emb.full">Партнерство з МЗС України відкриває унікальну можливість пройти стажування безпосередньо в посольствах. Програма готує нове покоління українських дипломатів та державних управлінців.</p>
           <ul class="program-features">
-            <li>Партнерство з МЗС України</li>
-            <li>Стажування в 10+ посольствах</li>
-            <li>Реальний дипломатичний досвід</li>
-            <li>Підготовка до кар'єри у держсекторі</li>
+            <li data-i18n="prod.emb.f1">Партнерство з МЗС України</li>
+            <li data-i18n="prod.emb.f2">Стажування в 10+ посольствах</li>
+            <li data-i18n="prod.emb.f3">Реальний дипломатичний досвід</li>
+            <li data-i18n="prod.emb.f4">Підготовка до кар'єри у держсекторі</li>
           </ul>
         </div>
       </div>
@@ -195,20 +207,20 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
         <span class="program-num">04</span>
         <div>
           <div class="program-icon">🏘️</div>
-          <div class="program-name">Громади</div>
-          <p class="program-tagline">Anchor — Дистанційне залучення до громад</p>
+          <div class="program-name" data-i18n="prod.hrom.name">Громади</div>
+          <p class="program-tagline" data-i18n="prod.hrom.tagline">Anchor — Дистанційне залучення до громад</p>
         </div>
-        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="prod.suz.apply">Подати заявку</a>
       </div>
       <div class="program-body">
         <hr class="program-divider">
         <div class="program-grid">
-          <p class="program-desc">Механізми, що дозволяють українцям за кордоном активно долучатись до розвитку конкретних громад в Україні. Remote engagement — ефективна модель збереження зв'язку з батьківщиною.</p>
+          <p class="program-desc" data-i18n="prod.hrom.full">Механізми, що дозволяють українцям за кордоном активно долучатись до розвитку конкретних громад в Україні. Remote engagement — ефективна модель збереження зв'язку з батьківщиною.</p>
           <ul class="program-features">
-            <li>Партнерство з 20+ громадами</li>
-            <li>Дистанційні формати участі</li>
-            <li>Підтримка проєктів та ментоство</li>
-            <li>Платформа для повернення</li>
+            <li data-i18n="prod.hrom.f1">Партнерство з 20+ громадами</li>
+            <li data-i18n="prod.hrom.f2">Дистанційні формати участі</li>
+            <li data-i18n="prod.hrom.f3">Підтримка проєктів та менторство</li>
+            <li data-i18n="prod.hrom.f4">Платформа для повернення</li>
           </ul>
         </div>
       </div>
@@ -219,20 +231,20 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
         <span class="program-num">05</span>
         <div>
           <div class="program-icon">🤝</div>
-          <div class="program-name">Менторська програма</div>
-          <p class="program-tagline">Mentorship — Індивідуальний розвиток лідерів</p>
+          <div class="program-name" data-i18n="prod.ment.name">Менторська програма</div>
+          <p class="program-tagline" data-i18n="prod.ment.tagline">Mentorship — Індивідуальний розвиток лідерів</p>
         </div>
-        <a href="contact.html" class="btn btn-primary">Подати заявку</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="prod.suz.apply">Подати заявку</a>
       </div>
       <div class="program-body">
         <hr class="program-divider">
         <div class="program-grid">
-          <p class="program-desc">Персоналізований підбір пар ментор–менті на основі цілей та напряму розвитку. Тримісячні цикли з чіткими результатами та доступом до всієї мережі HQ.</p>
+          <p class="program-desc" data-i18n="prod.ment.full">Персоналізований підбір пар ментор–менті на основі цілей та напряму розвитку. Тримісячні цикли з чіткими результатами та доступом до всієї мережі HQ.</p>
           <ul class="program-features">
-            <li>Індивідуальний підбір ментора</li>
-            <li>3-місячні цикли з чіткими результатами</li>
-            <li>Доступ до мережі HQ</li>
-            <li>Сесії та практичні завдання</li>
+            <li data-i18n="prod.ment.f1">Індивідуальний підбір ментора</li>
+            <li data-i18n="prod.ment.f2">3-місячні цикли з чіткими результатами</li>
+            <li data-i18n="prod.ment.f3">Доступ до мережі HQ</li>
+            <li data-i18n="prod.ment.f4">Сесії та практичні завдання</li>
           </ul>
         </div>
       </div>
@@ -243,11 +255,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <section style="background:var(--accent);text-align:center;">
   <div class="container">
-    <div class="s-tag reveal" style="color:rgba(255,255,255,.5);justify-content:center;"><span style="background:rgba(255,255,255,.3);width:18px;height:2px;border-radius:2px;display:block;"></span>Долучайтеся</div>
-    <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1.5rem;" class="reveal">Готові стати частиною<br><em style="opacity:.75">глобальної мережі?</em></h2>
+    <div class="s-tag reveal" style="color:rgba(255,255,255,.5);justify-content:center;" data-i18n="prod.cta.tag">Долучайтеся</div>
+    <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1.5rem;" class="reveal" data-i18n="prod.cta.title">Готові стати частиною<br><em style="opacity:.75">глобальної мережі?</em></h2>
     <div class="reveal" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="contact.html" class="btn btn-white">Подати заявку</a>
-      <a href="contact.html" class="btn btn-ghost">Дізнатись більше</a>
+      <a href="contact.html" class="btn btn-white" data-i18n="prod.cta.apply">Подати заявку</a>
+      <a href="contact.html" class="btn btn-ghost" data-i18n="prod.cta.learn">Дізнатись більше</a>
     </div>
   </div>
 </section>
@@ -257,35 +269,35 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
     <div class="footer-top">
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
-        <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
+        <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
         <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
+          <div class="footer-col-title" data-i18n="ft.col1">Сторінки</div>
+          <a href="index.html" data-i18n="ft.home">Головна</a>
+          <a href="products.html" data-i18n="ft.programs">Програми</a>
+          <a href="projects.html" data-i18n="ft.projects">Проєкти</a>
+          <a href="team.html" data-i18n="ft.team">Команда</a>
+          <a href="contact.html" data-i18n="ft.contact">Контакт</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
-          <a href="products.html#connect">Сузір'я</a>
+          <div class="footer-col-title" data-i18n="ft.col2">Програми</div>
+          <a href="products.html#connect" data-i18n="prod.suz.name">Сузір'я</a>
           <a href="products.html#learn">HQ Internship</a>
-          <a href="products.html#influence">Посольства</a>
-          <a href="products.html#anchor">Громади</a>
-          <a href="products.html#mentorship">Менторство</a>
+          <a href="products.html#influence" data-i18n="prod.emb.name">Посольства</a>
+          <a href="products.html#anchor" data-i18n="prod.hrom.name">Громади</a>
+          <a href="products.html#mentorship" data-i18n="prod.ment.name">Менторство</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
+          <div class="footer-col-title" data-i18n="ft.col3">Соцмережі</div>
           <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span><button class="lang-btn lang-btn-footer">EN</button></div>
   </div>
 </footer>
 
@@ -297,5 +309,6 @@ const navTog=document.getElementById('nav-toggle');
 const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

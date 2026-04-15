@@ -19,6 +19,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .nav-links a:hover,.nav-links a.active{color:var(--dark);background:var(--alt);}
 .nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
 .nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
+.lang-btn{background:none;border:1.5px solid var(--border);color:var(--muted);font-size:.75rem;font-weight:700;padding:.3rem .65rem;border-radius:var(--r-sm);cursor:pointer;transition:border-color .15s,color .15s;letter-spacing:.04em;}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+.lang-btn-footer{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);}
+.lang-btn-footer:hover{border-color:#fff;color:#fff;}
+@media(min-width:901px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.nav-links .lang-btn{display:none;}}
+.lang-btn-nav-mob{display:none;margin-left:auto;margin-right:.6rem;}
+@media(max-width:900px){.lang-btn-nav-mob{display:flex;}}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
@@ -37,9 +46,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .btn-primary:hover{background:var(--accent-h);transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3);}
 .btn-outline{background:transparent;color:var(--dark);border:1.5px solid var(--border);}
 .btn-outline:hover{border-color:var(--dark);}
-.btn-white{background:#fff;color:var(--accent);font-weight:700;}
-.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);}
-.btn-ghost:hover{background:rgba(255,255,255,.22);}
 section{padding:5rem 4rem;}.container{max-width:1100px;margin:0 auto;}
 .s-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:1rem;}
 .s-tag::before{content:'';width:18px;height:2px;background:var(--accent);border-radius:2px;}
@@ -84,69 +90,71 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 <body>
 
 <nav>
-  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
+  <button class="lang-btn lang-btn-nav-mob">EN</button>
   <ul class="nav-links">
-    <li><a href="products.html">Програми</a></li>
-    <li><a href="projects.html" class="active">Проєкти</a></li>
-    <li><a href="team.html">Команда</a></li>
-    <li><a href="contact.html" class="nav-cta">Долучитись</a></li>
+    <li><a href="products.html" data-i18n="nav.programs">Програми</a></li>
+    <li><a href="projects.html" class="active" data-i18n="nav.projects">Проєкти</a></li>
+    <li><a href="team.html" data-i18n="nav.team">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta" data-i18n="nav.join">Долучитись</a></li>
+    <li><button class="lang-btn">EN</button></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="products.html">Програми</a>
-  <a href="projects.html" class="active">Проєкти</a>
-  <a href="team.html">Команда</a>
-  <a href="contact.html" class="mob-cta">Долучитись</a>
+  <a href="products.html" data-i18n="nav.programs">Програми</a>
+  <a href="projects.html" class="active" data-i18n="nav.projects">Проєкти</a>
+  <a href="team.html" data-i18n="nav.team">Команда</a>
+  <a href="contact.html" class="mob-cta" data-i18n="nav.join">Долучитись</a>
 </div>
 
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="s-tag reveal">Проєкти</div>
-    <h1 class="reveal">Реальні результати<br><em>реальних людей</em></h1>
-    <p class="page-hero-sub reveal">Від глобальних форумів до локальних ініціатив — кожен проєкт HQ є кроком до системних змін в Україні та українській спільноті.</p>
+    <div class="s-tag reveal" data-i18n="proj.tag">Проєкти</div>
+    <h1 class="reveal" data-i18n="proj.title">Реальні результати<br><em>реальних людей</em></h1>
+    <p class="page-hero-sub reveal" data-i18n="proj.sub">Від глобальних форумів до локальних ініціатив — кожен проєкт HQ є кроком до системних змін в Україні та українській спільноті.</p>
   </div>
 </div>
 
 <section>
   <div class="container">
     <div class="s-tag reveal">2024 — 2025</div>
-    <h2 class="s-title reveal">Що ми реалізували</h2>
+    <h2 class="s-title reveal" data-i18n="proj.section">Що ми реалізували</h2>
     <div class="projects-grid">
       <div class="project-card reveal">
-        <span class="project-tag">Мережа</span>
-        <div class="project-name">Глобальний Форум Українських Організацій 2024</div>
-        <p class="project-desc">Перша масштабна координаційна зустріч представників 26+ організацій у 16 країнах. Встановлено стандарти взаємодії та спільні пріоритети на 2025 рік.</p>
+        <span class="project-tag" data-i18n="proj.p1.tag">Мережа</span>
+        <div class="project-name" data-i18n="proj.p1.name">Глобальний Форум Українських Організацій 2024</div>
+        <p class="project-desc" data-i18n="proj.p1.desc">Перша масштабна координаційна зустріч представників 26+ організацій у 16 країнах. Встановлено стандарти взаємодії та спільні пріоритети на 2025 рік.</p>
         <div class="project-year">2024</div>
       </div>
       <div class="project-card reveal">
-        <span class="project-tag">Інтернатура</span>
-        <div class="project-name">HQ Internship — Перший набір</div>
-        <p class="project-desc">150+ заявок, 10 відібраних учасників. Тримісячна програма з реальними завданнями у сфері комунікацій, аналітики та управління проєктами.</p>
+        <span class="project-tag" data-i18n="proj.p2.tag">Інтернатура</span>
+        <div class="project-name" data-i18n="proj.p2.name">HQ Internship — Перший набір</div>
+        <p class="project-desc" data-i18n="proj.p2.desc">150+ заявок, 10 відібраних учасників. Тримісячна програма з реальними завданнями у сфері комунікацій, аналітики та управління проєктами.</p>
         <div class="project-year">2024</div>
       </div>
       <div class="project-card reveal">
-        <span class="project-tag">Дипломатія</span>
-        <div class="project-name">Програма Посольств — Пілот</div>
-        <p class="project-desc">Перший пілотний запуск у партнерстві з МЗС України. Три учасники пройшли стажування у посольствах, розроблено модель для масштабування.</p>
+        <span class="project-tag" data-i18n="proj.p3.tag">Дипломатія</span>
+        <div class="project-name" data-i18n="proj.p3.name">Програма Посольств — Пілот</div>
+        <p class="project-desc" data-i18n="proj.p3.desc">Перший пілотний запуск у партнерстві з МЗС України. Три учасники пройшли стажування у посольствах, розроблено модель для масштабування.</p>
         <div class="project-year">2024</div>
       </div>
       <div class="project-card reveal">
-        <span class="project-tag">Громади</span>
-        <div class="project-name">Дистанційна підтримка громад</div>
-        <p class="project-desc">Пілотне впровадження моделі remote engagement у 5 громадах. Українці за кордоном долучились до реальних проєктів розвитку на місцевому рівні.</p>
+        <span class="project-tag" data-i18n="proj.p4.tag">Громади</span>
+        <div class="project-name" data-i18n="proj.p4.name">Дистанційна підтримка громад</div>
+        <p class="project-desc" data-i18n="proj.p4.desc">Пілотне впровадження моделі remote engagement у 5 громадах. Українці за кордоном долучились до реальних проєктів розвитку на місцевому рівні.</p>
         <div class="project-year">2024</div>
       </div>
       <div class="project-card reveal">
-        <span class="project-tag">Освіта</span>
-        <div class="project-name">Освіта для лідерства діаспори</div>
-        <p class="project-desc">Серія освітніх сесій та воркшопів для лідерів українських організацій за кордоном. Теми: стратегічне планування, комунікації, фандрейзинг.</p>
+        <span class="project-tag" data-i18n="proj.p5.tag">Освіта</span>
+        <div class="project-name" data-i18n="proj.p5.name">Освіта для лідерства діаспори</div>
+        <p class="project-desc" data-i18n="proj.p5.desc">Серія освітніх сесій та воркшопів для лідерів українських організацій за кордоном. Теми: стратегічне планування, комунікації, фандрейзинг.</p>
         <div class="project-year">2023–2024</div>
       </div>
       <div class="project-card reveal">
-        <span class="project-tag">Партнерства</span>
-        <div class="project-name">Університетські партнерства</div>
-        <p class="project-desc">Налагодження формальних партнерств з університетськими українськими клубами в США, Великій Британії та Канаді. База для HQ Internship та Менторства.</p>
+        <span class="project-tag" data-i18n="proj.p6.tag">Партнерства</span>
+        <div class="project-name" data-i18n="proj.p6.name">Університетські партнерства</div>
+        <p class="project-desc" data-i18n="proj.p6.desc">Налагодження формальних партнерств з університетськими українськими клубами в США, Великій Британії та Канаді. База для HQ Internship та Менторства.</p>
         <div class="project-year">2023</div>
       </div>
     </div>
@@ -155,12 +163,12 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <section style="background:var(--dark);border-top:1px solid rgba(255,255,255,.05);text-align:center;">
   <div class="container">
-    <div class="s-tag reveal" style="color:rgba(255,255,255,.35);justify-content:center;"><span style="background:rgba(255,255,255,.2);width:18px;height:2px;border-radius:2px;display:block;"></span>Долучайтеся</div>
-    <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1rem;" class="reveal">Маєте ідею для<br><em style="color:#60A5FA">спільного проєкту?</em></h2>
-    <p style="color:rgba(255,255,255,.45);margin-bottom:2rem;font-size:.95rem;" class="reveal">Ми відкриті до партнерства, ко-реалізації та нових ідей.</p>
+    <div class="s-tag reveal" style="color:rgba(255,255,255,.35);justify-content:center;" data-i18n="proj.cta.tag">Долучайтеся</div>
+    <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1rem;" class="reveal" data-i18n="proj.cta.title">Маєте ідею для<br><em style="color:#60A5FA">спільного проєкту?</em></h2>
+    <p style="color:rgba(255,255,255,.45);margin-bottom:2rem;font-size:.95rem;" class="reveal" data-i18n="proj.cta.sub">Ми відкриті до партнерства, ко-реалізації та нових ідей.</p>
     <div class="reveal" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="contact.html" class="btn btn-primary">Зв'язатись з нами</a>
-      <a href="products.html" class="btn btn-outline" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2);">Наші програми</a>
+      <a href="contact.html" class="btn btn-primary" data-i18n="proj.cta.btn1">Зв'язатись з нами</a>
+      <a href="products.html" class="btn btn-outline" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2);" data-i18n="proj.cta.btn2">Наші програми</a>
     </div>
   </div>
 </section>
@@ -170,35 +178,35 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
     <div class="footer-top">
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
-        <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
+        <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
         <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
+          <div class="footer-col-title" data-i18n="ft.col1">Сторінки</div>
+          <a href="index.html" data-i18n="ft.home">Головна</a>
+          <a href="products.html" data-i18n="ft.programs">Програми</a>
+          <a href="projects.html" data-i18n="ft.projects">Проєкти</a>
+          <a href="team.html" data-i18n="ft.team">Команда</a>
+          <a href="contact.html" data-i18n="ft.contact">Контакт</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
-          <a href="products.html#connect">Сузір'я</a>
+          <div class="footer-col-title" data-i18n="ft.col2">Програми</div>
+          <a href="products.html#connect" data-i18n="prod.suz.name">Сузір'я</a>
           <a href="products.html#learn">HQ Internship</a>
-          <a href="products.html#influence">Посольства</a>
-          <a href="products.html#anchor">Громади</a>
-          <a href="products.html#mentorship">Менторство</a>
+          <a href="products.html#influence" data-i18n="prod.emb.name">Посольства</a>
+          <a href="products.html#anchor" data-i18n="prod.hrom.name">Громади</a>
+          <a href="products.html#mentorship" data-i18n="prod.ment.name">Менторство</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
+          <div class="footer-col-title" data-i18n="ft.col3">Соцмережі</div>
           <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span><button class="lang-btn lang-btn-footer">EN</button></div>
   </div>
 </footer>
 
@@ -210,5 +218,6 @@ const navTog=document.getElementById('nav-toggle');
 const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

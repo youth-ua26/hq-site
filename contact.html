@@ -19,6 +19,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .nav-links a:hover,.nav-links a.active{color:var(--dark);background:var(--alt);}
 .nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
 .nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
+.lang-btn{background:none;border:1.5px solid var(--border);color:var(--muted);font-size:.75rem;font-weight:700;padding:.3rem .65rem;border-radius:var(--r-sm);cursor:pointer;transition:border-color .15s,color .15s;letter-spacing:.04em;}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+.lang-btn-footer{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);}
+.lang-btn-footer:hover{border-color:#fff;color:#fff;}
+@media(min-width:901px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.nav-links .lang-btn{display:none;}}
+.lang-btn-nav-mob{display:none;margin-left:auto;margin-right:.6rem;}
+@media(max-width:900px){.lang-btn-nav-mob{display:flex;}}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
@@ -116,49 +125,51 @@ textarea{resize:vertical;min-height:130px;}
 <body>
 
 <nav>
-  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
+  <button class="lang-btn lang-btn-nav-mob">EN</button>
   <ul class="nav-links">
-    <li><a href="products.html">Програми</a></li>
-    <li><a href="projects.html">Проєкти</a></li>
-    <li><a href="team.html">Команда</a></li>
-    <li><a href="contact.html" class="nav-cta active">Долучитись</a></li>
+    <li><a href="products.html" data-i18n="nav.programs">Програми</a></li>
+    <li><a href="projects.html" data-i18n="nav.projects">Проєкти</a></li>
+    <li><a href="team.html" data-i18n="nav.team">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta active" data-i18n="nav.join">Долучитись</a></li>
+    <li><button class="lang-btn">EN</button></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="products.html">Програми</a>
-  <a href="projects.html">Проєкти</a>
-  <a href="team.html">Команда</a>
-  <a href="contact.html" class="mob-cta">Долучитись</a>
+  <a href="products.html" data-i18n="nav.programs">Програми</a>
+  <a href="projects.html" data-i18n="nav.projects">Проєкти</a>
+  <a href="team.html" data-i18n="nav.team">Команда</a>
+  <a href="contact.html" class="mob-cta" data-i18n="nav.join">Долучитись</a>
 </div>
 
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="s-tag reveal">Контакт</div>
-    <h1 class="reveal">Давайте будувати<br><em>разом</em></h1>
-    <p class="page-hero-sub reveal">Незалежно від того, чи ви — організація, студент, ментор чи інституція — у нас є формат співпраці саме для вас.</p>
+    <div class="s-tag reveal" data-i18n="cont.tag">Контакт</div>
+    <h1 class="reveal" data-i18n="cont.title">Давайте будувати<br><em>разом</em></h1>
+    <p class="page-hero-sub reveal" data-i18n="cont.sub">Незалежно від того, чи ви — організація, студент, ментор чи інституція — у нас є формат співпраці саме для вас.</p>
   </div>
 </div>
 
 <section>
   <div class="container">
-    <div class="s-tag reveal">Формати співпраці</div>
-    <h2 class="s-title reveal">Як ми можемо<br>працювати <em>разом</em></h2>
+    <div class="s-tag reveal" data-i18n="cont.formats.tag">Формати співпраці</div>
+    <h2 class="s-title reveal" data-i18n="cont.formats.title">Як ми можемо<br>працювати <em>разом</em></h2>
     <div class="formats-grid">
       <div class="format-card reveal">
         <div class="format-icon">🌐</div>
-        <div class="format-name">Приєднатись до мережі</div>
-        <p class="format-desc">Ваша організація в мережі Сузір'я — спільна координація, ресурси та видимість серед 26+ партнерів у 16 країнах.</p>
+        <div class="format-name" data-i18n="cont.f1.name">Приєднатись до мережі</div>
+        <p class="format-desc" data-i18n="cont.f1.desc">Ваша організація в мережі Сузір'я — спільна координація, ресурси та видимість серед 26+ партнерів у 16 країнах.</p>
       </div>
       <div class="format-card reveal">
         <div class="format-icon">🎓</div>
-        <div class="format-name">Стажування та менторство</div>
-        <p class="format-desc">Подайте заявку на HQ Internship або Менторську програму. Реальний досвід та підтримка досвідчених фахівців.</p>
+        <div class="format-name" data-i18n="cont.f2.name">Стажування та менторство</div>
+        <p class="format-desc" data-i18n="cont.f2.desc">Подайте заявку на HQ Internship або Менторську програму. Реальний досвід та підтримка досвідчених фахівців.</p>
       </div>
       <div class="format-card reveal">
         <div class="format-icon">🤝</div>
-        <div class="format-name">Інституційне партнерство</div>
-        <p class="format-desc">Стратегічне партнерство для організацій, університетів та інституцій, що розділяють нашу місію.</p>
+        <div class="format-name" data-i18n="cont.f3.name">Інституційне партнерство</div>
+        <p class="format-desc" data-i18n="cont.f3.desc">Стратегічне партнерство для організацій, університетів та інституцій, що розділяють нашу місію.</p>
       </div>
     </div>
   </div>
@@ -166,35 +177,47 @@ textarea{resize:vertical;min-height:130px;}
 
 <section style="background:var(--alt);border-top:1px solid var(--border);">
   <div class="container">
-    <div class="s-tag reveal">Зв'яжіться з нами</div>
-    <h2 class="s-title reveal">Ми готові<br>до розмови</h2>
+    <div class="s-tag reveal" data-i18n="cont.form.tag">Зв'яжіться з нами</div>
+    <h2 class="s-title reveal" data-i18n="cont.form.title">Ми готові<br>до розмови</h2>
     <div class="contact-grid">
 
       <div class="contact-form reveal">
-        <div class="form-title">Надіслати повідомлення</div>
+        <div class="form-title" data-i18n="cont.form.h">Надіслати повідомлення</div>
         <form id="contact-form">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="Нове звернення з сайту HQ">
           <div class="form-row">
-            <div class="field"><label for="name">Ім'я</label><input type="text" id="name" name="Імя" placeholder="Ваше ім'я" required></div>
-            <div class="field"><label for="email">Email</label><input type="email" id="email" name="Email" placeholder="email@example.com" required></div>
+            <div class="field">
+              <label for="name" data-i18n="cont.form.name">Ім'я</label>
+              <input type="text" id="name" name="Імя" data-i18n-ph="cont.form.name_ph" placeholder="Ваше ім'я" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" placeholder="email@example.com" required>
+            </div>
           </div>
-          <div class="field"><label for="phone">Телефон</label><input type="tel" id="phone" name="Телефон" placeholder="+380..."></div>
           <div class="field">
-            <label for="topic">Тема звернення</label>
+            <label for="phone" data-i18n="cont.form.phone">Телефон</label>
+            <input type="tel" id="phone" name="Телефон" data-i18n-ph="cont.form.phone_ph" placeholder="+380...">
+          </div>
+          <div class="field">
+            <label for="topic" data-i18n="cont.form.topic">Тема звернення</label>
             <select id="topic" name="Тема">
-              <option value="">Оберіть тему</option>
-              <option>Приєднатись до мережі</option>
-              <option>HQ Internship</option>
-              <option>Менторська програма</option>
-              <option>Посольства</option>
-              <option>Громади</option>
-              <option>Інституційне партнерство</option>
-              <option>Інше</option>
+              <option value="" data-i18n="cont.form.topic_ph">Оберіть тему</option>
+              <option data-i18n="cont.form.opt1">Приєднатись до мережі</option>
+              <option data-i18n="cont.form.opt2">HQ Internship</option>
+              <option data-i18n="cont.form.opt3">Менторська програма</option>
+              <option data-i18n="cont.form.opt4">Посольства</option>
+              <option data-i18n="cont.form.opt5">Громади</option>
+              <option data-i18n="cont.form.opt6">Інституційне партнерство</option>
+              <option data-i18n="cont.form.opt7">Інше</option>
             </select>
           </div>
-          <div class="field"><label for="message">Повідомлення</label><textarea id="message" name="Повідомлення" placeholder="Розкажіть про себе та вашу ідею..." required></textarea></div>
-          <button type="submit" class="btn btn-primary">Надіслати →</button>
+          <div class="field">
+            <label for="message" data-i18n="cont.form.msg">Повідомлення</label>
+            <textarea id="message" name="Повідомлення" data-i18n-ph="cont.form.msg_ph" placeholder="Розкажіть про себе та вашу ідею..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" data-i18n="cont.form.submit">Надіслати →</button>
         </form>
       </div>
 
@@ -204,7 +227,7 @@ textarea{resize:vertical;min-height:130px;}
           <div class="info-value"><a href="mailto:youth@ua-hq.com">youth@ua-hq.com</a></div>
         </div>
         <div class="info-block">
-          <div class="info-label">Соціальні мережі</div>
+          <div class="info-label" data-i18n="cont.social">Соціальні мережі</div>
           <div class="social-links">
             <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener" class="social-link">📸 Instagram</a>
             <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener" class="social-link">💼 LinkedIn</a>
@@ -212,10 +235,10 @@ textarea{resize:vertical;min-height:130px;}
           </div>
         </div>
         <div class="network-stat">
-          <div class="info-label">Мережа Сузір'я</div>
+          <div class="info-label" data-i18n="cont.network">Мережа Сузір'я</div>
           <div class="network-nums">
-            <div class="net-num"><div class="net-n">26+</div><div class="net-l">Організацій</div></div>
-            <div class="net-num"><div class="net-n">16</div><div class="net-l">Країн</div></div>
+            <div class="net-num"><div class="net-n">26+</div><div class="net-l" data-i18n="cont.orgs">Організацій</div></div>
+            <div class="net-num"><div class="net-n">16</div><div class="net-l" data-i18n="cont.countries">Країн</div></div>
           </div>
         </div>
       </div>
@@ -229,39 +252,39 @@ textarea{resize:vertical;min-height:130px;}
     <div class="footer-top">
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
-        <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
+        <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
         <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
+          <div class="footer-col-title" data-i18n="ft.col1">Сторінки</div>
+          <a href="index.html" data-i18n="ft.home">Головна</a>
+          <a href="products.html" data-i18n="ft.programs">Програми</a>
+          <a href="projects.html" data-i18n="ft.projects">Проєкти</a>
+          <a href="team.html" data-i18n="ft.team">Команда</a>
+          <a href="contact.html" data-i18n="ft.contact">Контакт</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
-          <a href="products.html#connect">Сузір'я</a>
+          <div class="footer-col-title" data-i18n="ft.col2">Програми</div>
+          <a href="products.html#connect" data-i18n="prod.suz.name">Сузір'я</a>
           <a href="products.html#learn">HQ Internship</a>
-          <a href="products.html#influence">Посольства</a>
-          <a href="products.html#anchor">Громади</a>
-          <a href="products.html#mentorship">Менторство</a>
+          <a href="products.html#influence" data-i18n="prod.emb.name">Посольства</a>
+          <a href="products.html#anchor" data-i18n="prod.hrom.name">Громади</a>
+          <a href="products.html#mentorship" data-i18n="prod.ment.name">Менторство</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
+          <div class="footer-col-title" data-i18n="ft.col3">Соцмережі</div>
           <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span><button class="lang-btn lang-btn-footer">EN</button></div>
   </div>
 </footer>
 
-<div class="toast" id="toast"><span class="toast-icon">✓</span>Ваш запит прийнято — ми зв'яжемось незабаром</div>
+<div class="toast" id="toast"><span class="toast-icon">✓</span><span id="toast-msg" data-i18n="cont.toast">Ваш запит прийнято — ми зв'яжемось незабаром</span></div>
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
@@ -271,36 +294,22 @@ const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
 const contactForm=document.getElementById('contact-form');
 const toast=document.getElementById('toast');
-function showToast(){
-  toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),4000);
-}
+function showToast(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),4000);}
 contactForm.addEventListener('submit',async function(e){
   e.preventDefault();
   const btn=contactForm.querySelector('button[type=submit]');
   btn.disabled=true;
-  btn.textContent='Надсилається...';
   const data={};
-  new FormData(contactForm).forEach((v,k)=>{ data[k]=v; });
+  new FormData(contactForm).forEach((v,k)=>{data[k]=v;});
   try{
-    const res=await fetch('https://formsubmit.co/ajax/youth@ua-hq.com',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify(data)
-    });
+    const res=await fetch('https://formsubmit.co/ajax/youth@ua-hq.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
     const json=await res.json();
-    if(json.success==='true'||json.success===true){
-      contactForm.reset();
-      showToast();
-    } else {
-      alert('Помилка відправки. Спробуйте ще раз.');
-    }
-  } catch(err){
-    alert('Помилка з\'єднання. Спробуйте ще раз.');
-  }
+    if(json.success==='true'||json.success===true){contactForm.reset();showToast();}
+    else{alert('Помилка відправки. Спробуйте ще раз.');}
+  }catch(err){alert("Помилка з'єднання. Спробуйте ще раз.");}
   btn.disabled=false;
-  btn.textContent='Надіслати →';
 });
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

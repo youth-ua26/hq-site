@@ -20,6 +20,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .nav-links a:hover,.nav-links a.active{color:var(--dark);background:var(--alt);}
 .nav-cta{background:var(--accent)!important;color:#fff!important;padding:.45rem 1.1rem!important;border-radius:var(--r-sm)!important;}
 .nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
+.lang-btn{background:none;border:1.5px solid var(--border);color:var(--muted);font-size:.75rem;font-weight:700;padding:.3rem .65rem;border-radius:var(--r-sm);cursor:pointer;transition:border-color .15s,color .15s;letter-spacing:.04em;}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+.lang-btn-footer{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);}
+.lang-btn-footer:hover{border-color:#fff;color:#fff;}
+@media(min-width:901px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.nav-links .lang-btn{display:none;}}
+.lang-btn-nav-mob{display:none;margin-left:auto;margin-right:.6rem;}
+@media(max-width:900px){.lang-btn-nav-mob{display:flex;}}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
@@ -49,7 +58,8 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 .footer-desc{font-size:.85rem;line-height:1.65;}
 .footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
 .footer-col-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.25);margin-bottom:.75rem;}
-.footer-col a{display:block;color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;margin-bottom:.45rem;transition:color .2s;}
+.footer-col{display:flex;flex-direction:column;gap:.65rem;}
+.footer-col a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;transition:color .2s;}
 .footer-col a:hover{color:#fff;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;display:flex;justify-content:space-between;font-size:.78rem;}
 @media(max-width:900px){footer{padding:3rem 1.5rem 2rem;}.footer-top{grid-template-columns:1fr;gap:2.5rem;}.footer-links{grid-template-columns:repeat(2,1fr);}.footer-bottom{flex-direction:column;gap:.5rem;}}
@@ -91,20 +101,22 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 <body>
 
 <nav>
-  <a href="index.html" class="nav-brand">HQ <span>Штаб-квартира</span></a>
+  <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
+  <button class="lang-btn lang-btn-nav-mob">EN</button>
   <ul class="nav-links">
-    <li><a href="products.html">Програми</a></li>
-    <li><a href="projects.html">Проєкти</a></li>
-    <li><a href="team.html">Команда</a></li>
-    <li><a href="contact.html" class="nav-cta">Долучитись</a></li>
+    <li><a href="products.html" data-i18n="nav.programs">Програми</a></li>
+    <li><a href="projects.html" data-i18n="nav.projects">Проєкти</a></li>
+    <li><a href="team.html" data-i18n="nav.team">Команда</a></li>
+    <li><a href="contact.html" class="nav-cta" data-i18n="nav.join">Долучитись</a></li>
+    <li><button class="lang-btn">EN</button></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="products.html">Програми</a>
-  <a href="projects.html">Проєкти</a>
-  <a href="team.html">Команда</a>
-  <a href="contact.html" class="mob-cta">Долучитись</a>
+  <a href="products.html" data-i18n="nav.programs">Програми</a>
+  <a href="projects.html" data-i18n="nav.projects">Проєкти</a>
+  <a href="team.html" data-i18n="nav.team">Команда</a>
+  <a href="contact.html" class="mob-cta" data-i18n="nav.join">Долучитись</a>
 </div>
 
 <div id="page-root"></div>
@@ -114,56 +126,56 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
     <div class="footer-top">
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
-        <p class="footer-desc">Глобальна мережа українських організацій та лідерів.</p>
+        <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
         <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <div class="footer-col-title">Сторінки</div>
-          <a href="index.html">Головна</a>
-          <a href="products.html">Програми</a>
-          <a href="projects.html">Проєкти</a>
-          <a href="team.html">Команда</a>
-          <a href="contact.html">Контакт</a>
+          <div class="footer-col-title" data-i18n="ft.col1">Сторінки</div>
+          <a href="index.html" data-i18n="ft.home">Головна</a>
+          <a href="products.html" data-i18n="ft.programs">Програми</a>
+          <a href="projects.html" data-i18n="ft.projects">Проєкти</a>
+          <a href="team.html" data-i18n="ft.team">Команда</a>
+          <a href="contact.html" data-i18n="ft.contact">Контакт</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Програми</div>
-          <a href="products.html#connect">Сузір'я</a>
+          <div class="footer-col-title" data-i18n="ft.col2">Програми</div>
+          <a href="products.html#connect" data-i18n="prod.suz.name">Сузір'я</a>
           <a href="products.html#learn">HQ Internship</a>
-          <a href="products.html#influence">Посольства</a>
-          <a href="products.html#anchor">Громади</a>
-          <a href="products.html#mentorship">Менторство</a>
+          <a href="products.html#influence" data-i18n="prod.emb.name">Посольства</a>
+          <a href="products.html#anchor" data-i18n="prod.hrom.name">Громади</a>
+          <a href="products.html#mentorship" data-i18n="prod.ment.name">Менторство</a>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Соцмережі</div>
+          <div class="footer-col-title" data-i18n="ft.col3">Соцмережі</div>
           <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://www.facebook.com/profile.php?id=61586976269853&locale=uk_UA" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span>Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span><button class="lang-btn lang-btn-footer">EN</button></div>
   </div>
 </footer>
 
 <script>
 const orgs = [
-  {country:'Румунія',        flag:'🇷🇴', iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com'},
-  {country:'Литва',          flag:'🇱🇹', iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null},
-  {country:'Нідерланди',     flag:'🇳🇱', iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/'},
-  {country:'Швейцарія',      flag:'🇨🇭', iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/'},
-  {country:'Франція',        flag:'🇫🇷', iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students'},
-  {country:'Велика Британія',flag:'🇬🇧', iso:'gb', name:'UA.Youth / Oxford / Cambridge',                    web:'https://ox-ukraine.org'},
-  {country:'Бельгія',        flag:'🇧🇪', iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be'},
-  {country:'Чехія',          flag:'🇨🇿', iso:'cz', name:'Покоління для України',                            web:null},
-  {country:'Польща',         flag:'🇵🇱', iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/'},
-  {country:'Сакартвело',     flag:'🇬🇪', iso:'ge', name:'Українські активісти в Сакартвело',                web:null},
-  {country:'Іспанія',        flag:'🇪🇸', iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null},
-  {country:'Данія',          flag:'🇩🇰', iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null},
-  {country:'Австрія',        flag:'🇦🇹', iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null},
-  {country:'США',            flag:'🇺🇸', iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null},
-  {country:'Канада',         flag:'🇨🇦', iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca'},
-  {country:'Італія',         flag:'🇮🇹', iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null},
+  {country:'Румунія',        iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com'},
+  {country:'Литва',          iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null},
+  {country:'Нідерланди',     iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/'},
+  {country:'Швейцарія',      iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/'},
+  {country:'Франція',        iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students'},
+  {country:'Велика Британія',iso:'gb', name:'UA.Youth / Oxford / Cambridge',                    web:'https://ox-ukraine.org'},
+  {country:'Бельгія',        iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be'},
+  {country:'Чехія',          iso:'cz', name:'Покоління для України',                            web:null},
+  {country:'Польща',         iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/'},
+  {country:'Сакартвело',     iso:'ge', name:'Українські активісти в Сакартвело',                web:null},
+  {country:'Іспанія',        iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null},
+  {country:'Данія',          iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null},
+  {country:'Австрія',        iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null},
+  {country:'США',            iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null},
+  {country:'Канада',         iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca'},
+  {country:'Італія',         iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null},
 ];
 
 const iso = new URLSearchParams(window.location.search).get('iso');
@@ -174,9 +186,9 @@ if (!org) {
   root.innerHTML = `
     <section class="country-content">
       <div class="container not-found">
-        <h2>Країну не знайдено</h2>
-        <p>Перевірте посилання або поверніться на головну.</p>
-        <a href="index.html#constellation" class="btn btn-primary">На карту</a>
+        <h2 data-i18n="cntry.notfound_h">Країну не знайдено</h2>
+        <p data-i18n="cntry.notfound_p">Перевірте посилання або поверніться на головну.</p>
+        <a href="index.html#constellation" class="btn btn-primary" data-i18n="cntry.to_map">На карту</a>
       </div>
     </section>`;
 } else {
@@ -184,33 +196,33 @@ if (!org) {
   root.innerHTML = `
     <div class="page-hero">
       <div class="page-hero-inner">
-        <a href="index.html#constellation" class="back-link">Назад до мапи</a>
+        <a href="index.html#constellation" class="back-link" data-i18n="cntry.back">Назад до мапи</a>
         <div class="country-hero">
           <span class="fi fi-${org.iso}" style="width:72px;height:54px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.12);flex-shrink:0;"></span>
-          <h1 class="country-name">${org.country}</h1>
+          <h1 class="country-name" data-i18n="country.${org.iso}">${org.country}</h1>
         </div>
-        <div class="s-tag">Сузір'я HQ</div>
+        <div class="s-tag" data-i18n="cntry.constellation">Сузір'я HQ</div>
       </div>
     </div>
     <section class="country-content">
       <div class="container">
         <div class="org-card">
-          <div class="org-label">Організація-партнер</div>
+          <div class="org-label" data-i18n="cntry.partner">Організація-партнер</div>
           <div class="org-name">${org.name}</div>
           <hr class="org-divider">
           <div class="org-meta">
             <div class="org-meta-row">
               <span class="org-meta-icon">📍</span>
-              <span class="org-meta-text"><strong>Країна:</strong> ${org.country}</span>
+              <span class="org-meta-text"><strong data-i18n="cntry.country_l">Країна:</strong> <span data-i18n="country.${org.iso}">${org.country}</span></span>
             </div>
             <div class="org-meta-row">
               <span class="org-meta-icon">🌐</span>
-              <span class="org-meta-text"><strong>Мережа:</strong> Сузір'я HQ — глобальна мережа українських молодіжних організацій</span>
+              <span class="org-meta-text"><strong data-i18n="cntry.network_l">Мережа:</strong> <span data-i18n="cntry.network_v">Сузір'я HQ — глобальна мережа українських молодіжних організацій</span></span>
             </div>
           </div>
           ${org.web
-            ? `<a href="${org.web}" target="_blank" rel="noopener" class="org-link-btn">Відвідати сайт організації →</a>`
-            : `<p class="no-link-note">Сайт організації поки недоступний. Зв'яжіться з нами для деталей.</p>`
+            ? `<a href="${org.web}" target="_blank" rel="noopener" class="org-link-btn" data-i18n="cntry.visit">Відвідати сайт організації →</a>`
+            : `<p class="no-link-note" data-i18n="cntry.no_web">Сайт організації поки недоступний. Зв'яжіться з нами для деталей.</p>`
           }
         </div>
       </div>
@@ -225,5 +237,6 @@ if (navTog) {
   navMob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navMob.classList.remove('open'); navTog.classList.remove('active'); }));
 }
 </script>
+<script src="lang.js"></script>
 </body>
 </html>
