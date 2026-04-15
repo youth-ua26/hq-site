@@ -36,7 +36,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .nav-cta:hover{background:var(--accent-h)!important;color:#fff!important;}
 .lang-btn{background:none;border:1.5px solid var(--border);color:var(--muted);font-size:.75rem;font-weight:700;padding:.3rem .65rem;border-radius:var(--r-sm);cursor:pointer;transition:border-color .15s,color .15s;letter-spacing:.04em;}
 .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+.lang-btn-footer{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);}
+.lang-btn-footer:hover{border-color:#fff;color:#fff;}
+@media(min-width:901px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.nav-links .lang-btn{display:none;}}
+.lang-btn-nav-mob{display:none;margin-left:auto;margin-right:.6rem;}
+@media(max-width:900px){.lang-btn-nav-mob{display:flex;}}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}}
+@media(max-width:900px){#world-map{height:320px;}}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
 .nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -205,6 +213,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <nav>
   <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
+  <button class="lang-btn lang-btn-nav-mob">EN</button>
   <ul class="nav-links">
     <li><a href="products.html" data-i18n="nav.programs">Програми</a></li>
     <li><a href="projects.html" data-i18n="nav.projects">Проєкти</a></li>
@@ -219,7 +228,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
   <a href="projects.html" data-i18n="nav.projects">Проєкти</a>
   <a href="team.html" data-i18n="nav.team">Команда</a>
   <a href="contact.html" class="mob-cta" data-i18n="nav.join">Долучитись</a>
-  <button class="lang-btn" style="margin-top:.5rem;align-self:flex-start;">EN</button>
 </div>
 
 <div id="map-tip"><div class="mt-country"></div><div class="mt-org"></div></div>
@@ -395,7 +403,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
         </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span></div>
+    <div class="footer-bottom"><span>© <span id="yr"></span> HQ Штаб-квартира</span><span data-i18n="ft.built">Побудовано для України</span><button class="lang-btn lang-btn-footer">EN</button></div>
   </div>
 </footer>
 
@@ -606,7 +614,7 @@ chipsEl.appendChild(homeChip);
 [...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o => {
   const d = document.createElement('div');
   d.className = 'c-chip';
-  d.innerHTML = `<span class="fi fi-${o.iso}"></span><span>${o.country}</span>`;
+  d.innerHTML = `<span class="fi fi-${o.iso}"></span><span data-i18n="country.${o.iso}">${o.country}</span>`;
   d.addEventListener('click', () => {
     document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
     d.classList.add('active');

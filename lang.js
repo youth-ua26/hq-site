@@ -116,6 +116,23 @@ const HQ_T = {
     'team.join.title': 'Хочете приєднатись<br><em>до команди?</em>',
     'team.join.sub':   'Ми шукаємо людей, що поділяють нашу місію та хочуть реально впливати на майбутнє України.',
     'team.join.btn':   'Написати нам',
+    // Country chips
+    'country.ro': 'Румунія',
+    'country.lt': 'Литва',
+    'country.nl': 'Нідерланди',
+    'country.ch': 'Швейцарія',
+    'country.fr': 'Франція',
+    'country.gb': 'Велика Британія',
+    'country.be': 'Бельгія',
+    'country.cz': 'Чехія',
+    'country.pl': 'Польща',
+    'country.ge': 'Сакартвело',
+    'country.es': 'Іспанія',
+    'country.dk': 'Данія',
+    'country.at': 'Австрія',
+    'country.us': 'США',
+    'country.ca': 'Канада',
+    'country.it': 'Італія',
   },
   en: {
     // Nav
@@ -234,6 +251,23 @@ const HQ_T = {
     'team.join.title': 'Want to join<br><em>the team?</em>',
     'team.join.sub':   'We are looking for people who share our mission and want to make a real impact on Ukraine\'s future.',
     'team.join.btn':   'Write to us',
+    // Country chips
+    'country.ro': 'Romania',
+    'country.lt': 'Lithuania',
+    'country.nl': 'Netherlands',
+    'country.ch': 'Switzerland',
+    'country.fr': 'France',
+    'country.gb': 'United Kingdom',
+    'country.be': 'Belgium',
+    'country.cz': 'Czech Republic',
+    'country.pl': 'Poland',
+    'country.ge': 'Georgia',
+    'country.es': 'Spain',
+    'country.dk': 'Denmark',
+    'country.at': 'Austria',
+    'country.us': 'USA',
+    'country.ca': 'Canada',
+    'country.it': 'Italy',
   }
 };
 

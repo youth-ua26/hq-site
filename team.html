@@ -89,13 +89,17 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 .lang-btn-footer{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.55);}
 .lang-btn-footer:hover{border-color:#fff;color:#fff;}
 @media(min-width:901px){.lang-btn-footer{display:none;}}
+@media(max-width:900px){.lang-btn-footer{display:none;}}
 @media(max-width:900px){.nav-links .lang-btn{display:none;}}
+.lang-btn-nav-mob{display:none;margin-left:auto;margin-right:.6rem;}
+@media(max-width:900px){.lang-btn-nav-mob{display:flex;}}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-brand">HQ <span data-i18n="nav.brand">Штаб-квартира</span></a>
+  <button class="lang-btn lang-btn-nav-mob">EN</button>
   <ul class="nav-links">
     <li><a href="products.html" data-i18n="nav.programs">Програми</a></li>
     <li><a href="projects.html" data-i18n="nav.projects">Проєкти</a></li>
