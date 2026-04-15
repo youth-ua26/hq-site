@@ -215,6 +215,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const hbg=document.getElementById('hamburger'),nmob=document.getElementById('nav-mobile');hbg.addEventListener('click',()=>{hbg.classList.toggle('open');nmob.classList.toggle('open');});
 </script>
 </body>
 </html>

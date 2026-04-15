@@ -195,14 +195,10 @@ textarea{resize:vertical;min-height:130px;}
           <div class="info-value"><a href="mailto:youth@ua-hq.com">youth@ua-hq.com</a></div>
         </div>
         <div class="info-block">
-          <div class="info-label">Telegram</div>
-          <div class="info-value"><a href="#">@hq_ukraine</a></div>
-        </div>
-        <div class="info-block">
           <div class="info-label">Соціальні мережі</div>
           <div class="social-links">
-            <a href="https://www.instagram.com/uniting_uayouth_worldwide" class="social-link">📸 Instagram</a>
-            <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" class="social-link">💼 LinkedIn</a>
+            <a href="https://www.instagram.com/uniting_uayouth_worldwide/" target="_blank" rel="noopener" class="social-link">📸 Instagram</a>
+            <a href="https://www.linkedin.com/company/headquarters-ua/posts/?feedView=all" target="_blank" rel="noopener" class="social-link">💼 LinkedIn</a>
           </div>
         </div>
         <div class="network-stat">
@@ -262,6 +258,7 @@ textarea{resize:vertical;min-height:130px;}
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const hbg=document.getElementById('hamburger'),nmob=document.getElementById('nav-mobile');hbg.addEventListener('click',()=>{hbg.classList.toggle('open');nmob.classList.toggle('open');});
 </script>
 </body>
 </html>
