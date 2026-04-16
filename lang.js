@@ -28,6 +28,7 @@ const HQ_T = {
     'const.sub':       'HQ об\'єднує провідні українські молодіжні організації, університетські клуби та ініціативи по всьому світу в єдину координовану систему.',
     'map.all':         'Всі країни',
     'map.ua.sub':      'HQ — Штаб-квартира · Центральний вузол мережі',
+    'country.ua':      'Україна',
     // Shift
     'shift.tag':       'The Shift',
     'shift.title':     'Від діаспори<br>до <em>мережі</em>',
@@ -319,6 +320,7 @@ const HQ_T = {
     'const.sub':       'HQ unites leading Ukrainian youth organizations, university clubs and initiatives across the world into a single coordinated system.',
     'map.all':         'All countries',
     'map.ua.sub':      'HQ — Headquarters · Central network hub',
+    'country.ua':      'Ukraine',
     // Shift
     'shift.tag':       'The Shift',
     'shift.title':     'From diaspora<br>to <em>network</em>',

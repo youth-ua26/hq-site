@@ -576,7 +576,7 @@ var tipCountry = mapTip.querySelector('.mt-country');
 var tipOrg = mapTip.querySelector('.mt-org');
 
 function showTip(d, e) {
-  var lang = localStorage.getItem('hq-lang') || 'uk';
+  var lang = document.documentElement.lang === 'en' ? 'en' : 'uk';
   var t = (typeof HQ_T !== 'undefined') ? HQ_T[lang] : null;
   var countryName = (t && t['country.' + d.iso]) || d.country;
   var orgName = d.iso === 'ua'
