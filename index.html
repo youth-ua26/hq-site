@@ -541,7 +541,7 @@ const orgs = [
   {country:'Нідерланди',     flag:'🇳🇱', iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/',   longitude:4.9,  latitude:52.4},
   {country:'Швейцарія',      flag:'🇨🇭', iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/',            longitude:8.5,  latitude:47.4},
   {country:'Франція',        flag:'🇫🇷', iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students',longitude:2.3,  latitude:48.8},
-  {country:'Велика Британія',flag:'🇬🇧', iso:'gb', name:'UA.Youth / Oxford / Cambridge',                    web:'https://ox-ukraine.org',        longitude:-0.1, latitude:51.5},
+  {country:'Велика Британія',flag:'🇬🇧', iso:'gb', name:'UA.Youth / Oxford Ukrainian Society / Cambridge Ukrainian Society', web:'https://ox-ukraine.org', longitude:-0.1, latitude:51.5},
   {country:'Бельгія',        flag:'🇧🇪', iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be',     longitude:4.4,  latitude:50.8},
   {country:'Чехія',          flag:'🇨🇿', iso:'cz', name:'Покоління для України',                            web:null,                            longitude:14.4, latitude:50.1},
   {country:'Польща',         flag:'🇵🇱', iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/',longitude:21.0, latitude:52.2},
@@ -562,7 +562,9 @@ ukraineSeries.bullets.push(function() {
   pulse.animate({key:"radius",    from:8,   to:20,  duration:1600, loops:Infinity, easing:am5.ease.out(am5.ease.cubic)});
   pulse.animate({key:"fillOpacity",from:0.3, to:0,   duration:1600, loops:Infinity, easing:am5.ease.out(am5.ease.cubic)});
   c.children.push(am5.Circle.new(root, {radius:7, fill:am5.color(0x1D4ED8), stroke:am5.color(0xFFFFFF), strokeWidth:2.5}));
-  c.set("tooltip", makeTooltip('<div class="map-popup"><h4><span class="fi fi-ua" style="margin-right:.4rem;vertical-align:middle"></span>Україна</h4><p>HQ — Штаб-квартира<br>Центральний вузол мережі</p></div>'));
+  c.events.on("pointerover",       function(e){ showTip({iso:'ua',country:'Україна'},e); });
+  c.events.on("globalpointermove", function(e){ if(mapTip.classList.contains('show')) moveTip(e); });
+  c.events.on("pointerout",        hideTip);
   c.set("cursorOverStyle", "pointer");
   return am5.Bullet.new(root, {sprite: c});
 });
@@ -574,8 +576,14 @@ var tipCountry = mapTip.querySelector('.mt-country');
 var tipOrg = mapTip.querySelector('.mt-org');
 
 function showTip(d, e) {
-  tipCountry.innerHTML = `<span class="fi fi-${d.iso}"></span>${d.country}`;
-  tipOrg.textContent = d.name;
+  var lang = localStorage.getItem('hq-lang') || 'uk';
+  var t = (typeof HQ_T !== 'undefined') ? HQ_T[lang] : null;
+  var countryName = (t && t['country.' + d.iso]) || d.country;
+  var orgName = d.iso === 'ua'
+    ? ((t && t['map.ua.sub']) || 'HQ — Штаб-квартира · Центральний вузол мережі')
+    : d.name;
+  tipCountry.innerHTML = `<span class="fi fi-${d.iso}"></span>${countryName}`;
+  tipOrg.textContent = orgName;
   mapTip.classList.add('show');
   moveTip(e);
 }

@@ -168,7 +168,12 @@ const orgs = [
   {country:'Нідерланди',     iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/'},
   {country:'Швейцарія',      iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/'},
   {country:'Франція',        iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students'},
-  {country:'Велика Британія',iso:'gb', name:'UA.Youth / Oxford / Cambridge',                    web:'https://ox-ukraine.org'},
+  {country:'Велика Британія',iso:'gb', name:'UA.Youth / Oxford US / Cambridge US',               web:'https://ox-ukraine.org',
+    orgs:[
+      {name:'UA.Youth',                    web:'https://ox-ukraine.org'},
+      {name:'Oxford Ukrainian Society',    web:'https://ox-ukraine.org'},
+      {name:'Cambridge Ukrainian Society', web:null},
+    ]},
   {country:'Бельгія',        iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be'},
   {country:'Чехія',          iso:'cz', name:'Покоління для України',                            web:null},
   {country:'Польща',         iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/'},
@@ -209,9 +214,10 @@ if (!org) {
     </div>
     <section class="country-content">
       <div class="container">
-        <div class="org-card">
+        ${(org.orgs || [{name:org.name, web:org.web}]).map(o => `
+        <div class="org-card" style="margin-bottom:1.25rem">
           <div class="org-label" data-i18n="cntry.partner">Організація-партнер</div>
-          <div class="org-name">${org.name}</div>
+          <div class="org-name">${o.name}</div>
           <hr class="org-divider">
           <div class="org-meta">
             <div class="org-meta-row">
@@ -223,11 +229,11 @@ if (!org) {
               <span class="org-meta-text"><strong data-i18n="cntry.network_l">Мережа:</strong> <span data-i18n="cntry.network_v">Сузір'я HQ — глобальна мережа українських молодіжних організацій</span></span>
             </div>
           </div>
-          ${org.web
-            ? `<a href="${org.web}" target="_blank" rel="noopener" class="org-link-btn" data-i18n="cntry.visit">Відвідати сайт організації →</a>`
+          ${o.web
+            ? `<a href="${o.web}" target="_blank" rel="noopener" class="org-link-btn" data-i18n="cntry.visit">Відвідати сайт організації →</a>`
             : `<p class="no-link-note" data-i18n="cntry.no_web">Сайт організації поки недоступний. Зв'яжіться з нами для деталей.</p>`
           }
-        </div>
+        </div>`).join('')}
       </div>
     </section>`;
 }
