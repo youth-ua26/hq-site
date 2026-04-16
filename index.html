@@ -581,7 +581,7 @@ function showTip(d, e) {
   var countryName = (t && t['country.' + d.iso]) || d.country;
   var orgName = d.iso === 'ua'
     ? ((t && t['map.ua.sub']) || 'HQ — Штаб-квартира · Центральний вузол мережі')
-    : d.name;
+    : ((t && t['map.org.' + d.iso]) || d.name);
   tipCountry.innerHTML = `<span class="fi fi-${d.iso}"></span>${countryName}`;
   tipOrg.textContent = orgName;
   mapTip.classList.add('show');
