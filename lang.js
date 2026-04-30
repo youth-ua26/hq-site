@@ -52,9 +52,9 @@ const HQ_T = {
     'shift.from1':     'Розпорошена діаспора',
     'shift.to1':       'Глобальна мережа',
     'shift.from2':     'Тимчасова мобільність',
-    'shift.to2':       'Довгостроковий капітал',
+    'shift.to2':       'Довгостроковий спроможний ресурс',
     'shift.from3':     'Втрата людей',
-    'shift.to3':       'Нова еліта',
+    'shift.to3':       'Нова спроможна молодь',
     // Products
     'prod.tag':        'Наші програми',
     'prod.title':      'Чотири напрями роботи',
@@ -360,9 +360,9 @@ const HQ_T = {
     'shift.from1':     'Scattered diaspora',
     'shift.to1':       'Global network',
     'shift.from2':     'Temporary mobility',
-    'shift.to2':       'Long-term capital',
+    'shift.to2':       'Long-term capable resource',
     'shift.from3':     'Brain drain',
-    'shift.to3':       'New elite',
+    'shift.to3':       'New capable youth',
     // Products
     'prod.tag':        'Our programs',
     'prod.title':      'Four areas of work',
