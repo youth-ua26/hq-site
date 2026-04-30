@@ -107,6 +107,15 @@ const HQ_T = {
     // Partners
     'part.tag':        'Наші партнери',
     'part.title':      'Разом із лідерами сектору',
+    // Partners
+    'part.p1':         'Міністерство закордонних справ України',
+    'part.p2':         'Молодіжна рада при Міністерстві закордонних справ України',
+    'part.p3':         'Міністерство молоді та спорту України',
+    'part.p4':         'Міністерство соціальної політики сім\'ї та єдності України',
+    'part.p5':         'Міністерство культури та інформаційної політики України',
+    'part.p6':         'Офіс Президента України',
+    'part.p7':         'Українська студентська ліга',
+    'part.p8':         'Еразмус+',
     // CTA
     'cta.tag':         'Долучайтеся',
     'cta.who1':        'Українська спільнота за кордоном',
@@ -415,6 +424,15 @@ const HQ_T = {
     // Partners
     'part.tag':        'Our partners',
     'part.title':      'Together with sector leaders',
+    // Partners
+    'part.p1':         'Ministry of Foreign Affairs of Ukraine',
+    'part.p2':         'Youth Council at the Ministry of Foreign Affairs of Ukraine',
+    'part.p3':         'Ministry of Youth and Sports of Ukraine',
+    'part.p4':         'Ministry of Social Policy, Family and Unity of Ukraine',
+    'part.p5':         'Ministry of Culture and Information Policy of Ukraine',
+    'part.p6':         'Office of the President of Ukraine',
+    'part.p7':         'Ukrainian Student League',
+    'part.p8':         'Erasmus+',
     // CTA
     'cta.tag':         'Get involved',
     'cta.who1':        'Ukrainian community abroad',
