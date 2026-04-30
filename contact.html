@@ -76,13 +76,13 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 @media(max-width:900px){.page-hero{padding:7rem 1.5rem 4rem;}}
 
 /* FORMATS */
-.formats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
+.formats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:3rem;}
 .format-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;transition:border-color .2s,box-shadow .2s;}
 .format-card:hover{border-color:var(--accent);box-shadow:var(--sh-md);}
 .format-icon{font-size:2rem;margin-bottom:1.25rem;}
 .format-name{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;}
 .format-desc{font-size:.875rem;line-height:1.65;color:var(--muted);}
-@media(max-width:700px){.formats-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.formats-grid{grid-template-columns:1fr;}}
 
 /* CONTACT LAYOUT */
 .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:4rem;margin-top:3rem;align-items:start;}
@@ -171,6 +171,12 @@ textarea{resize:vertical;min-height:130px;}
         <div class="format-icon">🤝</div>
         <div class="format-name" data-i18n="cont.f3.name">Інституційне партнерство</div>
         <p class="format-desc" data-i18n="cont.f3.desc">Стратегічне партнерство для організацій, університетів та інституцій, що розділяють нашу місію.</p>
+      </div>
+      <div class="format-card reveal" style="border-color:var(--accent);background:var(--accent-bg);">
+        <div class="format-icon">📜</div>
+        <div class="format-name" data-i18n="cont.f4.name">Підписати Хартію</div>
+        <p class="format-desc" data-i18n="cont.f4.desc">Ознайомтесь із засадничим документом спільноти та приєднайтесь до мережі організацій, що поділяють наші цінності.</p>
+        <a href="charter.html" style="display:inline-block;margin-top:1rem;font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;" data-i18n="cont.f4.btn">Переглянути Хартію →</a>
       </div>
     </div>
   </div>
