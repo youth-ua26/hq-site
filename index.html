@@ -465,7 +465,7 @@ polygonSeries.mapPolygons.template.states.create("hover", {
 // Russia — Quarantine Zone styling
 polygonSeries.events.on("datavalidated", function() {
   polygonSeries.mapPolygons.each(function(polygon) {
-    if (polygon.dataItem && polygon.dataItem.get("id") === "RU") {
+    if (polygon.dataItem && (polygon.dataItem.get("id") === "RU" || polygon.dataItem.get("id") === "BY")) {
       var stripes = am5.LinePattern.new(root, {
         color: am5.color(0xEF4444),
         rotation: -45,
@@ -512,6 +512,29 @@ qSeries.bullets.push(function() {
   return am5.Bullet.new(root, {sprite: c});
 });
 qSeries.data.push({geometry: {type: "Point", coordinates: [90, 62]}});
+
+// Belarus — temporarily occupied territory label
+var bySeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
+bySeries.bullets.push(function() {
+  var c = am5.Container.new(root, {});
+  c.children.push(am5.RoundedRectangle.new(root, {
+    width: 162, height: 22,
+    fill: am5.color(0xEF4444), fillOpacity: 0.92,
+    cornerRadiusTL: 3, cornerRadiusTR: 3,
+    cornerRadiusBL: 3, cornerRadiusBR: 3,
+    centerX: am5.p50, centerY: am5.p50,
+    rotation: -10
+  }));
+  c.children.push(am5.Label.new(root, {
+    text: "temporarily occupied territory",
+    fontSize: 7, fontWeight: "800",
+    fill: am5.color(0xFFFFFF),
+    centerX: am5.p50, centerY: am5.p50,
+    rotation: -10, letterSpacing: 0.8
+  }));
+  return am5.Bullet.new(root, {sprite: c});
+});
+bySeries.data.push({geometry: {type: "Point", coordinates: [28.0, 53.7]}});
 
 // Zoom control
 var zoomControl = chart.set("zoomControl", am5map.ZoomControl.new(root, {}));
