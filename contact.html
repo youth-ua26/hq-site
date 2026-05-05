@@ -194,6 +194,7 @@ textarea{resize:vertical;min-height:130px;}
         <form id="contact-form">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="Нове звернення з сайту HQ">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <div class="field">
               <label for="name" data-i18n="cont.form.name">Ім'я</label>
@@ -304,8 +305,17 @@ if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');
 const contactForm=document.getElementById('contact-form');
 const toast=document.getElementById('toast');
 function showToast(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),4000);}
+const RATE_KEY='hq_last_submit';
+const RATE_MS=60000;
 contactForm.addEventListener('submit',async function(e){
   e.preventDefault();
+  if(contactForm.querySelector('[name="_honey"]').value){return;}
+  const last=parseInt(localStorage.getItem(RATE_KEY)||'0',10);
+  if(Date.now()-last<RATE_MS){
+    const wait=Math.ceil((RATE_MS-(Date.now()-last))/1000);
+    alert('Будь ласка, зачекайте '+wait+' секунд перед повторною відправкою.');
+    return;
+  }
   const btn=contactForm.querySelector('button[type=submit]');
   btn.disabled=true;
   const data={};
@@ -313,12 +323,12 @@ contactForm.addEventListener('submit',async function(e){
   try{
     const res=await fetch('https://formsubmit.co/ajax/youth@ua-hq.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
     const json=await res.json();
-    if(json.success==='true'||json.success===true){contactForm.reset();showToast();}
+    if(json.success==='true'||json.success===true){contactForm.reset();localStorage.setItem(RATE_KEY,Date.now());showToast();}
     else{alert('Помилка відправки. Спробуйте ще раз.');}
   }catch(err){alert("Помилка з'єднання. Спробуйте ще раз.");}
   btn.disabled=false;
 });
 </script>
-<script src="lang.js"></script>
+<script src="lang.js" defer></script>
 </body>
 </html>

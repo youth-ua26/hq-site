@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Block aggressive crawlers from hammering assets
+Crawl-delay: 10
+
+# Block known bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+Sitemap: https://youth-ua26.github.io/hq-site/sitemap.xml
