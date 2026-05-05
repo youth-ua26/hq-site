@@ -129,7 +129,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
         <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
-        <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
+        <p class="footer-desc" style="margin-top:.75rem"><a class="obf-email" href="#" style="color:rgba(255,255,255,.55);text-decoration:none;">&#121;&#111;&#117;&#116;&#104;&#64;&#117;&#97;&#45;&#104;&#113;&#46;&#99;&#111;&#109;</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
@@ -186,7 +186,7 @@ const orgs = [
   {country:'Італія',         iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null},
 ];
 
-const iso = new URLSearchParams(window.location.search).get('iso');
+const iso = (new URLSearchParams(window.location.search).get('iso') || '').toLowerCase().replace(/[^a-z]/g, '').slice(0, 2);
 const org = orgs.find(o => o.iso === iso);
 const root = document.getElementById('page-root');
 

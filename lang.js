@@ -674,3 +674,18 @@ function initLang() {
 }
 
 document.addEventListener('DOMContentLoaded', initLang);
+
+// Security: framebusting — prevent clickjacking via iframe
+(function() {
+  if (window.self !== window.top) {
+    try { window.top.location = window.self.location; } catch(e) {}
+  }
+})();
+
+// Security: reconstruct obfuscated email mailto: links
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.obf-email').forEach(function(el) {
+    var t = el.textContent.trim();
+    if (t) el.href = 'mailto:' + t;
+  });
+});

@@ -192,7 +192,7 @@ textarea{resize:vertical;min-height:130px;}
       <div class="contact-form reveal">
         <div class="form-title" data-i18n="cont.form.h">Надіслати повідомлення</div>
         <form id="contact-form">
-          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_captcha" value="true">
           <input type="hidden" name="_subject" value="Нове звернення з сайту HQ">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
@@ -233,7 +233,7 @@ textarea{resize:vertical;min-height:130px;}
       <div class="contact-info reveal">
         <div class="info-block">
           <div class="info-label">Email</div>
-          <div class="info-value"><a href="mailto:youth@ua-hq.com">youth@ua-hq.com</a></div>
+          <div class="info-value"><a class="obf-email" href="#">&#121;&#111;&#117;&#116;&#104;&#64;&#117;&#97;&#45;&#104;&#113;&#46;&#99;&#111;&#109;</a></div>
         </div>
         <div class="info-block">
           <div class="info-label" data-i18n="cont.social">Соціальні мережі</div>
@@ -262,7 +262,7 @@ textarea{resize:vertical;min-height:130px;}
       <div>
         <div class="footer-brand-name">HQ Штаб-квартира</div>
         <p class="footer-desc" data-i18n="ft.desc">Глобальна мережа українських організацій та лідерів.</p>
-        <p class="footer-desc" style="margin-top:.75rem"><a href="mailto:youth@ua-hq.com" style="color:rgba(255,255,255,.55);text-decoration:none;">youth@ua-hq.com</a></p>
+        <p class="footer-desc" style="margin-top:.75rem"><a class="obf-email" href="#" style="color:rgba(255,255,255,.55);text-decoration:none;">&#121;&#111;&#117;&#116;&#104;&#64;&#117;&#97;&#45;&#104;&#113;&#46;&#99;&#111;&#109;</a></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
@@ -321,7 +321,8 @@ contactForm.addEventListener('submit',async function(e){
   const data={};
   new FormData(contactForm).forEach((v,k)=>{data[k]=v;});
   try{
-    const res=await fetch('https://formsubmit.co/ajax/youth@ua-hq.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
+    const _ep='https://formsubmit.co/ajax/'+'\x79\x6f\x75\x74\x68\x40\x75\x61\x2d\x68\x71\x2e\x63\x6f\x6d';
+    const res=await fetch(_ep,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
     const json=await res.json();
     if(json.success==='true'||json.success===true){contactForm.reset();localStorage.setItem(RATE_KEY,Date.now());showToast();}
     else{alert('Помилка відправки. Спробуйте ще раз.');}
