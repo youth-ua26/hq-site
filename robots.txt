@@ -17,4 +17,4 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-Sitemap: https://youth-ua26.github.io/hq-site/sitemap.xml
+Sitemap: https://ua-hq.com/sitemap.xml
