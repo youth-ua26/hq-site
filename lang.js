@@ -114,7 +114,6 @@ const HQ_T = {
     'part.p4':         'Міністерство соціальної політики сім\'ї та єдності України',
     'part.p5':         'Міністерство культури та інформаційної політики України',
     'part.p6':         'Офіс Президента України',
-    'part.p7':         'Українська студентська ліга',
     'part.p8':         'Еразмус+',
     // CTA
     'cta.tag':         'Долучайтеся',
@@ -434,7 +433,6 @@ const HQ_T = {
     'part.p4':         'Ministry of Social Policy, Family and Unity of Ukraine',
     'part.p5':         'Ministry of Culture and Information Policy of Ukraine',
     'part.p6':         'Office of the President of Ukraine',
-    'part.p7':         'Ukrainian Student League',
     'part.p8':         'Erasmus+',
     // CTA
     'cta.tag':         'Get involved',

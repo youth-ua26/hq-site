@@ -227,8 +227,9 @@ textarea{resize:vertical;min-height:130px;}
             <label for="message" data-i18n="cont.form.msg">Повідомлення</label>
             <textarea id="message" name="Повідомлення" data-i18n-ph="cont.form.msg_ph" placeholder="Розкажіть про себе та вашу ідею..." required></textarea>
           </div>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADPOV0VX8Yo2fbPK" data-theme="light" style="margin-bottom:1.25rem;"></div>
-          <button type="submit" class="btn btn-primary" data-i18n="cont.form.submit">Надіслати →</button>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADPOV0VX8Yo2fbPK" data-theme="light" data-size="flexible" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError" style="margin-bottom:1.25rem;"></div>
+          <div id="form-error" style="display:none;color:#DC2626;font-size:.8rem;margin-bottom:.75rem;padding:.5rem .75rem;background:#FEF2F2;border-radius:var(--r-sm);border:1px solid #FECACA;"></div>
+          <button type="submit" class="btn btn-primary" id="submit-btn" data-i18n="cont.form.submit">Надіслати →</button>
         </form>
       </div>
 
@@ -304,26 +305,36 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 const navTog=document.getElementById('nav-toggle');
 const navMob=document.getElementById('nav-mobile');
 if(navTog){navTog.addEventListener('click',()=>{navMob.classList.toggle('open');navTog.classList.toggle('active');});navMob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMob.classList.remove('open');navTog.classList.remove('active');}));}
+
+let _tsToken=null;
+function onTurnstileSuccess(t){_tsToken=t;}
+function onTurnstileExpired(){_tsToken=null;}
+function onTurnstileError(){_tsToken=null;showFormError('Помилка перевірки. Оновіть сторінку.');}
+
 const contactForm=document.getElementById('contact-form');
 const toast=document.getElementById('toast');
+const formErr=document.getElementById('form-error');
 function showToast(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),4000);}
+function showFormError(msg){formErr.textContent=msg;formErr.style.display='block';formErr.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function clearFormError(){formErr.style.display='none';}
+
 const RATE_KEY='hq_last_submit';
 const RATE_MS=60000;
 contactForm.addEventListener('submit',async function(e){
   e.preventDefault();
+  clearFormError();
   if(contactForm.querySelector('[name="_honey"]').value){return;}
-  const tokenField=contactForm.querySelector('[name="cf-turnstile-response"]');
-  if(!tokenField||!tokenField.value){
-    alert('Будь ласка, підтвердіть, що ви не робот.');
+  if(!_tsToken){
+    showFormError('Будь ласка, підтвердіть, що ви не робот.');
     return;
   }
   const last=parseInt(localStorage.getItem(RATE_KEY)||'0',10);
   if(Date.now()-last<RATE_MS){
     const wait=Math.ceil((RATE_MS-(Date.now()-last))/1000);
-    alert('Будь ласка, зачекайте '+wait+' секунд перед повторною відправкою.');
+    showFormError('Зачекайте '+wait+' секунд перед повторною відправкою.');
     return;
   }
-  const btn=contactForm.querySelector('button[type=submit]');
+  const btn=document.getElementById('submit-btn');
   btn.disabled=true;
   const data={};
   new FormData(contactForm).forEach((v,k)=>{data[k]=v;});
@@ -331,11 +342,10 @@ contactForm.addEventListener('submit',async function(e){
     const _ep='https://formsubmit.co/ajax/'+'\x79\x6f\x75\x74\x68\x40\x75\x61\x2d\x68\x71\x2e\x63\x6f\x6d';
     const res=await fetch(_ep,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
     const json=await res.json();
-    if(json.success==='true'||json.success===true){contactForm.reset();localStorage.setItem(RATE_KEY,Date.now());showToast();}
-    else{alert('Помилка відправки. Спробуйте ще раз.');}
-  }catch(err){alert("Помилка з'єднання. Спробуйте ще раз.");}
-  btn.disabled=false;
-  if(window.turnstile)window.turnstile.reset();
+    if(json.success==='true'||json.success===true){contactForm.reset();_tsToken=null;localStorage.setItem(RATE_KEY,Date.now());showToast();}
+    else{showFormError('Помилка відправки. Спробуйте ще раз.');}
+  }catch(err){showFormError("Помилка з'єднання. Перевірте мережу та спробуйте ще раз.");}
+  finally{btn.disabled=false;if(window.turnstile)window.turnstile.reset();}
 });
 </script>
 <script src="lang.js" defer></script>
