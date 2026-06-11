@@ -446,6 +446,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 
 <script>
 // ── amCharts 5 world map ──────────────────────────────────────────────────
+try {
 var root = am5.Root.new("world-map");
 if (root._logo) root._logo.dispose();
 root.setThemes([am5themes_Animated.new(root)]);
@@ -674,6 +675,7 @@ chipsEl.appendChild(homeChip);
   });
   chipsEl.appendChild(d);
 });
+} catch(e) {}
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
