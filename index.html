@@ -104,8 +104,10 @@ section{padding:5rem 4rem;}
 .hero-glow{position:absolute;top:5%;right:5%;width:700px;height:700px;background:radial-gradient(circle,rgba(29,78,216,.07) 0%,transparent 65%);z-index:0;pointer-events:none;}
 .hero-eyebrow{position:relative;z-index:1;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;}
 .hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);border-radius:2px;}
-.hero h1{font-family:'Montserrat Alternates',sans-serif;font-size:clamp(2.8rem,6vw,5.2rem);font-weight:900;line-height:1.05;max-width:780px;position:relative;z-index:1;margin-bottom:1.5rem;color:var(--dark);}
+.hero-title-row{display:flex;align-items:center;gap:2.5rem;position:relative;z-index:1;margin-bottom:1.5rem;}
+.hero h1{font-family:'Montserrat Alternates',sans-serif;font-size:clamp(2.8rem,6vw,5.2rem);font-weight:900;line-height:1.05;max-width:780px;color:var(--dark);}
 .hero h1 em{font-style:italic;color:var(--accent);}
+.hero-logo{width:clamp(100px,12vw,180px);height:auto;flex-shrink:0;object-fit:contain;}
 .hero-sub{max-width:500px;font-size:1.05rem;line-height:1.75;color:var(--muted);position:relative;z-index:1;margin-bottom:2rem;}
 .hero-vm{display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;margin-bottom:2.5rem;max-width:680px;}
 .hero-vm-item{flex:1;min-width:240px;padding:.9rem 1.1rem;border-left:2px solid var(--accent);background:var(--accent-bg);border-radius:0 var(--r-sm) var(--r-sm) 0;}
@@ -114,7 +116,7 @@ section{padding:5rem 4rem;}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;}
 .hero-scroll{position:absolute;bottom:2.5rem;left:4rem;z-index:1;display:flex;align-items:center;gap:.8rem;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);opacity:.4;}
 .hero-scroll::after{content:'';display:block;width:40px;height:1px;background:currentColor;}
-@media(max-width:900px){.hero{padding:7rem 1.5rem 5rem;}.hero-scroll{left:1.5rem;}}
+@media(max-width:900px){.hero{padding:7rem 1.5rem 5rem;}.hero-scroll{left:1.5rem;}.hero-title-row{gap:1.5rem;}.hero-logo{width:clamp(70px,18vw,110px);}}
 
 /* KPI */
 #kpi{padding:0;background:var(--dark);}
@@ -260,7 +262,10 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-eyebrow" data-i18n="hero.eyebrow">Глобальна мережа українських лідерів</div>
-  <h1 data-i18n="hero.title">Ми будуємо<br><em>майбутнє</em> України<br>разом</h1>
+  <div class="hero-title-row">
+    <h1 data-i18n="hero.title">Ми будуємо<br><em>майбутнє</em> України<br>разом</h1>
+    <img src="logo_orig.png" alt="HQ" class="hero-logo">
+  </div>
   <p class="hero-sub" data-i18n="hero.sub">HQ — платформа, що перетворює розпорошену діаспору на глобальну мережу організацій, лідерів та ідей для стратегічного посилення України у світі та її довгострокового розвитку.</p>
   <div class="hero-vm">
     <div class="hero-vm-item">
