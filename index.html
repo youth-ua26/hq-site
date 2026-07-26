@@ -26,10 +26,6 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"HQ Штаб-квартира","alternateName":["HQ","Ukrainian Youth Headquarters","UA Youth HQ","ua-hq"],"url":"https://ua-hq.com","logo":"https://ua-hq.com/logo_orig.png","description":"Global headquarters of Ukrainian youth organizations. We coordinate 30+ organizations across 20 countries — internships, mentorship, advocacy, and the Suzirya network.","email":"youth@ua-hq.com","sameAs":["https://www.instagram.com/uniting_uayouth_worldwide/","https://www.linkedin.com/company/headquarters-ua/","https://www.facebook.com/profile.php?id=61586976269853"]}
 </script>
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 <style>
 :root{
   --bg:#F8FAFC;--card:#FFFFFF;--alt:#F1F5F9;
@@ -137,6 +133,10 @@ section{padding:5rem 4rem;}
 .c-chip:hover{border-color:var(--accent);color:var(--dark);background:var(--accent-bg);}
 .c-chip.active{border-color:var(--accent);background:var(--accent-bg);color:var(--dark);}
 #world-map{background:#DCE8F8;}
+.map-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;height:100%;padding:2rem;text-align:center;overflow:auto;box-sizing:border-box;}
+.map-fallback p{font-size:.85rem;color:var(--muted);max-width:320px;}
+.map-fallback-flags{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;max-width:420px;}
+.map-fallback-flags .fi{width:1.6em;height:1.2em;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.08);}
 #map-tip{position:fixed;z-index:9999;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.10);padding:.5rem .8rem;pointer-events:none;opacity:0;transition:opacity .12s;max-width:220px;}
 #map-tip.show{opacity:1;}
 #map-tip .mt-country{display:flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:.15rem;}
@@ -450,7 +450,98 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 4rem 2rem
 </footer>
 
 <script>
-// ── amCharts 5 world map ──────────────────────────────────────────────────
+// ── Data shared between the map and the country chips ──────────────────────
+const orgs = [
+  {country:'Румунія',        flag:'🇷🇴', iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com',     longitude:24.9, latitude:45.9},
+  {country:'Литва',          flag:'🇱🇹', iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null,                            longitude:23.9, latitude:55.9},
+  {country:'Нідерланди',     flag:'🇳🇱', iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/',   longitude:4.9,  latitude:52.4},
+  {country:'Швейцарія',      flag:'🇨🇭', iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/',            longitude:8.5,  latitude:47.4},
+  {country:'Франція',        flag:'🇫🇷', iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students',longitude:2.3,  latitude:48.8},
+  {country:'Велика Британія',flag:'🇬🇧', iso:'gb', name:'UA.Youth / Oxford Ukrainian Society / Cambridge Ukrainian Society', web:'https://uayouth.uk/', longitude:-0.1, latitude:51.5},
+  {country:'Бельгія',        flag:'🇧🇪', iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be',     longitude:4.4,  latitude:50.8},
+  {country:'Чехія',          flag:'🇨🇿', iso:'cz', name:'Покоління для України',                            web:null,                            longitude:14.4, latitude:50.1},
+  {country:'Польща',         flag:'🇵🇱', iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/',longitude:21.0, latitude:52.2},
+  {country:'Сакартвело',     flag:'🇬🇪', iso:'ge', name:'Українські активісти в Сакартвело',                web:null,                            longitude:44.8, latitude:41.7},
+  {country:'Іспанія',        flag:'🇪🇸', iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null,                            longitude:-3.7, latitude:40.4},
+  {country:'Данія',          flag:'🇩🇰', iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null,                            longitude:10.0, latitude:56.3},
+  {country:'Австрія',        flag:'🇦🇹', iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null,                            longitude:16.4, latitude:48.2},
+  {country:'США',            flag:'🇺🇸', iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null,                            longitude:-77.0,latitude:38.9},
+  {country:'Канада',         flag:'🇨🇦', iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca',           longitude:-79.4,latitude:43.7},
+  {country:'Італія',         flag:'🇮🇹', iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null,                            longitude:12.5, latitude:41.9},
+];
+
+// ── Country chips — plain DOM, independent of the map library so they always
+// render even if the map below fails to load ────────────────────────────────
+const chipsEl = document.getElementById('chips-container');
+let hqMap = null; // set once amCharts finishes initializing; chips no-op until then
+
+const homeChip = document.createElement('div');
+homeChip.className = 'c-chip active';
+homeChip.innerHTML = `<span style="font-size:.9em">🌍</span><span data-i18n="map.all">Всі країни</span>`;
+homeChip.addEventListener('click', () => {
+  document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
+  homeChip.classList.add('active');
+  if (hqMap) hqMap.chart.goHome();
+});
+chipsEl.appendChild(homeChip);
+
+[...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o => {
+  const d = document.createElement('div');
+  d.className = 'c-chip';
+  d.innerHTML = `<span class="fi fi-${o.iso}"></span><span data-i18n="country.${o.iso}">${o.country}</span>`;
+  d.addEventListener('click', () => {
+    document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
+    d.classList.add('active');
+    if (!hqMap) return;
+    hqMap.chart.zoomToGeoPoint({longitude: o.longitude, latitude: o.latitude}, 5, true, 500);
+    setTimeout(() => {
+      hqMap.pointSeries.dataItems.forEach(di => {
+        if (di.dataContext && di.dataContext.country === o.country) {
+          di.bullets.forEach(b => { var s = b.get("sprite"); if (s) s.showTooltip(); });
+        }
+      });
+    }, 650);
+  });
+  chipsEl.appendChild(d);
+});
+
+// ── amCharts 5 world map — loaded dynamically so a slow/blocked CDN request
+// never blanks the whole page, with one retry and a static fallback ────────
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('failed to load ' + src));
+    document.head.appendChild(s);
+  });
+}
+function loadScriptWithRetry(src) {
+  return loadScript(src).catch(() => new Promise((resolve, reject) => {
+    setTimeout(() => loadScript(src).then(resolve, reject), 1200);
+  }));
+}
+function showMapFallback() {
+  const wrap = document.getElementById('world-map');
+  if (!wrap) return;
+  const flags = [{iso:'ua'}, ...[...new Map(orgs.map(o=>[o.country,o])).values()]];
+  wrap.innerHTML = `<div class="map-fallback">
+    <div class="map-fallback-flags">${flags.map(o=>`<span class="fi fi-${o.iso}"></span>`).join('')}</div>
+    <p data-i18n="map.fallback">Не вдалося завантажити інтерактивну карту. Спробуйте оновити сторінку.</p>
+  </div>`;
+}
+
+const MAP_SCRIPTS = [
+  "https://cdn.amcharts.com/lib/5/index.js",
+  "https://cdn.amcharts.com/lib/5/map.js",
+  "https://cdn.amcharts.com/lib/5/geodata/worldLow.js",
+  "https://cdn.amcharts.com/lib/5/themes/Animated.js"
+];
+MAP_SCRIPTS.reduce((p, src) => p.then(() => loadScriptWithRetry(src)), Promise.resolve())
+  .then(initMap)
+  .catch(showMapFallback);
+
+function initMap() {
 try {
 var root = am5.Root.new("world-map");
 if (root._logo) root._logo.dispose();
@@ -561,25 +652,6 @@ function makeTooltip(html) {
 
 const UAPos = {longitude: 30.52, latitude: 50.45};
 
-const orgs = [
-  {country:'Румунія',        flag:'🇷🇴', iso:'ro', name:'Асоціація Української Молоді в Румунії',           web:'https://atur.onrender.com',     longitude:24.9, latitude:45.9},
-  {country:'Литва',          flag:'🇱🇹', iso:'lt', name:'Українська Молодіжна Група в Литві',               web:null,                            longitude:23.9, latitude:55.9},
-  {country:'Нідерланди',     flag:'🇳🇱', iso:'nl', name:'Фонд Лотус / Станція Коновальця',                  web:'https://www.lotus-fund.org/',   longitude:4.9,  latitude:52.4},
-  {country:'Швейцарія',      flag:'🇨🇭', iso:'ch', name:'UASAZ — Українські студенти в Цюриху',             web:'https://uasaz.org/',            longitude:8.5,  latitude:47.4},
-  {country:'Франція',        flag:'🇫🇷', iso:'fr', name:'Наше студентство у Франції',                       web:'https://linktr.ee/nef_students',longitude:2.3,  latitude:48.8},
-  {country:'Велика Британія',flag:'🇬🇧', iso:'gb', name:'UA.Youth / Oxford Ukrainian Society / Cambridge Ukrainian Society', web:'https://uayouth.uk/', longitude:-0.1, latitude:51.5},
-  {country:'Бельгія',        flag:'🇧🇪', iso:'be', name:"Українська Молодь Об'єднана в Бельгії",            web:'https://linktr.ee/uyub.be',     longitude:4.4,  latitude:50.8},
-  {country:'Чехія',          flag:'🇨🇿', iso:'cz', name:'Покоління для України',                            web:null,                            longitude:14.4, latitude:50.1},
-  {country:'Польща',         flag:'🇵🇱', iso:'pl', name:'Європейська Україна / Альянс 24/08 / Molodi',      web:'https://ukrforum2025.carrd.co/',longitude:21.0, latitude:52.2},
-  {country:'Сакартвело',     flag:'🇬🇪', iso:'ge', name:'Українські активісти в Сакартвело',                web:null,                            longitude:44.8, latitude:41.7},
-  {country:'Іспанія',        flag:'🇪🇸', iso:'es', name:'Асоціація українських студентів в Іспанії',        web:null,                            longitude:-3.7, latitude:40.4},
-  {country:'Данія',          flag:'🇩🇰', iso:'dk', name:'Ukrainsk Ungdom i Danmark',                        web:null,                            longitude:10.0, latitude:56.3},
-  {country:'Австрія',        flag:'🇦🇹', iso:'at', name:'ЮНІЯ — Українські студенти в Австрії',             web:null,                            longitude:16.4, latitude:48.2},
-  {country:'США',            flag:'🇺🇸', iso:'us', name:'MIT / Harvard / Brown / Georgetown / AU / GWU',    web:null,                            longitude:-77.0,latitude:38.9},
-  {country:'Канада',         flag:'🇨🇦', iso:'ca', name:'Спілка Українських Студентів у Канаді',            web:'https://www.susk.ca',           longitude:-79.4,latitude:43.7},
-  {country:'Італія',         flag:'🇮🇹', iso:'it', name:'Українсько-італійська молодіжна організація UaMi', web:null,                            longitude:12.5, latitude:41.9},
-];
-
 // Ukraine pulsing marker
 var ukraineSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
 ukraineSeries.bullets.push(function() {
@@ -648,39 +720,11 @@ polygonSeries.events.on("datavalidated", function() {
   chart.goHome(0);
 });
 
-// Country chips
-const chipsEl = document.getElementById('chips-container');
-
-// Home chip
-const homeChip = document.createElement('div');
-homeChip.className = 'c-chip active';
-homeChip.innerHTML = `<span style="font-size:.9em">🌍</span><span data-i18n="map.all">Всі країни</span>`;
-homeChip.addEventListener('click', () => {
-  document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
-  homeChip.classList.add('active');
-  chart.goHome();
-});
-chipsEl.appendChild(homeChip);
-
-[...new Map(orgs.map(o=>[o.country,o])).values()].forEach(o => {
-  const d = document.createElement('div');
-  d.className = 'c-chip';
-  d.innerHTML = `<span class="fi fi-${o.iso}"></span><span data-i18n="country.${o.iso}">${o.country}</span>`;
-  d.addEventListener('click', () => {
-    document.querySelectorAll('.c-chip').forEach(c => c.classList.remove('active'));
-    d.classList.add('active');
-    chart.zoomToGeoPoint({longitude: o.longitude, latitude: o.latitude}, 5, true, 500);
-    setTimeout(() => {
-      pointSeries.dataItems.forEach(di => {
-        if (di.dataContext && di.dataContext.country === o.country) {
-          di.bullets.forEach(b => { var s = b.get("sprite"); if (s) s.showTooltip(); });
-        }
-      });
-    }, 650);
-  });
-  chipsEl.appendChild(d);
-});
-} catch(e) {}
+hqMap = {chart, pointSeries};
+} catch(e) {
+  showMapFallback();
+}
+}
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
